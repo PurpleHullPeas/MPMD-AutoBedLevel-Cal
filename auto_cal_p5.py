@@ -740,6 +740,9 @@ def main():
 
     parser = argparse.ArgumentParser(description='Auto-Bed Cal. for Monoprice Mini Delta')
     parser.add_argument('-p','--port',help='Serial port',required=True)
+    parser.add_argument('-x','--x0',type=float,default=x0,help='Starting x-value')
+    parser.add_argument('-y','--y0',type=float,default=y0,help='Starting y-value')
+    parser.add_argument('-z','--z0',type=float,default=z0,help='Starting z-value')
     parser.add_argument('-r','--r-value',type=float,default=r_value,help='Starting r-value')
     parser.add_argument('-l','--l-value',type=float,default=l_value,help='Starting l-value')
     parser.add_argument('-s','--step-mm',type=float,default=step_mm,help='Set steps-/mm')
@@ -776,6 +779,9 @@ def main():
             bed_temp = args.bed_temp
             max_error = args.max_error
             max_runs = args.max_runs
+            trial_z = args.z0
+            trial_x = args.x0
+            trial_y = args.y0
             r_value = args.r_value
             step_mm = args.step_mm
             max_runs = args.max_runs
@@ -787,6 +793,9 @@ def main():
         bed_temp = args.bed_temp
         max_error = args.max_error
         max_runs = args.max_runs
+        trial_z = args.z0
+        trial_x = args.x0
+        trial_y = args.y0
         r_value = args.r_value
         step_mm = args.step_mm
         max_runs = args.max_runs
