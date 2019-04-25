@@ -16,10 +16,10 @@
 # sudo apt-get install python-serial
 #
 # Stock Firmware <=V41, V45 at 60 degrees C w/ Dennis's Defaults:
-# python auto_cal_p5_v0.py -p /dev/ttyACM0 -ff 0 -r 63.5 -l 123.0 -s 57.14 -bt 60
+# python auto_cal_p5_v0.py -p /dev/ttyACM0 -ff 0 -tf 0 -r 63.5 -l 123.0 -s 57.14 -bt 60
 #
 # Stock V43 & V44 at 60 degrees C w/ Dennis's Defaults:
-# python auto_cal_p5_v0.py -p /dev/ttyACM0 -ff 0 -r 63.5 -l 123.0 -s 114.28 -bt 60
+# python auto_cal_p5_v0.py -p /dev/ttyACM0 -ff 0 -tf 0 -r 63.5 -l 123.0 -s 114.28 -bt 60
 #
 # For Marlin, use the appropriate line for your stock firmware and replace "-ff 0" with "-ff 1"
 
@@ -321,7 +321,7 @@ def findProbePoints(ii, idprobe, n):
     
     return ip1, ip2, ip3
     
-def calculate_contour(x_list, y_list, dz_list, runs, xhigh, yhigh, zhigh):
+def calculate_contour(x_list, y_list, dz_list, runs, xhigh, yhigh, zhigh, tower_flag):
     
     # Dennis's G29 P5 Heatmap
     # [ ],[?] = outside of circular bed area
@@ -550,58 +550,57 @@ def calculate_contour(x_list, y_list, dz_list, runs, xhigh, yhigh, zhigh):
                 #print("\n")
                 #print("{0} {1} {2} {3} {4} {5} {6} {7}\n".format(str(irow), str(icol), str(zq), str(zq_tmp), str(z11), str(z12), str(z21), str(z22)))
     
-    
-    
-    # X Tilt
+
+    # North Tilt (opposite of LCD)
     x0 = xmin
     y0 = ymin/2.0
     irow, icol = gridval2idx(x0, y0, xStart, yStart, dx, dy)
-    xtower = heatmap[irow][icol]
-    TX_list = [None]*5
-    TX_list[0] = heatmap[irow][icol]
-    TX_list[1] = heatmap[irow-1][icol]
-    TX_list[2] = heatmap[irow][icol+1]
-    TX_list[3] = heatmap[irow+1][icol+1]
-    TX_list[3] = test_x #DEBUGGING
-    TX_list[4] = heatmap[irow-1][icol+1]
-    #print("TX Values\n")
-    #print(*TX_list, sep='\n\n')
+    ntower = heatmap[irow][icol]
+    TN_list = [None]*5
+    TN_list[0] = heatmap[irow][icol]
+    TN_list[1] = heatmap[irow-1][icol]
+    TN_list[2] = heatmap[irow][icol+1]
+    TN_list[3] = heatmap[irow+1][icol+1]
+    TN_list[3] = test_x #DEBUGGING
+    TN_list[4] = heatmap[irow-1][icol+1]
+    #print("TN Values\n")
+    #print(*TN_list, sep='\n\n')
     #print("\n")
-    TX = float(mean(TX_list))
+    TN = float(mean(TN_list))
     
-    # Y Tilt
+    # West Tilt (left of LCD)
     x0 = xmax
     y0 = ymin/2
     irow, icol = gridval2idx(x0, y0, xStart, yStart, dx, dy)
-    ytower = heatmap[irow][icol]
-    TY_list = [None]*5
-    TY_list[0] = heatmap[irow][icol]
-    TY_list[1] = heatmap[irow-1][icol]
-    TY_list[2] = heatmap[irow-1][icol-1]
-    TY_list[3] = heatmap[irow][icol-1]
-    TY_list[4] = heatmap[irow+1][icol-1]
-    TY_list[4] = test_y #DEBUGGING
-    #print("TY Values\n")
-    #print(*TY_list, sep='\n\n')
+    wtower = heatmap[irow][icol]
+    TW_list = [None]*5
+    TW_list[0] = heatmap[irow][icol]
+    TW_list[1] = heatmap[irow-1][icol]
+    TW_list[2] = heatmap[irow-1][icol-1]
+    TW_list[3] = heatmap[irow][icol-1]
+    TW_list[4] = heatmap[irow+1][icol-1]
+    TW_list[4] = test_y #DEBUGGING
+    #print("TW Values\n")
+    #print(*TW_list, sep='\n\n')
     #print("\n")
-    TY = float(mean(TY_list))
+    TW = float(mean(TW_list))
     
-    # Z Tilt
+    # East Tilt (right of LCD)
     x0 = 0.0
     y0 = ymax
     irow, icol = gridval2idx(x0, y0, xStart, yStart, dx, dy)
-    ztower = heatmap[irow][icol]
-    TZ_list = [None]*6
-    TZ_list[0] = heatmap[irow][icol]
-    TZ_list[1] = heatmap[irow][icol+1]
-    TZ_list[2] = heatmap[irow][icol-1]
-    TZ_list[3] = heatmap[irow+1][icol]
-    TZ_list[4] = heatmap[irow+1][icol+1]
-    TZ_list[5] = heatmap[irow+1][icol-1]
-    #print("TZ Values\n")
-    #print(*TZ_list, sep='\n\n')
+    etower = heatmap[irow][icol]
+    TE_list = [None]*6
+    TE_list[0] = heatmap[irow][icol]
+    TE_list[1] = heatmap[irow][icol+1]
+    TE_list[2] = heatmap[irow][icol-1]
+    TE_list[3] = heatmap[irow+1][icol]
+    TE_list[4] = heatmap[irow+1][icol+1]
+    TE_list[5] = heatmap[irow+1][icol-1]
+    #print("TE Values\n")
+    #print(*TE_list, sep='\n\n')
     #print("\n")
-    TZ = float(mean(TZ_list))
+    TE = float(mean(TE_list))
     
     # Bowl Stats - Center
     x0 = 0.0
@@ -650,6 +649,28 @@ def calculate_contour(x_list, y_list, dz_list, runs, xhigh, yhigh, zhigh):
     #print(*OR_list, sep='\n\n')
     #print("\n")
     #print("BowlOR = {0:.4f}".format(BowlOR))
+    
+    # Assign Towers to the current Tower X/Y/Z configuration (default is stock)
+    TX = TN
+    xtower = ntower
+    TY = TW
+    ytower = wtower
+    TZ = TE
+    ztower = etower
+    if tower_flag == 1: 
+        TX = TE
+        xtower = etower
+        TY = TN
+        ytower = ntower
+        TZ = TW
+        ztower = wtower
+    elif tower_flag == 2: 
+        TX = TW
+        xtower = wtower
+        TY = TE
+        ytower = etower
+        TZ = TN
+        ztower = ntower
     
     # Define Pass # according to the spreadsheet
     pass_num = runs - 1
@@ -799,7 +820,7 @@ def output_pass_text(runs, trial_x, trial_y, trial_z, l_value, r_value, iHighTow
     return
 
 
-def run_calibration(port, firmFlag, trial_x, trial_y, trial_z, l_value, r_value, xhigh, yhigh, zhigh, max_runs, max_error, bed_temp, runs=0):
+def run_calibration(port, firmFlag, trial_x, trial_y, trial_z, l_value, r_value, xhigh, yhigh, zhigh, max_runs, max_error, bed_temp, tower_flag, runs=0):
     runs += 1
 
     if runs > max_runs:
@@ -814,7 +835,7 @@ def run_calibration(port, firmFlag, trial_x, trial_y, trial_z, l_value, r_value,
     x_list, y_list, z1_list, z2_list, z_avg_list, dtap_list, dz_list = get_current_values(port, firmFlag)
     
     # Generate the P5 contour map
-    TX, TY, TZ, THigh, BowlCenter, BowlOR, xhigh, yhigh, zhigh, iHighTower = calculate_contour(x_list, y_list, dz_list, runs, xhigh, yhigh, zhigh)
+    TX, TY, TZ, THigh, BowlCenter, BowlOR, xhigh, yhigh, zhigh, iHighTower = calculate_contour(x_list, y_list, dz_list, runs, xhigh, yhigh, zhigh, tower_flag)
     
     # Output current pass results
     output_pass_text(runs, trial_x, trial_y, trial_z, l_value, r_value, iHighTower, x_list, y_list, z1_list, z2_list)
@@ -841,7 +862,7 @@ def run_calibration(port, firmFlag, trial_x, trial_y, trial_z, l_value, r_value,
     if calibrated:
         print ("Calibration complete")
     else:
-        calibrated, new_z, new_x, new_y, new_l, new_r, xhigh, yhigh, zhigh = run_calibration(port, firmFlag, new_x, new_y, new_z, new_l, new_r, xhigh, yhigh, zhigh, max_runs, max_error, bed_temp, runs)
+        calibrated, new_z, new_x, new_y, new_l, new_r, xhigh, yhigh, zhigh = run_calibration(port, firmFlag, new_x, new_y, new_z, new_l, new_r, xhigh, yhigh, zhigh, max_runs, max_error, bed_temp, tower_flag, runs)
 
     return calibrated, new_z, new_x, new_y, new_l, new_r, xhigh, yhigh, zhigh
 
@@ -868,6 +889,7 @@ def main():
     zhigh = [0]*2
     bed_temp = -1
     firmFlag = 0
+    tower_flag = 0
 
     parser = argparse.ArgumentParser(description='Auto-Bed Cal. for Monoprice Mini Delta')
     parser.add_argument('-p','--port',help='Serial port',required=True)
@@ -881,6 +903,7 @@ def main():
     parser.add_argument('-mr','--max-runs',type=int,default=max_runs,help='Maximum attempts to calibrate printer')
     parser.add_argument('-bt','--bed-temp',type=int,default=bed_temp,help='Bed Temperature')
     parser.add_argument('-ff','--firmFlag',type=int,default=firmFlag,help='Firmware Flag (0 = Stock; 1 = Marlin)')
+    parser.add_argument('-tf','--tower_flag',type=int,default=tower_flag,help='Tower Flag (0 = Stock and old Marlin; 1 = Marlin 1.3.3, 2 = experimental)')
     parser.add_argument('-f','--file',type=str,dest='file',default=None,
         help='File with settings, will be updated with latest settings at the end of the run')
     args = parser.parse_args()
@@ -891,6 +914,7 @@ def main():
         try:
             with open(args.file) as data_file:
                 settings = json.load(data_file)
+            tower_flag = int(settings.get('tower_flag', tower_flag))
             firmFlag = int(settings.get('firmFlag', firmFlag))
             bed_temp = int(settings.get('bed_temp', bed_temp))
             max_runs = int(settings.get('max_runs', max_runs))
@@ -903,6 +927,7 @@ def main():
             step_mm = float(settings.get('step', step_mm))
 
         except:
+            tower_flag = args.tower_flag
             firmFlag = args.firmFlag
             bed_temp = args.bed_temp
             max_error = args.max_error
@@ -916,6 +941,7 @@ def main():
             l_value = args.l_value
             pass
     else: 
+        tower_flag = args.tower_flag
         firmFlag = args.firmFlag
         bed_temp = args.bed_temp
         max_error = args.max_error
@@ -935,6 +961,14 @@ def main():
             print("Using Monoprice Firmware\n")
         elif firmFlag == 1:
             print("Using Marlin Firmware\n")
+            
+        # Tower Setup
+        if tower_flag == 0:
+            print("Stock Tower Setup (X opposite of LCD)\n")
+        elif tower_flag == 1:
+            print("Altered Tower Setup (Y opposite of LCD)\n")
+        elif tower_flag == 2:
+            print("Experimental Tower Setup (Z opposite of LCD)\n")
     
         #Set Bed Temperature
         if bed_temp >= 0:
@@ -964,7 +998,7 @@ def main():
 
         print ('\nStarting calibration')
 
-        calibrated, new_z, new_x, new_y, new_l, new_r, xhigh, yhigh, zhigh = run_calibration(port, firmFlag, trial_x, trial_y, trial_z, l_value, r_value, xhigh, yhigh, zhigh, max_runs, args.max_error, bed_temp)
+        calibrated, new_z, new_x, new_y, new_l, new_r, xhigh, yhigh, zhigh = run_calibration(port, firmFlag, trial_x, trial_y, trial_z, l_value, r_value, xhigh, yhigh, zhigh, max_runs, args.max_error, bed_temp, tower_flag)
 
         port.close()
 
