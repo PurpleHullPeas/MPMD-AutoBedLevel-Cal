@@ -58,18 +58,22 @@ The scripts should also work on Mac, but no one has reported back after installi
 E.G., I don't have a monitor plugged into my Octopi, so I do all of this using [Putty](https://www.raspberrypi.org/documentation/remote-access/ssh/windows.md). I'm able to enter "octopi" instead of the IP address to connect, but YMMV.
 
 3) Unless you're using the Windows executable, Python3 is required, with additional updates/packages.
+
 **Octopi Installation:** (some unnecessary commands included to help noobs)
-sudo apt-get install python3-serial
-sudo apt-get install python3-scipy
-sudo apt-get install python-serial
-git clone https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal.git
-cd MPMD-AutoBedLevel-Cal
-git fetch
-git pull
+
+sudo apt-get install python3-serial \n
+sudo apt-get install python3-scipy \n
+sudo apt-get install python-serial \n
+git clone https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal.git \n
+cd MPMD-AutoBedLevel-Cal \n
+git fetch \n
+git pull \n
+
 **Windows Installation:**
 I recently released a command-line executable that can be used instead of the python script, as well as a batch file to make running it more straightforward: auto_cal_p5_v0.bat and auto_cal_p5_v0.exe (you will need both files in the same directory).
 [Visual C++ Redistributable](https://www.microsoft.com/en-us/download/details.aspx?id=48145) may be required whether you use the executable or the Python script.
 If you prefer to use Python, you will need the additional packages included with [WinPython](http://winpython.github.io/).
+
 **Mac/OSX Installation (not tested):**
 Download [Python for Mac](https://www.python.org/downloads/mac-osx/)
 [Install pyserial](https://stackoverflow.com/questions/31228787/install-pyserial-mac-os-10-10)
