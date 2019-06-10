@@ -8,7 +8,7 @@ I automated Dennis's G29 P5 Heatmap Spreadsheet for M666/M665 Calibration by upd
 
 Python Script (auto_cal_p5.py): https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal
 
-Dennis's [Spreadsheet](https://docs.google.com/spreadsheets/d/1rTn4vu2924AA_z1WppvLk4r31JXvoI1YI_7iSye0v3k/copy) and [Original Instructions](https://www.facebook.com/groups/mpminideltaowners/permalink/2186865287995612/)
+Dennis's [Spreadsheet](https://docs.google.com/spreadsheets/d/1rTn4vu2924AA_z1WppvLk4r31JXvoI1YI_7iSye0v3k/copy) and [Original Instructions](https://www.facebook.com/groups/mpminideltaowners/permalink/2186865287995612/) <br/>
 You should only need this for generating pretty heatmaps. I.E., there's no need to go through his instructions if you're using this script.
 
 ![enter image description here](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/master/Before_After.jpg)
@@ -47,7 +47,7 @@ The scripts should also work on Mac, but no one has reported back after installi
 
 ## Prerequisites
 
-1) This script is intended to be used only **AFTER** you've gone through other calibration steps (namely Dennis's improved bed hold-down clips and having a more consistent bed surface). Do not run it unless you've made it that far in the [Calibration Roadmap](bit.ly/mpmdfaq) I've put together. If you're having trouble accessing this document, your adblocker may be blocking link shorteners.
+1) This script is intended to be used only **AFTER** you've gone through other calibration steps (namely Dennis's improved bed hold-down clips and having a more consistent bed surface). Do not run it unless you've made it that far in the [Calibration Roadmap](bit.ly/mpmdfaq) I've put together. **If you're having trouble accessing this document, your adblocker may be blocking link shorteners.**
 
 2) You will need to be able to control your printer via USB. I use my Octopi (but not Octoprint) to run the script via terminal/command line (not to be confused with your print server terminal). <br/>
 E.G., I don't have a monitor plugged into my Octopi, so I do all of this using [Putty](https://www.raspberrypi.org/documentation/remote-access/ssh/windows.md). I'm able to enter "octopi" instead of the IP address to connect, but YMMV.
@@ -65,12 +65,12 @@ git pull <br/>
 I recently released a command-line executable that can be used instead of the python script, as well as a batch file to make running it more straightforward: auto_cal_p5_v0.bat and auto_cal_p5_v0.exe (you will need both files in the same directory). <br/>
 The [Visual C++ Redistributable](https://www.microsoft.com/en-us/download/details.aspx?id=48145) may be required whether you use the executable or the Python script. <br/>
 If you prefer to use Python, you will need the additional packages included with [WinPython](http://winpython.github.io/). <br/>
-**Mac/OSX Installation (not tested):** <br/>
+**Mac/OSX Installation** (not tested): <br/>
 Download [Python for Mac](https://www.python.org/downloads/mac-osx/) <br/>
 Install [pyserial](https://stackoverflow.com/questions/31228787/install-pyserial-mac-os-10-10) <br/>
 Install [scipy and related packages](https://www.scipy.org/install.html) <br/>
 
-4) The points that the nozzle probes need to be consistent. I.E., if you're using tape, a sticker, PEI, glass, mirror, etc., you need to make sure the nozzle taps that for every probe point. If using tape, make sure it covers the entire build surface without overlapping. Whatever build surface you choose, make sure you remove the stock sticker before application because you want everything as flat as possible. If you typically use glue/hairspray on your bed, I recommend cleaning it off beforehand. The script will most definitely not work if the effector is colliding with a bed clip before the nozzle can probe the bed.
+4) The points that the nozzle probes need to be consistent. I.E., if you're using tape, a sticker, PEI, glass, mirror, etc., you need to make sure the nozzle taps that for every probe point. If using tape, make sure it covers the entire build surface without overlapping. Whatever build surface you choose, make sure you remove the stock sticker before application because you want everything as flat as possible. If you typically use glue/hairspray on your bed, I recommend cleaning it off beforehand. The script will most definitely not work if the effector is colliding with a bed clip or other obstructions before the nozzle can probe the bed.
 
 5) Dennis wrote the spreadsheet assuming you have his hold-down clips installed (see previously linked tutorial). This is not an optional step. You should also tune your belts if you haven't done so recently.
 
@@ -128,14 +128,14 @@ If you're unsure of what your port name is, try seeing what it's called when you
 **3) I had to abort because the nozzle started probing outside of the build area and/or the machine started making weird/bad noises.** <br/>
 Two possibilities come to mind: <br/>
 **a) Hardware/setup issue.** Go back and read through the PREREQUISITES section. Also, please fill out the troubleshooting form at the bottom of this section (including a photo of your bed setup) so we can identify potential issues. It also probably wouldn't hurt to check the lubrication on your moving parts (guide rods, carriage arm joints, etc.). <br/>
-**b) Bad M665 values.** The examples provided use Dennis's starting values and may not be applicable for your machine (although, they do seem to work for most). You can adjust these by replacing "-r 63.5 -l 123.0" with your desired R/L values. Ideally, you have calculated these values from the Carbon Paper Step C4 in Dennis's tutorial. If not, replace these numbers with whatever you've been using to print successfully. <br/>
-How to find my current M665 values? First, check your Start Gcode in your slicer. If they aren't there, power cycle your machine and then send M503 via Octoprint/Pronterface/Repetier/etc.
+**b) Bad M665 values.** The examples provided use Dennis's starting values and may not be applicable for your machine (although, they do seem to work for most). You can adjust these by replacing "-r 63.5 -l 123.0" with your desired R/L values. Ideally, you have calculated these values from the Carbon Paper Step C4 in Dennis's tutorial. If not, replace these numbers with whatever you've been using to print successfully. For example, the stock values would be "-r 61.70 -l 120.80".<br/>
 
 **4) I reach the maximum number of runs and/or my results suck.**
 Make sure you have Dennis Brown's custom hold-down clips installed. That step is not optional. Without the clips, the 5x5 probe mesh will make the bed wobble everywhere, preventing you from obtaining consistent results. Also, make sure you're using G29 P5 in your Start Gcode. For some reason, people keep skipping that step in the instructions. After that, you can further improve your results by removing the stock Buildtak and installing 120 mm borosilicate glass w/ a 0.5 mm thermal pad and/or PEI.
 
-**5) My nozzle is going too high or low on the first layer (possibly even grinding into the plate).** Multiple possibilities come to mind. <br/>
-a) A common cause of this is not using the proper M92 X/Y/Z values for your firmware (see Dennis's pinned tutorial in the Announcements). However, if you successfully ran the script, I doubt you made this mistake. Other possible causes are covered in the [Calibration Roadmap and FAQ](bit.ly/mpmdfaq) <br/>
+**5) My nozzle is going too high or low on the first layer (possibly even grinding into the plate).** <br/>
+Multiple possibilities come to mind. <br/>
+a) A common cause of this is not using the proper M92 X/Y/Z values for your firmware. However, if you successfully ran the script, I doubt you made this mistake. This, as well as other possible causes, are covered in the [Calibration Roadmap and FAQ](bit.ly/mpmdfaq) <br/>
 b) More than a couple of users who flashed Marlin4MPMD firmware have forgotten to run the steps that come AFTER running the script. Make sure you get your new bed mesh by sending G29, save all of your results by issuing M500, and then remove any conflicting lines from your start gcode. This is just one way of doing it. <br/>
 c) Z-Offset problem <br/>
 As long as most of your points are <= 0.14 in the spreadsheet, you'll probably be okay. A high "Initial Layer Height" and finely-tuned z-offset (see: [MPMD 101](bit.ly/mpmd101) and/or the [Calibration Roadmap and FAQ](bit.ly/mpmdfaq)) can help compensate for any remaining issues. Tuning the z-offset should come AFTER adjusting the Initial Layer Height.
@@ -145,8 +145,8 @@ This error usually occurs for one of two reasons: <br/>
 **a) Hardware problem.** Go back and read Troubleshooting point 3b. <br/>
 **b) Wrong tower flag.** the -tf option tells the script how to account for any software tinkering of tower locations via Marlin4MPMD 1.3.3 and/or M665 X/Y/Z adjustments (not to be confused with M666). You can try each tower flag (0, 1 and 2) until you find one that works.
 
-**7) Other Issues.** At this point, many users (both in this thread and elsewhere) have successfully run this script for all configurations of printer firmware on Octopi. Mac has not been as thoroughly-tested. If you're still having issues, please fill out the troubleshooting form at the bottom of this section, and post it via one of the following channels: <br/>
-a) File an issue on this Stack Overflow page. <br/>
+**7) Other Issues.** At this point, many users have successfully run this script for all configurations of printer firmware on Octopi. Mac has not been as thoroughly-tested. If you're still having issues, please fill out the troubleshooting form at the bottom of this section, and post it via one of the following channels: <br/>
+a) File an issue on this GitHub page. <br/>
 b) Respond to [my original thread on Facebook](https://www.facebook.com/groups/mpminideltaowners/permalink/2574670629215074/). <br/> 
 c) Ask the question on [Reddit](https://www.reddit.com/r/mpminidelta/) and tag me /u/PurpleHullPeas <br/>
 
