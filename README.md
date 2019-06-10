@@ -1,5 +1,5 @@
 # Monoprice Mini Delta (MPMD) Auto Bed Calibration (P5)
-# MPMD-AutoBedLevel-Cal-P5
+## MPMD-AutoBedLevel-Cal-P5
 
 This tutorial is designed to be used in place of Step C5 in Dennis Brown's great alignment/calibration tutorial.
 
