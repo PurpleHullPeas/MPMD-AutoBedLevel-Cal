@@ -1,4 +1,4 @@
-# Monoprice Mini Delta P5 Endstop Script
+# Monoprice Mini Delta (MPMD) Auto Bed Level Calibration P5
 
 This tutorial is designed to be used in place of Step C5 in Dennis Brown's great alignment/calibration tutorial.
 
@@ -22,14 +22,14 @@ You should only need this for generating pretty heatmaps. I.E., there's no need 
 
 5) Saves time iterating through the Excel procedure yourself and makes it easier to update values when you make any mods or change the bed temperature.
 
-# Disclaimer
+## Disclaimer
 
 Use at your own risk. Backup everything and keep your finger on the after-market power-button (that I'm sure you installed) while the script runs. I'm not responsible if your printer decides to spontaneously combust or if you void your warranty. All disclaimers and prerequisites listed by Technoswiss on his original project still apply.
 
 
-# Tested Firmware and Operating Systems
+## Tested Firmware and Operating Systems
 
-## Tested Firmware
+### Tested Firmware
 Stock v37 <br/>
 Stock v41 <br/>
 Stock v43 <br/>
@@ -38,12 +38,12 @@ Marlin 8x <br/>
 Marlin 16x <br/>
 
 
-## Tested Operating Systems
+### Tested Operating Systems
 Linux (mostly Octopi) <br/>
 Windows 10 (batch file and command-line executable included) <br/>
 The scripts should also work on Mac, but no one has reported back after installing all of the correct packages. <br/>
 
-# Prerequisites
+## Prerequisites
 
 1) This script is intended to be used only **AFTER** you've gone through other calibration steps (namely Dennis's improved bed hold-down clips and having a more consistent bed surface). Do not run it unless you've made it that far in the [Calibration Roadmap](bit.ly/mpmdfaq) I've put together. If you're having trouble accessing this document, your adblocker may be blocking link shorteners.
 
@@ -73,7 +73,7 @@ Install [scipy and related packages](https://www.scipy.org/install.html) <br/>
 5) Dennis wrote the spreadsheet assuming you have his hold-down clips installed (see previously linked tutorial). This is not an optional step. You should also tune your belts if you haven't done so recently.
 
 
-# INSTRUCTIONS:
+## Instructions:
 
 **DO NOT FORGET TO COMPLETE THE REMAINING STEPS AFTER RUNNING THE PROGRAM! UPDATING YOUR M666, M665, using G29 P5 (stock firmware), and having the correct M92 is crucial!** <br/>
 
@@ -111,7 +111,7 @@ Note: I'm using [Samba](https://www.raspberrypi.org/magpi/samba-file-server/) to
 8) Stock firmware doesn't save M665 R with M500, so for the purposes of keeping things simple for this tutorial, I'm just going to suggest you save your M665/M666/M92 values in your starting gcode. If there are already lines in your Start Gcode with M665/M666/M92, replace those with your new values. For stock firmware, change your G29 line to G29 P5 Z0.28 (or whatever your offset is). Marlin4MPMD has other ways of handling G29 and EEPROM which you can read about in the [Marlin4MPMD Wiki](https://github.com/mcheah/Marlin4MPMD/wiki/Calibration).
 
 
-# TROUBLESHOOTING
+## Troubleshooting
 
 **1) Python versions and/or dependency errors.** <br/>
 E.G., "python3: command not found", "ModuleNotFoundError: No module named 'numpy'", etc. <br/>
@@ -148,7 +148,7 @@ a) File an issue on this Stack Overflow page. <br/>
 b) Respond to [my original thread on Facebook](https://www.facebook.com/groups/mpminideltaowners/permalink/2574670629215074/). <br/> 
 c) Ask the question on [Reddit](https://www.reddit.com/r/mpminidelta/) and tag me /u/PurpleHullPeas <br/>
 
-## Troubleshooting Form
+### Troubleshooting Form
 
 **Computer Used:** Octopi/Windows7/Windows10/Mac/etc. <br/>
 **Firmware Version:** Stock v[37/38/39/40/41/42/43/44/45] or Marlin [8x/16x] <br/>
@@ -165,16 +165,15 @@ If not successful, are you able to run one of TechnoSwiss's other scripts? Yes/N
 **M503:** Copy-Paste Your M503 Output <br/>
 
 
-# Windows Batch File Help
+## Windows Batch File Help
 
-## Step 1
-
+### Step 1
 ![Windows Batch File Step 1](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/master/WindowsBat_Step1.jpg)
-## Step 2
+### Step 2
 ![Windows Batch File Step 2](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/master/WindowsBat_Step2.jpg)
-## Step 3
+### Step 3
 ![Windows Batch File Step 3](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/master/WindowsBat_Step3.jpg)
-## Step 4
+### Step 4
 ![Windows Batch File Step 4](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/master/WindowsBat_Step4.jpg)
 
 
