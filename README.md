@@ -86,7 +86,7 @@ Install [scipy and related packages](https://www.scipy.org/install.html) <br/>
 4) If you're currently connected to the printer via Octoprint, Pronterface, Repetier, Cura, Simply3D, or some other service, click the Disconnect button now.
 
 5) Run the Python script with your port connection, starting R and L values from Dennis's previous alignment tutorial step, the appropriate step/mm for your firmware, and your desired bed temperature. Standby with your finger on the power button, ready to abort, just in case weird things start happening. Don't forget to complete the remaining steps here after running the program. <br/> <br/>
-The following examples are provided for Octopi, using Dennis's default M665 L/R values, stock firmware, and a bed temperature of 60 C. Additional details for Windows will be covered later. <br/>
+The following examples are provided for Octopi, using Dennis's default M665 L/R values, stock firmware, and a bed temperature of 60 C. Additional details for Windows will be covered later. <br/><br/>
 **Stock Firmware <=V41, V45** <br/>
 python3 auto_cal_p5.py -p /dev/ttyACM0 -ff 0 -tf 0 -r 63.5 -l 123.0 -s 57.14 -bt 60 <br/> <br/>
 **Stock V43 & V44** <br/>
