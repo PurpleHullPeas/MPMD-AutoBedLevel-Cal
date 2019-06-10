@@ -38,9 +38,11 @@ Marlin 8x
 Marlin 16x
 
 ## Tested Operating Systems
-Linux (mostly Octopi)
-Windows 10 (batch file and command-line executable included)
-The scripts should also work on Mac, but no one has reported back after installing all of the correct packages.
+Linux (mostly Octopi) 
+
+Windows 10 (batch file and command-line executable included) 
+
+The scripts should also work on Mac, but no one has reported back after installing all of the correct packages. 
 
 # Prerequisites
 
