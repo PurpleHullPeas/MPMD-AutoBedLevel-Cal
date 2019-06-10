@@ -1,4 +1,5 @@
 # Monoprice Mini Delta (MPMD) Auto Bed Calibration (P5)
+This python script will automatically adjust the M666 XYZ and M665 LR values to calibrate bed leveling for a Monoprice Mini Delta 3D printer. It uses the G29 P5 method for an improved bed mesh.
 ## MPMD-AutoBedLevel-Cal-P5
 
 This tutorial is designed to be used in place of Step C5 in Dennis Brown's great alignment/calibration tutorial.
