@@ -9,7 +9,7 @@ I automated Dennis's G29 P5 Heatmap Spreadsheet for M666/M665 Calibration by upd
 Python Script (auto_cal_p5.py): https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal
 
 Dennis's [Spreadsheet](https://docs.google.com/spreadsheets/d/1rTn4vu2924AA_z1WppvLk4r31JXvoI1YI_7iSye0v3k/copy) and [Original Instructions](https://www.facebook.com/groups/mpminideltaowners/permalink/2186865287995612/) <br/>
-You should only need this for generating pretty heatmaps. I.E., there's no need to go through his instructions if you're using this script.
+You should only need this for generating pretty heatmaps. I.E., there's no need to go through his Step C5 spreadsheet instructions if you're using this script.
 
 ![enter image description here](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/master/Before_After.jpg)
 ## Features
