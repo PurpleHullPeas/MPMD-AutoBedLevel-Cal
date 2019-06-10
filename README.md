@@ -50,7 +50,7 @@ The scripts should also work on Mac, but no one has reported back after installi
 2) You will need to be able to control your printer via USB. I use my Octopi (but not Octoprint) to run the script via terminal/command line (not to be confused with your print server terminal). <br/>
 E.G., I don't have a monitor plugged into my Octopi, so I do all of this using [Putty](https://www.raspberrypi.org/documentation/remote-access/ssh/windows.md). I'm able to enter "octopi" instead of the IP address to connect, but YMMV.
 
-3) Unless you're using the Windows executable, Python3 is required, with additional updates/packages.
+3) Unless you're using the Windows executable, Python3 is required, with additional updates/packages. <br/>
 **Octopi Installation:** (some unnecessary commands included to help noobs) <br/>
 sudo apt-get install python3-serial <br/>
 sudo apt-get install python3-scipy <br/>
@@ -74,7 +74,8 @@ Install [scipy and related packages](https://www.scipy.org/install.html) <br/>
 
 
 # INSTRUCTIONS:
-**DO NOT FORGET TO COMPLETE THE REMAINING STEPS AFTER RUNNING THE PROGRAM! UPDATING YOUR M666, M665, and using G29 P5 (stock firmware) is crucial!**
+
+**DO NOT FORGET TO COMPLETE THE REMAINING STEPS AFTER RUNNING THE PROGRAM! UPDATING YOUR M666, M665, and using G29 P5 (stock firmware) is crucial!** <br/>
 
 1) Power cycle your printer to clear out any temporary settings.
 
@@ -84,23 +85,23 @@ Install [scipy and related packages](https://www.scipy.org/install.html) <br/>
 
 4) If you're currently connected to the printer via Octoprint, Pronterface, Repetier, Cura, Simply3D, or some other service, click the Disconnect button now.
 
-5) Run the Python script with your port connection, starting R and L values from Dennis's previous alignment tutorial step, the appropriate step/mm for your firmware, and your desired bed temperature. Standby with your finger on the power button, ready to abort, just in case weird things start happening. Don't forget to complete the remaining steps here after running the program.
- The following examples are provided for Octopi, using Dennis's default M665 L/R values, stock firmware, and a bed temperature of 60 C. Additional details for Windows will be covered later.
-**Stock Firmware <=V41, V45**
-python3 auto_cal_p5.py -p /dev/ttyACM0 -ff 0 -tf 0 -r 63.5 -l 123.0 -s 57.14 -bt 60
-**Stock V43 & V44**
-python3 auto_cal_p5.py -p /dev/ttyACM0 -ff 0 -tf 0 -r 63.5 -l 123.0 -s 114.28 -bt 60
-**Firmware Flag and Tower Flag Notes**
-Because of differences in how stock firmware and Marlin4MPMD treats tower orientation and G29, you will need to set the firmware flag (-ff) and tower flag (-tf) appropriately.
--Stock Firmware: -ff 0 -tf 0
--Marlin4MPMD 1.3.3 (Default): -ff 1 -tf 1
--Marlin4MPMD 1.3.3 (M665 X-120 Y-120 Z-120): -ff 1 -tf 2
--Older Marlin4MPMD Versions (Default): -ff 1 -tf 0
--Other Configurations: You can try all three tower flags (0, 1, or 2) one at a time until one works. The script will stop due to an error in a few passes if you guessed the wrong configuration.
-**Windows Executable Notes**
-For Windows, you can can instead use the executable/batch file (see uploaded screenshots). You will need both the auto_cal_p5_v0.bat and auto_cal_p5_v0.exe files in the same folder for this to work. **Don't forget to complete the remaining steps here after running the program.**
+5) Run the Python script with your port connection, starting R and L values from Dennis's previous alignment tutorial step, the appropriate step/mm for your firmware, and your desired bed temperature. Standby with your finger on the power button, ready to abort, just in case weird things start happening. Don't forget to complete the remaining steps here after running the program. <br/>
+The following examples are provided for Octopi, using Dennis's default M665 L/R values, stock firmware, and a bed temperature of 60 C. Additional details for Windows will be covered later. <br/>
+**Stock Firmware <=V41, V45** <br/>
+python3 auto_cal_p5.py -p /dev/ttyACM0 -ff 0 -tf 0 -r 63.5 -l 123.0 -s 57.14 -bt 60 <br/>
+**Stock V43 & V44** <br/>
+python3 auto_cal_p5.py -p /dev/ttyACM0 -ff 0 -tf 0 -r 63.5 -l 123.0 -s 114.28 -bt 60 <br/>
+**Firmware Flag and Tower Flag Notes** <br/>
+Because of differences in how stock firmware and Marlin4MPMD treats tower orientation and G29, you will need to set the firmware flag (-ff) and tower flag (-tf) appropriately. <br/>
+-Stock Firmware: -ff 0 -tf 0 <br/>
+-Marlin4MPMD 1.3.3 (Default): -ff 1 -tf 1 <br/>
+-Marlin4MPMD 1.3.3 (M665 X-120 Y-120 Z-120): -ff 1 -tf 2 <br/>
+-Older Marlin4MPMD Versions (Default): -ff 1 -tf 0 <br/>
+-Other Configurations: You can try all three tower flags (0, 1, or 2) one at a time until one works. The script will stop due to an error in a few passes if you guessed the wrong configuration. <br/>
+**Windows Executable Notes** <br/>
+For Windows, you can can instead use the executable/batch file (see uploaded screenshots). You will need both the auto_cal_p5_v0.bat and auto_cal_p5_v0.exe files in the same folder for this to work. **Don't forget to complete the remaining steps here after running the program.** <br/>
 
-6) The calibration values should now be set to whatever was calculated on the last pass. The outputs for each pass should be stored in files named auto_cal_p5_pass#.txt. You can paste the contents of this file into Dennis's spreadsheet to check your heatmap.
+6) The calibration values should now be set to whatever was calculated on the last pass. The outputs for each pass should be stored in files named auto_cal_p5_pass#.txt. You can paste the contents of this file into Dennis's spreadsheet to check your heatmap. <br/>
 Note: I'm using [Samba](https://www.raspberrypi.org/magpi/samba-file-server/) to copy files between Windows and Linux.
 
 
@@ -112,58 +113,54 @@ Note: I'm using [Samba](https://www.raspberrypi.org/magpi/samba-file-server/) to
 
 # TROUBLESHOOTING
 
-**1) Python versions and/or dependency errors.** E.G., "python3: command not found", "ModuleNotFoundError: No module named 'numpy'", etc.
+**1) Python versions and/or dependency errors.** E.G., "python3: command not found", "ModuleNotFoundError: No module named 'numpy'", etc. <br/>
 Try replacing "python3 auto_cal_p5.py" with "python auto_cal_p5_v0.py". This will both reduce the number of dependencies required to run the script and handle any issues where your OS may have assigned "python" to Python 3.X instead of "python3". You will still need to install pyserial for this to work.
 
-**2) Serial Ports?**
-The provided examples work for Octopi if you only have one serial device plugged into the rPi. Otherwise, you will need to replace "-p /dev/ttyACM0" with your appropriate serial port.
-**Windows Example:** "-p COM3"
-**Mac Example:** "-p /dev/tty.SOMETHING" (need to replace SOMETHING with your actual value)
+**2) Serial Ports?** <br/>
+The provided examples work for Octopi if you only have one serial device plugged into the rPi. Otherwise, you will need to replace "-p /dev/ttyACM0" with your appropriate serial port. <br/>
+**Windows Example:** "-p COM3" <br/>
+**Mac Example:** "-p /dev/tty.SOMETHING" (need to replace SOMETHING with your actual value) <br/>
 If you're unsure of what your port name is, try seeing what it's called when you connect to the printer via Octoprint, Pronterface, Repetier, or some other service. Otherwise, try Googling, "how to find serial port name on my operating system".
 
-**3) I had to abort because the nozzle started probing outside of the build area and/or the machine started making weird/bad noises.** Two possibilities come to mind:
-**a) Hardware/setup issue.** Go back and read through the PREREQUISITES section. Also, please fill out the troubleshooting form at the bottom of this section (including a photo of your bed setup) so we can identify potential issues. It also probably wouldn't hurt to check the lubrication on your moving parts (guide rods, carriage arm joints, etc.).
-**b) Bad M665 values.** The examples provided use Dennis's starting values and may not be applicable for your machine (although, they do seem to work for most). You can adjust these by replacing "-r 63.5 -l 123.0" with your desired R/L values. Ideally, you have calculated these values from the Carbon Paper Step C4 in Dennis's tutorial. If not, replace these numbers with whatever you've been using to print successfully.
+**3) I had to abort because the nozzle started probing outside of the build area and/or the machine started making weird/bad noises.** Two possibilities come to mind: <br/>
+**a) Hardware/setup issue.** Go back and read through the PREREQUISITES section. Also, please fill out the troubleshooting form at the bottom of this section (including a photo of your bed setup) so we can identify potential issues. It also probably wouldn't hurt to check the lubrication on your moving parts (guide rods, carriage arm joints, etc.). <br/>
+**b) Bad M665 values.** The examples provided use Dennis's starting values and may not be applicable for your machine (although, they do seem to work for most). You can adjust these by replacing "-r 63.5 -l 123.0" with your desired R/L values. Ideally, you have calculated these values from the Carbon Paper Step C4 in Dennis's tutorial. If not, replace these numbers with whatever you've been using to print successfully. <br/>
 How to find my current M665 values? First, check your Start Gcode in your slicer. If they aren't there, power cycle your machine and then send M503 via Octoprint/Pronterface/Repetier/etc.
 
 **4) I reach the maximum number of runs and/or my results suck.**
 Make sure you have Dennis Brown's custom hold-down clips installed. That step is not optional. Without the clips, the 5x5 probe mesh will make the bed wobble everywhere, preventing you from obtaining consistent results. Also, make sure you're using G29 P5 in your Start Gcode. For some reason, people keep skipping that step in the instructions. After that, you can further improve your results by removing the stock Buildtak and installing 120 mm borosilicate glass w/ a 0.5 mm thermal pad and/or PEI.
 
-**5) My nozzle is going too high or low on the first layer (possibly even grinding into the plate).** Multiple possibilities come to mind.
-a) A common cause of this is not using the proper M92 X/Y/Z values for your firmware (see Dennis's pinned tutorial in the Announcements). However, if you successfully ran the script, I doubt you made this mistake. Other possible causes are covered in the [Calibration Roadmap and FAQ](bit.ly/mpmdfaq)
-b) More than a couple of users who flashed Marlin4MPMD firmware have forgotten to run the steps that come AFTER running the script. Make sure you get your new bed mesh by sending G29, save all of your results by issuing M500, and then remove any conflicting lines from your start gcode. This is just one way of doing it.
-c) Z-Offset problem
+**5) My nozzle is going too high or low on the first layer (possibly even grinding into the plate).** Multiple possibilities come to mind. <br/>
+a) A common cause of this is not using the proper M92 X/Y/Z values for your firmware (see Dennis's pinned tutorial in the Announcements). However, if you successfully ran the script, I doubt you made this mistake. Other possible causes are covered in the [Calibration Roadmap and FAQ](bit.ly/mpmdfaq) <br/>
+b) More than a couple of users who flashed Marlin4MPMD firmware have forgotten to run the steps that come AFTER running the script. Make sure you get your new bed mesh by sending G29, save all of your results by issuing M500, and then remove any conflicting lines from your start gcode. This is just one way of doing it. <br/>
+c) Z-Offset problem <br/>
 As long as most of your points are <= 0.14 in the spreadsheet, you'll probably be okay. A high "Initial Layer Height" and finely-tuned z-offset (see: [MPMD 101](bit.ly/mpmd101) and/or the [Calibration Roadmap and FAQ](bit.ly/mpmdfaq)) can help compensate for any remaining issues. Tuning the z-offset should come AFTER adjusting the Initial Layer Height.
 
-**6) "Calibration error on non-first run exceeds set limit."**
-This error usually occurs for one of two reasons:
-**a) Hardware problem.** Go back and read Troubleshooting point 3b.
+**6) "Calibration error on non-first run exceeds set limit."** <br/>
+This error usually occurs for one of two reasons: <br/>
+**a) Hardware problem.** Go back and read Troubleshooting point 3b. <br/>
 **b) Wrong tower flag.** the -tf option tells the script how to account for any software tinkering of tower locations via Marlin4MPMD 1.3.3 and/or M665 X/Y/Z adjustments (not to be confused with M666). You can try each tower flag (0, 1 and 2) until you find one that works.
 
-**7) Other Issues.** At this point, many users (both in this thread and elsewhere) have successfully run this script for all configurations of printer firmware on Octopi. Mac has not been as thoroughly-tested. If you're still having issues, please fill out the troubleshooting form at the bottom of this section, and post it via one of the following channels:
-a) File an issue on this Stack Overflow page.
-b) Respond to [my original thread on Facebook](https://www.facebook.com/groups/mpminideltaowners/permalink/2574670629215074/). 
-c) Ask the question on [Reddit](https://www.reddit.com/r/mpminidelta/) and tag me /u/PurpleHullPeas 
+**7) Other Issues.** At this point, many users (both in this thread and elsewhere) have successfully run this script for all configurations of printer firmware on Octopi. Mac has not been as thoroughly-tested. If you're still having issues, please fill out the troubleshooting form at the bottom of this section, and post it via one of the following channels: <br/>
+a) File an issue on this Stack Overflow page. <br/>
+b) Respond to [my original thread on Facebook](https://www.facebook.com/groups/mpminideltaowners/permalink/2574670629215074/). <br/> 
+c) Ask the question on [Reddit](https://www.reddit.com/r/mpminidelta/) and tag me /u/PurpleHullPeas <br/>
 
 ## Troubleshooting Form
 
-**Computer Used:** Octopi/Windows7/Windows10/Mac/etc.
-**Firmware Version:** Stock v[37/38/39/40/41/42/43/44/45] or Marlin [8x/16x]
-**Build Plate Surface: ** Glass/Mirror/PEI/Stock/Tape/etc. (also include if you use binder clips, printed clips, thermal pad, etc.)
-**Do you have Dennis's Hold-Down Clips Installed?** Yes/No
-**Do you have Dennis's Top Bed Switch Mod Installed?** Yes/No
-**Terminal Command Used:** E.G., python3 auto_cal_p5.py [insert inputs here]
-**Successful?** Yes/No/Partial
-**Terminal Error:** N/A [If applicable, copy and paste any script errors here]
-If not successful, are you able to run one of TechnoSwiss's other scripts? Yes/No/NA
-**Comments:** E.G., Here's how/why it sucks.
-**Photo/Video:** Assuming the script at least tried to run, including a photo of your bed setup and/or a video of your printer while the script runs would be helpful in identifying potential issues. A screenshot 
-**Start Gcode:** Copy-Paste your Start Gcode
-**M503:** Copy-Paste Your M503 Output
-
-# Features
-
-You can export the current file by clicking **Export to disk** in the menu. You can choose to export the file as plain Markdown, as HTML using a Handlebars template or as a PDF.
+**Computer Used:** Octopi/Windows7/Windows10/Mac/etc. <br/>
+**Firmware Version:** Stock v[37/38/39/40/41/42/43/44/45] or Marlin [8x/16x] <br/>
+**Build Plate Surface: ** Glass/Mirror/PEI/Stock/Tape/etc. (also include if you use binder clips, printed clips, thermal pad, etc.) <br/>
+**Do you have Dennis's Hold-Down Clips Installed?** Yes/No <br/>
+**Do you have Dennis's Top Bed Switch Mod Installed?** Yes/No <br/>
+**Terminal Command Used:** E.G., python3 auto_cal_p5.py [insert inputs here] <br/>
+**Successful?** Yes/No/Partial <br/>
+**Terminal Error:** N/A [If applicable, copy and paste any script errors here] <br/>
+If not successful, are you able to run one of TechnoSwiss's other scripts? Yes/No/NA <br/>
+**Comments:** E.G., Here's how/why it sucks. <br/>
+**Photo/Video:** Assuming the script at least tried to run, including a photo of your bed setup and/or a video of your printer while the script runs would be helpful in identifying potential issues. A screenshot of your heatmap could also be helpful. <br/>
+**Start Gcode:** Copy-Paste your Start Gcode <br/>
+**M503:** Copy-Paste Your M503 Output <br/>
 
 
 # Windows Batch File Help
