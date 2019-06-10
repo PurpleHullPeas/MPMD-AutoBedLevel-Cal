@@ -30,17 +30,12 @@ Use at your own risk. Backup everything and keep your finger on the after-market
 # Tested Firmware and Operating Systems
 
 ## Tested Firmware
-Stock v37 
-
-Stock v41 
-
-Stock v43 
-
-Stock v44 
-
-Marlin 8x 
-
-Marlin 16x 
+Stock v37 <br/>
+Stock v41 <br/>
+Stock v43 <br/>
+Stock v44 <br/>
+Marlin 8x <br/>
+Marlin 16x <br/>
 
 
 ## Tested Operating Systems
