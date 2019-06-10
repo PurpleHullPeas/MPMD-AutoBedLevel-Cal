@@ -39,40 +39,34 @@ Marlin 16x <br/>
 
 
 ## Tested Operating Systems
-Linux (mostly Octopi) 
-
-Windows 10 (batch file and command-line executable included) 
-
-The scripts should also work on Mac, but no one has reported back after installing all of the correct packages. 
+Linux (mostly Octopi) <br/>
+Windows 10 (batch file and command-line executable included) <br/>
+The scripts should also work on Mac, but no one has reported back after installing all of the correct packages. <br/>
 
 # Prerequisites
 
 1) This script is intended to be used only **AFTER** you've gone through other calibration steps (namely Dennis's improved bed hold-down clips and having a more consistent bed surface). Do not run it unless you've made it that far in the [Calibration Roadmap](bit.ly/mpmdfaq) I've put together. If you're having trouble accessing this document, your adblocker may be blocking link shorteners.
 
-2) You will need to be able to control your printer via USB. I use my Octopi (but not Octoprint) to run the script via terminal/command line (not to be confused with your print server terminal).
+2) You will need to be able to control your printer via USB. I use my Octopi (but not Octoprint) to run the script via terminal/command line (not to be confused with your print server terminal). <br/>
 E.G., I don't have a monitor plugged into my Octopi, so I do all of this using [Putty](https://www.raspberrypi.org/documentation/remote-access/ssh/windows.md). I'm able to enter "octopi" instead of the IP address to connect, but YMMV.
 
 3) Unless you're using the Windows executable, Python3 is required, with additional updates/packages.
-
-**Octopi Installation:** (some unnecessary commands included to help noobs)
-
-sudo apt-get install python3-serial \n
-sudo apt-get install python3-scipy \n
-sudo apt-get install python-serial \n
-git clone https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal.git \n
-cd MPMD-AutoBedLevel-Cal \n
-git fetch \n
-git pull \n
-
-**Windows Installation:**
-I recently released a command-line executable that can be used instead of the python script, as well as a batch file to make running it more straightforward: auto_cal_p5_v0.bat and auto_cal_p5_v0.exe (you will need both files in the same directory).
-[Visual C++ Redistributable](https://www.microsoft.com/en-us/download/details.aspx?id=48145) may be required whether you use the executable or the Python script.
-If you prefer to use Python, you will need the additional packages included with [WinPython](http://winpython.github.io/).
-
-**Mac/OSX Installation (not tested):**
-Download [Python for Mac](https://www.python.org/downloads/mac-osx/)
-[Install pyserial](https://stackoverflow.com/questions/31228787/install-pyserial-mac-os-10-10)
-Install [scipy and related packages](https://www.scipy.org/install.html)
+**Octopi Installation:** (some unnecessary commands included to help noobs) <br/>
+sudo apt-get install python3-serial <br/>
+sudo apt-get install python3-scipy <br/>
+sudo apt-get install python-serial <br/>
+git clone https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal.git <br/>
+cd MPMD-AutoBedLevel-Cal <br/>
+git fetch <br/>
+git pull <br/>
+**Windows Installation:** <br/>
+I recently released a command-line executable that can be used instead of the python script, as well as a batch file to make running it more straightforward: auto_cal_p5_v0.bat and auto_cal_p5_v0.exe (you will need both files in the same directory). <br/>
+[Visual C++ Redistributable](https://www.microsoft.com/en-us/download/details.aspx?id=48145) may be required whether you use the executable or the Python script. <br/>
+If you prefer to use Python, you will need the additional packages included with [WinPython](http://winpython.github.io/). <br/>
+**Mac/OSX Installation (not tested):** <br/>
+Download [Python for Mac](https://www.python.org/downloads/mac-osx/) <br/>
+[Install pyserial](https://stackoverflow.com/questions/31228787/install-pyserial-mac-os-10-10) <br/>
+Install [scipy and related packages](https://www.scipy.org/install.html) <br/>
 
 4) The points that the nozzle probes need to be consistent. I.E., if you're using tape, a sticker, PEI, glass, mirror, etc., you need to make sure the nozzle taps that for every probe point. If using tape, make sure it covers the entire build surface without overlapping. Whatever build surface you choose, make sure you remove the stock sticker before application because you want everything as flat as possible. If you typically use glue/hairspray on your bed, I recommend cleaning it off beforehand. The script will most definitely not work if the effector is colliding with a bed clip before the nozzle can probe the bed.
 
