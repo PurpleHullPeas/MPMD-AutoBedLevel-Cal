@@ -136,7 +136,7 @@ Make sure you have Dennis Brown's custom hold-down clips installed. That step is
 
 **5) My nozzle is going too high or low on the first layer (possibly even grinding into the plate).** <br/>
 Multiple possibilities come to mind. <br/>
-a) Did you remember to complete the remaining steps that come AFTER running the script/program? For some reason, most recent questions have been related to skipping the steps related to updating G29.<br/>
+a) Did you remember to complete the remaining steps that come AFTER running the script/program? For some reason, most recent questions have been related to skipping the steps pertaining to updating G29.<br/>
 b) A common cause of this is not using the proper M92 X/Y/Z values for your firmware. However, if you successfully ran the script, I doubt you made this mistake. This, as well as other possible causes, are covered in the [Calibration Roadmap and FAQ](https://bit.ly/mpmdfaq) <br/>
 c) More than a couple of users who flashed Marlin4MPMD firmware have forgotten to run the steps that come AFTER running the script. Make sure you get your new bed mesh by sending G29, save all of your results by issuing M500, and then remove any conflicting lines from your start gcode. This is just one way of doing it. <br/>
 d) Z-Offset problem <br/>
