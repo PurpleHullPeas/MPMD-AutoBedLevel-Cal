@@ -104,7 +104,7 @@ Because of differences in how stock firmware and Marlin4MPMD treats tower orient
 **Windows Executable Notes** <br/>
 For Windows, you can can instead use the executable/batch file (see uploaded screenshots). You will need both the auto_cal_p5_v0.bat and auto_cal_p5_v0.exe files in the same folder for this to work. **Don't forget to complete the remaining steps here after running the program.** <br/>
 
-6) The calibration values should now be set to whatever was calculated on the last pass. The outputs for each pass should be stored in files named auto_cal_p5_pass#.txt. You can paste the contents of this file into Dennis's spreadsheet to check your heatmap. <br/>
+6) The calibration values should now be set to whatever was calculated on the last pass. The outputs for each pass should be stored in files named auto_cal_p5_pass#.txt. You can paste the contents of this file into [Dennis's Spreadsheet](https://docs.google.com/spreadsheets/d/1rTn4vu2924AA_z1WppvLk4r31JXvoI1YI_7iSye0v3k/copy) to check your heatmap. <br/>
 Note: I'm using [Samba](https://www.raspberrypi.org/magpi/samba-file-server/) to copy files between Windows and Linux.
 
 
@@ -136,7 +136,7 @@ Make sure you have Dennis Brown's custom hold-down clips installed. That step is
 
 **5) My nozzle is going too high or low on the first layer (possibly even grinding into the plate).** <br/>
 Multiple possibilities come to mind. <br/>
-a) A common cause of this is not using the proper M92 X/Y/Z values for your firmware. However, if you successfully ran the script, I doubt you made this mistake. This, as well as other possible causes, are covered in the [Calibration Roadmap and FAQ](bit.ly/mpmdfaq) <br/>
+a) A common cause of this is not using the proper M92 X/Y/Z values for your firmware. However, if you successfully ran the script, I doubt you made this mistake. This, as well as other possible causes, are covered in the [Calibration Roadmap and FAQ](https://bit.ly/mpmdfaq) <br/>
 b) More than a couple of users who flashed Marlin4MPMD firmware have forgotten to run the steps that come AFTER running the script. Make sure you get your new bed mesh by sending G29, save all of your results by issuing M500, and then remove any conflicting lines from your start gcode. This is just one way of doing it. <br/>
 c) Z-Offset problem <br/>
 As long as most of your points are <= 0.14 in the spreadsheet, you'll probably be okay. A high "Initial Layer Height" and finely-tuned z-offset (see: [MPMD 101](https://bit.ly/mpmd101) and/or the [Calibration Roadmap and FAQ](https://bit.ly/mpmdfaq)) can help compensate for any remaining issues. Tuning the z-offset should come AFTER adjusting the Initial Layer Height.
