@@ -1,6 +1,6 @@
 # Monoprice Mini Delta (MPMD) Auto Bed Calibration (P5)
 This python script will automatically adjust the M666 XYZ and M665 LR values to calibrate bed leveling for a Monoprice Mini Delta 3D printer. It uses the G29 P5 method for an improved bed mesh.
-## MPMD-AutoBedLevel-Cal-P5
+## Overview
 
 This tutorial is designed to be used in place of Step C5 in [Dennis Brown's great alignment/calibration tutorial](https://www.facebook.com/groups/mpminideltaowners/permalink/2058169440865198/).
 
@@ -36,23 +36,24 @@ Stock v37 <br/>
 Stock v41 <br/>
 Stock v43 <br/>
 Stock v44 <br/>
-Marlin 8x <br/>
-Marlin 16x <br/>
+Stock v45 <br/>
+Marlin 8x (v1.2.2 and v1.3.3)<br/>
+Marlin 16x (v1.2.2 and v1.3.3)<br/>
 
 
 ### Tested Operating Systems
 Linux (mostly Octopi) <br/>
 Windows 10 (batch file and command-line executable included) <br/>
-The scripts should also work on Mac, but no one has reported back after installing all of the correct packages. <br/>
+The scripts should also work on Mac (using the same pyserial code that's confirmed in Technoswiss's scripts), but no one has reported back after installing all of the correct packages. <br/>
 
 ## Prerequisites
 
 1) This script is intended to be used only **AFTER** you've gone through other calibration steps (namely Dennis's improved bed hold-down clips and having a more consistent bed surface). Do not run it unless you've made it that far in the [Calibration Roadmap](https://bit.ly/mpmdfaq) I've put together. **If you're having trouble accessing this document, your adblocker may be blocking link shorteners.**
 
 2) You will need to be able to control your printer via USB. I use my Octopi (but not Octoprint) to run the script via terminal/command line (not to be confused with your print server terminal). <br/>
-E.G., I don't have a monitor plugged into my Octopi, so I do all of this using [Putty](https://www.raspberrypi.org/documentation/remote-access/ssh/windows.md). I'm able to enter "octopi" instead of the IP address to connect, but YMMV.
+E.G., I don't have a monitor plugged into my [Octopi](https://octoprint.org/download/), so I do all of this using [Putty](https://www.raspberrypi.org/documentation/remote-access/ssh/windows.md). I'm able to enter "octopi" instead of the IP address to connect, but YMMV.
 
-3) Unless you're using the Windows executable, Python3 is required, with additional updates/packages. <br/>
+3) Unless you're using the Windows executable, Python3 is required, with additional updates/packages. <br/><br/>
 **Octopi Installation:** (some unnecessary commands included to help noobs) <br/>
 sudo apt-get install python3-serial <br/>
 sudo apt-get install python3-scipy <br/>
@@ -60,11 +61,11 @@ sudo apt-get install python-serial <br/>
 git clone https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal.git <br/>
 cd MPMD-AutoBedLevel-Cal <br/>
 git fetch <br/>
-git pull <br/>
+git pull <br/><br/>
 **Windows Installation:** <br/>
 I recently released a command-line executable that can be used instead of the python script, as well as a batch file to make running it more straightforward: auto_cal_p5_v0.bat and auto_cal_p5_v0.exe (you will need both files in the same directory). <br/>
 The [Visual C++ Redistributable](https://www.microsoft.com/en-us/download/details.aspx?id=48145) may be required whether you use the executable or the Python script. <br/>
-If you prefer to use Python, you will need the additional packages included with [WinPython](http://winpython.github.io/). <br/>
+If you prefer to use Python, you will need the additional packages included with [WinPython](http://winpython.github.io/). <br/><br/>
 **Mac/OSX Installation** (not tested): <br/>
 Download [Python for Mac](https://www.python.org/downloads/mac-osx/) <br/>
 Install [pyserial](https://stackoverflow.com/questions/31228787/install-pyserial-mac-os-10-10) <br/>
