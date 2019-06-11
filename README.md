@@ -76,7 +76,7 @@ Install [scipy and related packages](https://www.scipy.org/install.html) <br/>
 5) Dennis wrote the spreadsheet assuming you have his hold-down clips installed (see previously linked tutorial). This is not an optional step. You should also tune your belts if you haven't done so recently.
 
 
-## Instructions:
+## Instructions
 
 **DO NOT FORGET TO COMPLETE THE REMAINING STEPS AFTER RUNNING THE PROGRAM! UPDATING YOUR M666, M665, using G29 P5 (stock firmware), and having the correct M92 is crucial!** <br/>
 
@@ -136,9 +136,10 @@ Make sure you have Dennis Brown's custom hold-down clips installed. That step is
 
 **5) My nozzle is going too high or low on the first layer (possibly even grinding into the plate).** <br/>
 Multiple possibilities come to mind. <br/>
-a) A common cause of this is not using the proper M92 X/Y/Z values for your firmware. However, if you successfully ran the script, I doubt you made this mistake. This, as well as other possible causes, are covered in the [Calibration Roadmap and FAQ](https://bit.ly/mpmdfaq) <br/>
-b) More than a couple of users who flashed Marlin4MPMD firmware have forgotten to run the steps that come AFTER running the script. Make sure you get your new bed mesh by sending G29, save all of your results by issuing M500, and then remove any conflicting lines from your start gcode. This is just one way of doing it. <br/>
-c) Z-Offset problem <br/>
+a) Did you remember to complete the remaining steps that come AFTER running the script/program? For some reason, most recent questions have been related to skipping the steps related to updating G29.<br/>
+b) A common cause of this is not using the proper M92 X/Y/Z values for your firmware. However, if you successfully ran the script, I doubt you made this mistake. This, as well as other possible causes, are covered in the [Calibration Roadmap and FAQ](https://bit.ly/mpmdfaq) <br/>
+c) More than a couple of users who flashed Marlin4MPMD firmware have forgotten to run the steps that come AFTER running the script. Make sure you get your new bed mesh by sending G29, save all of your results by issuing M500, and then remove any conflicting lines from your start gcode. This is just one way of doing it. <br/>
+d) Z-Offset problem <br/>
 As long as most of your points are <= 0.14 in the spreadsheet, you'll probably be okay. A high "Initial Layer Height" and finely-tuned z-offset (see: [MPMD 101](https://bit.ly/mpmd101) and/or the [Calibration Roadmap and FAQ](https://bit.ly/mpmdfaq)) can help compensate for any remaining issues. Tuning the z-offset should come AFTER adjusting the Initial Layer Height.
 
 **6) "Calibration error on non-first run exceeds set limit."** <br/>
