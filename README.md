@@ -48,7 +48,7 @@ The scripts should also work on Mac (using the same pyserial code that's confirm
 
 ## Prerequisites
 
-1) This script is intended to be used only **AFTER** you've gone through other calibration steps (namely Dennis's improved bed hold-down clips and having a more consistent bed surface). Do not run it unless you've made it that far in the [Calibration Roadmap](https://bit.ly/mpmdfaq) I've put together. **If you're having trouble accessing this document, your adblocker may be blocking link shorteners.**
+1) This script is intended to be used only **AFTER** you've gone through other calibration steps (namely Dennis's improved bed hold-down clips and having a more consistent bed surface). Do not run it unless you've made it that far in the [Calibration Roadmap](https://www.reddit.com/r/mpminidelta/comments/bzm1s2/updated_mpmd_calibration_guide_and_faq/) I've put together.
 
 2) You will need to be able to control your printer via USB. I use my Octopi (but not Octoprint) to run the script via terminal/command line (not to be confused with your print server terminal). <br/>
 E.G., I don't have a monitor plugged into my [Octopi](https://octoprint.org/download/), so I do all of this using [Putty](https://www.raspberrypi.org/documentation/remote-access/ssh/windows.md). I'm able to enter "octopi" instead of the IP address to connect, but YMMV.
@@ -137,10 +137,10 @@ Make sure you have Dennis Brown's custom hold-down clips installed. That step is
 **5) My nozzle is going too high or low on the first layer (possibly even grinding into the plate).** <br/>
 Multiple possibilities come to mind. <br/>
 a) Did you remember to complete the remaining steps that come AFTER running the script/program? For some reason, most recent questions have been related to skipping the steps pertaining to updating G29.<br/>
-b) A common cause of this is not using the proper M92 X/Y/Z values for your firmware. However, if you successfully ran the script, I doubt you made this mistake. This, as well as other possible causes, are covered in the [Calibration Roadmap and FAQ](https://bit.ly/mpmdfaq) <br/>
+b) A common cause of this is not using the proper M92 X/Y/Z values for your firmware. However, if you successfully ran the script, I doubt you made this mistake. This, as well as other possible causes, are covered in the [Calibration Roadmap and FAQ](https://www.reddit.com/r/mpminidelta/comments/bzm1s2/updated_mpmd_calibration_guide_and_faq/) <br/>
 c) More than a couple of users who flashed Marlin4MPMD firmware have forgotten to run the steps that come AFTER running the script. Make sure you get your new bed mesh by sending G29, save all of your results by issuing M500, and then remove any conflicting lines from your start gcode. This is just one way of doing it. <br/>
 d) Z-Offset problem <br/>
-As long as most of your points are <= 0.14 in the spreadsheet, you'll probably be okay. A high "Initial Layer Height" and finely-tuned z-offset (see: [MPMD 101](https://bit.ly/mpmd101) and/or the [Calibration Roadmap and FAQ](https://bit.ly/mpmdfaq)) can help compensate for any remaining issues. Tuning the z-offset should come AFTER adjusting the Initial Layer Height.
+As long as most of your points are <= 0.14 in the spreadsheet, you'll probably be okay. A high "Initial Layer Height" and finely-tuned z-offset (see: [MPMD 101](https://bit.ly/mpmd101) and/or the [Calibration Roadmap and FAQ](https://www.reddit.com/r/mpminidelta/comments/bzm1s2/updated_mpmd_calibration_guide_and_faq/)) can help compensate for any remaining issues. Tuning the z-offset should come AFTER adjusting the Initial Layer Height.
 
 **6) "Calibration error on non-first run exceeds set limit."** <br/>
 This error usually occurs for one of two reasons: <br/>
