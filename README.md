@@ -116,7 +116,7 @@ G29 <br/>
 M500 <br/>
 ;You can now use G29 P0 in your Start Gcode if you wish<br/>
 
-7) [STOCK FIRMWARE ONLY] Stock firmware doesn't save M665 R with M500, so for the purposes of keeping things simple for this tutorial, I'm just going to suggest you save your M665/M666/M92 values in your Start Gcode. If there are already lines in your Start Gcode with M665/M666, replace those with your new values. If you followed the prerequisites, the proper M92 values should also be set there. Change your G29 line to **G29 P5** Z0.28 (or whatever your offset is). 
+7) [STOCK FIRMWARE ONLY] Stock firmware doesn't save M665 R with M500, so for the purposes of keeping things simple for this tutorial, I'm just going to suggest you save your M665/M666 values in your Start Gcode. If there are already lines in your Start Gcode with M665/M666, replace those with your new values. If you followed the prerequisites, the proper M92 values should also be set there ([if not, fix that now](https://bit.ly/mpmd101)). Change your G29 line to **G29 P5** Z0.28 (or whatever your offset is). 
 
 
 ## Troubleshooting
