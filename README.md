@@ -107,11 +107,16 @@ For Windows, you can can instead use the executable/batch file (see uploaded scr
 6) The calibration values should now be set to whatever was calculated on the last pass. The outputs for each pass should be stored in files named auto_cal_p5_pass#.txt. You can paste the contents of this file into [Dennis's Spreadsheet](https://docs.google.com/spreadsheets/d/1rTn4vu2924AA_z1WppvLk4r31JXvoI1YI_7iSye0v3k/copy) to check your heatmap. <br/>
 Note: I'm using [Samba](https://www.raspberrypi.org/magpi/samba-file-server/) to copy files between Windows and Linux.
 
+7) [MARLIN ONLY] If you are using [Marlin4MPMD](https://github.com/mcheah/Marlin4MPMD/wiki/Calibration) firmware, now would be a good time to re-run G29 P2 V4 while the bed is still hot. After that, you may want to revisit your z-offset via M851.  <br/>
+;At this point, you've already run the script and the bed should still be heated. <br/>
+;Delete your old M666 XYZ and M665 RL lines from your Start Gcode. <br/>
+;Send the following commands via terminal: <br/>
+G29 <br/>
+;Wait for the G29 to finish running. <br/>
+M500 <br/>
+;You can now use G29 P0 in your Start Gcode <br/>
 
-
-7) [MARLIN ONLY] If you are using Marlin firmware, now would be a good time to re-run G29 P2 V4 while the bed is still hot. After that, you may want to revisit your z-offset. Unless you plan on re-running the full 7x7 G29 mesh before every print via your start gcode, you'll want to save your new mesh and calibration values with M500. You can find more information on this (as well as alternate/additional calibration methods) in the [Marlin4MPMD Wiki](https://github.com/mcheah/Marlin4MPMD/wiki/Calibration).
-
-8) Stock firmware doesn't save M665 R with M500, so for the purposes of keeping things simple for this tutorial, I'm just going to suggest you save your M665/M666/M92 values in your starting gcode. If there are already lines in your Start Gcode with M665/M666/M92, replace those with your new values. For stock firmware, change your G29 line to G29 P5 Z0.28 (or whatever your offset is). Marlin4MPMD has other ways of handling G29 and EEPROM which you can read about in the [Marlin4MPMD Wiki](https://github.com/mcheah/Marlin4MPMD/wiki/Calibration).
+7) [STOCK FIRMWARE ONLY] Stock firmware doesn't save M665 R with M500, so for the purposes of keeping things simple for this tutorial, I'm just going to suggest you save your M665/M666/M92 values in your Start Gcode. If there are already lines in your Start Gcode with M665/M666, replace those with your new values. If you followed the prerequisites, the proper M92 values should also be set there. Change your G29 line to **G29 P5** Z0.28 (or whatever your offset is). 
 
 
 ## Troubleshooting
