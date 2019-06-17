@@ -167,7 +167,7 @@ c) Ask the question on [Reddit](https://www.reddit.com/r/mpminidelta/) and tag m
 **Terminal Command Used:** E.G., python3 auto_cal_p5.py [insert inputs here] <br/>
 **Successful?** Yes/No/Partial <br/>
 **Terminal Error:** N/A [If applicable, copy and paste any script errors here] <br/>
-**If not successful, were you able to run auto_cal_p5_v0.py?** Yes/No - If no, paste that error as well. If N/A, try running that script instead. <br/>
+**If not successful, were you able to run "python auto_cal_p5_v0.py [INPUTS]"?** Yes/No - If no, paste that error as well. If N/A, try running that script instead. <br/>
 **Comments:** E.G., Here's how/why it sucks. <br/>
 **Photos/Video:** Assuming the script at least tried to run, including a photo of your bed setup and/or a video of your printer while the script runs would be helpful in identifying potential issues. A screenshot of your heatmap could also be helpful. <br/>
 **Start Gcode:** Copy-Paste your Start Gcode <br/>
