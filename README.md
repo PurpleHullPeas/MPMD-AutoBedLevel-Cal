@@ -167,15 +167,17 @@ c) Ask the question on [Reddit](https://www.reddit.com/r/mpminidelta/) and tag m
 **Terminal Command Used:** E.G., python3 auto_cal_p5.py [insert inputs here] <br/>
 **Successful?** Yes/No/Partial <br/>
 **Terminal Error:** N/A [If applicable, copy and paste any script errors here] <br/>
-If not successful, are you able to run one of TechnoSwiss's other scripts? Yes/No/NA <br/>
+**If not successful, were you able to run auto_cal_p5_v0.py?** Yes/No - If no, paste that error as well. If N/A, try running that script instead. <br/>
 **Comments:** E.G., Here's how/why it sucks. <br/>
-**Photo/Video:** Assuming the script at least tried to run, including a photo of your bed setup and/or a video of your printer while the script runs would be helpful in identifying potential issues. A screenshot of your heatmap could also be helpful. <br/>
+**Photos/Video:** Assuming the script at least tried to run, including a photo of your bed setup and/or a video of your printer while the script runs would be helpful in identifying potential issues. A screenshot of your heatmap could also be helpful. <br/>
 **Start Gcode:** Copy-Paste your Start Gcode <br/>
 **M503:** Copy-Paste Your M503 Output <br/>
 
 
 ## Windows Batch File Help
 
+### Step 0
+Follow the previous instructions until it is time to run the script/program.
 ### Step 1
 ![Windows Batch File Step 1](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/master/WindowsBat_Step1.jpg)
 ### Step 2
@@ -184,5 +186,6 @@ If not successful, are you able to run one of TechnoSwiss's other scripts? Yes/N
 ![Windows Batch File Step 3](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/master/WindowsBat_Step3.jpg)
 ### Step 4
 ![Windows Batch File Step 4](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/master/WindowsBat_Step4.jpg)
-
+### Step 5
+Go back and finish the remaining steps in the instructions.
 
