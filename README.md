@@ -6,7 +6,7 @@ This tutorial is designed to be used in place of Step C5 in [Dennis Brown's grea
 
 I automated Dennis's G29 P5 Heatmap Spreadsheet for M666/M665 Calibration by updating Technoswiss's python script. Special thanks to them for all of their effort!
 
-Python Script (auto_cal_p5.py): https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal
+Python Script (auto_cal_p5.py)
 
 Dennis's [Spreadsheet](https://docs.google.com/spreadsheets/d/1rTn4vu2924AA_z1WppvLk4r31JXvoI1YI_7iSye0v3k/copy) and [Original Instructions](https://www.facebook.com/groups/mpminideltaowners/permalink/2186865287995612/) <br/>
 You should only need this for generating pretty heatmaps. I.E., there's no need to go through his Step C5 spreadsheet instructions if you're using this script.
@@ -104,10 +104,10 @@ Because of differences in how stock firmware and Marlin4MPMD treats tower orient
 **Windows Executable Notes** <br/>
 For Windows, you can can instead use the executable/batch file (see uploaded screenshots). You will need both the auto_cal_p5_v0.bat and auto_cal_p5_v0.exe files in the same folder for this to work. **Don't forget to complete the remaining steps here after running the program.** <br/>
 
-6) The calibration values should now be set to whatever was calculated on the last pass. The outputs for each pass should be stored in files named auto_cal_p5_pass#.txt. You can paste the contents of this file into [Dennis's Spreadsheet](https://docs.google.com/spreadsheets/d/1rTn4vu2924AA_z1WppvLk4r31JXvoI1YI_7iSye0v3k/copy) to check your heatmap. <br/>
+6) The calibration values should now be set to whatever was calculated on the last pass. The outputs for each pass should be stored in files named auto_cal_p5_pass#.txt. You can paste the contents of this file into [Dennis's Spreadsheet](https://docs.google.com/spreadsheets/d/1rTn4vu2924AA_z1WppvLk4r31JXvoI1YI_7iSye0v3k/copy) to check your heatmap. If you've run the script multiple times, sort the files by date to make sure you're using the most recent text file. <br/>
 Note: I'm using [Samba](https://www.raspberrypi.org/magpi/samba-file-server/) to copy files between Windows and Linux.
 
-7) [MARLIN ONLY] If you are using [Marlin4MPMD](https://github.com/mcheah/Marlin4MPMD/wiki/Calibration) firmware, now would be a good time to re-run the 7x7 mesh while the bed is still hot. After that, you may want to revisit your z-offset via M851.  <br/>
+7) [MARLIN ONLY] If you are using [Marlin4MPMD](https://github.com/mcheah/Marlin4MPMD/wiki/Calibration) firmware, now would be a good time to re-run the 7x7 mesh while the bed is still hot (details given below). After that, you may or may not need to revisit your z-offset via M851.  <br/>
 ;At this point, you've already run the script and the bed should still be heated. <br/>
 ;Delete your old M666 XYZ and M665 RL lines from your Start Gcode. <br/>
 ;Send the following commands via terminal: <br/>
@@ -116,7 +116,7 @@ G29 <br/>
 M500 <br/>
 ;You can now use G29 P0 in your Start Gcode if you wish<br/>
 
-7) [STOCK FIRMWARE ONLY] Stock firmware doesn't save M665 R with M500, so for the purposes of keeping things simple for this tutorial, I'm just going to suggest you save your M665/M666 values in your Start Gcode. If there are already lines in your Start Gcode with M665/M666, replace those with your new values. If you followed the prerequisites, the proper M92 values should also be set there ([if not, fix that now](https://bit.ly/mpmd101)). Change your G29 line to **G29 P5** Z0.28 (or whatever your offset is). 
+7) [STOCK FIRMWARE ONLY] Stock firmware doesn't save M665 R with M500 due to a bug, so for the purposes of keeping things simple for this tutorial, I'm just going to suggest you save your M665/M666 values in your Start Gcode. If there are already lines in your Start Gcode with M665/M666, replace those with your new values. If you followed the prerequisites, the proper M92 values should also be set there ([if not, fix that now](https://bit.ly/mpmd101)). Change your G29 line to **G29 P5** Z0.28. You may need to change 0.28 to whatever z-offset value works best for your machine (see [MPMD 101](https://bit.ly/mpmd101)).
 
 
 ## Troubleshooting
@@ -126,7 +126,7 @@ E.G., "python3: command not found", "ModuleNotFoundError: No module named 'numpy
 Try replacing "python3 auto_cal_p5.py" with "python auto_cal_p5_v0.py". This will both reduce the number of dependencies required to run the script and handle any issues where your OS may have assigned "python" to Python 3.X instead of "python3". You will still need to install pyserial for this to work.
 
 **2) Serial Ports?** <br/>
-The provided examples work for Octopi if you only have one serial device plugged into the rPi. Otherwise, you will need to replace "-p /dev/ttyACM0" with your appropriate serial port. <br/>
+The provided examples work for Octopi if you only have one serial device plugged into the rPi. Otherwise, you will need to replace "-p /dev/ttyACM0" with your appropriate serial port, because **it will most likely not be the same as the provided examples.** <br/>
 **Windows Example:** "-p COM3" <br/>
 **Mac Example:** "-p /dev/tty.SOMETHING" (need to replace SOMETHING with your actual value) <br/>
 If you're unsure of what your port name is, try seeing what it's called when you connect to the printer via Octoprint, Pronterface, Repetier, or some other service. Otherwise, try Googling, "how to find serial port name on my operating system".
@@ -137,19 +137,18 @@ Two possibilities come to mind: <br/>
 **b) Bad M665 values.** The examples provided use Dennis's starting values and may not be applicable for your machine (although, they do seem to work for most). You can adjust these by replacing "-r 63.5 -l 123.0" with your desired R/L values. Ideally, you have calculated these values from the Carbon Paper Step C4 in Dennis's tutorial. If not, replace these numbers with whatever you've been using to print successfully. For example, the stock values would be "-r 61.70 -l 120.80".<br/>
 
 **4) I reach the maximum number of runs and/or my results suck.**
-Make sure you have Dennis Brown's custom hold-down clips installed. That step is not optional. Without the clips, the 5x5 probe mesh will make the bed wobble everywhere, preventing you from obtaining consistent results. Also, make sure you're using G29 P5 in your Start Gcode. For some reason, people keep skipping that step in the instructions. After that, you can further improve your results by removing the stock Buildtak and installing 120 mm borosilicate glass w/ a 0.5 mm thermal pad and/or PEI.
+Make sure you have Dennis Brown's custom hold-down clips installed. That step is not optional. Without the clips, the 5x5 probe mesh will make the bed wobble everywhere, preventing you from obtaining consistent results. Also, make sure you're using G29 P5 in your Start Gcode. For some reason, people keep skipping that step in the instructions. After that, you can further improve your results by removing the stock Buildtak and installing 120 mm borosilicate glass w/ a 0.5 mm thermal pad and/or PEI. If you have a bad/stuck/obstructed endstop switch, damaged belts, poorly-lubricated parts, or other major hardware issues, the script will fail to provide usable results.
 
 **5) My nozzle is going too high or low on the first layer (possibly even grinding into the plate).** <br/>
 Multiple possibilities come to mind. <br/>
-a) Did you remember to complete the remaining steps that come AFTER running the script/program? For some reason, most recent questions have been related to skipping the steps pertaining to updating G29.<br/>
-b) A common cause of this is not using the proper M92 X/Y/Z values for your firmware. However, if you successfully ran the script, I doubt you made this mistake. This, as well as other possible causes, are covered in the [Calibration Roadmap and FAQ](https://www.reddit.com/r/mpminidelta/comments/bzm1s2/updated_mpmd_calibration_guide_and_faq/) <br/>
-c) More than a couple of users who flashed Marlin4MPMD firmware have forgotten to run the steps that come AFTER running the script. Make sure you get your new bed mesh by sending G29, save all of your results by issuing M500, and then remove any conflicting lines from your start gcode. This is just one way of doing it. <br/>
-d) Z-Offset problem <br/>
-As long as most of your points are <= 0.14 in the spreadsheet, you'll probably be okay. A high "Initial Layer Height" and finely-tuned z-offset (see: [MPMD 101](https://bit.ly/mpmd101) and/or the [Calibration Roadmap and FAQ](https://www.reddit.com/r/mpminidelta/comments/bzm1s2/updated_mpmd_calibration_guide_and_faq/)) can help compensate for any remaining issues. Tuning the z-offset should come AFTER adjusting the Initial Layer Height.
+a) Did you remember to complete the remaining steps that come AFTER running the script/program? For some reason, most recent questions have been related to skipping the steps (for Marlin4MPMD or Stock firmware) pertaining to G29.<br/>
+b) Search the [Calibration Roadmap and FAQ](https://www.reddit.com/r/mpminidelta/comments/bzm1s2/updated_mpmd_calibration_guide_and_faq/) for the word "erratic." There are a lot of possible causes for this behavior.<br/>
+c) Z-Offset problem <br/>
+As long as most of your points are <= 0.14 in the spreadsheet, you'll probably be okay. Keep in mind that the spreadsheet values represent measurements BEFORE G29 makes any compensations. A high "Initial Layer Height", finely-tuned z-offset (see: [MPMD 101](https://bit.ly/mpmd101), and/or the tips within the [Calibration Roadmap and FAQ](https://www.reddit.com/r/mpminidelta/comments/bzm1s2/updated_mpmd_calibration_guide_and_faq/)) can help compensate for any remaining issues. Tuning the z-offset should come AFTER adjusting the Initial Layer Height.
 
 **6) "Calibration error on non-first run exceeds set limit."** <br/>
 This error usually occurs for one of two reasons: <br/>
-**a) Hardware problem.** Go back and read Troubleshooting point 3b. <br/>
+**a) Hardware problem.** Go back and read Troubleshooting point 3. <br/>
 **b) Wrong tower flag.** the -tf option tells the script how to account for any software tinkering of tower locations via Marlin4MPMD 1.3.3 and/or M665 X/Y/Z adjustments (not to be confused with M666). You can try each tower flag (0, 1 and 2) until you find one that works.
 
 **7) Other Issues.** At this point, many users have successfully run this script for all configurations of printer firmware on Octopi. Mac has not been as thoroughly-tested. If you're still having issues, please fill out the troubleshooting form at the bottom of this section, and post it via one of the following channels: <br/>
