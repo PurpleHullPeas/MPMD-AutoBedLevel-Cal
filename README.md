@@ -111,12 +111,13 @@ Note: I'm using [Samba](https://www.raspberrypi.org/magpi/samba-file-server/) to
 ;At this point, you've already run the script and the bed should still be heated. <br/>
 ;Delete your old M666 XYZ and M665 RL lines from your Start Gcode. <br/>
 ;Send the following commands via terminal: <br/>
+M665 S120 <br/>
 G29 <br/>
 ;Wait for the G29 to finish running. <br/>
 M500 <br/>
 ;You can now use G29 P0 in your Start Gcode if you wish<br/>
 
-7) [STOCK FIRMWARE ONLY] Stock firmware doesn't save M665 R with M500 due to a bug, so for the purposes of keeping things simple for this tutorial, I'm just going to suggest you save your M665/M666 values in your Start Gcode. If there are already lines in your Start Gcode with M665/M666, replace those with your new values. If you followed the prerequisites, the proper M92 values should also be set there ([if not, fix that now](https://bit.ly/mpmd101)). Change your G29 line to **G29 P5** Z0.28. You may need to change 0.28 to whatever z-offset value works best for your machine (see [MPMD 101](https://bit.ly/mpmd101)).
+7) [STOCK FIRMWARE ONLY] Stock firmware doesn't save M665 R with M500 due to a bug, so for the purposes of keeping things simple for this tutorial, I'm just going to suggest you save your M665/M666 values in your Start Gcode. If there are already lines in your Start Gcode with M665/M666, replace those with your new values. If you followed the prerequisites, the proper M92 values should also be set there ([if not, fix that now](https://bit.ly/mpmd101)). Change your G29 line to **G29 P5** Z0.28. You may need to change 0.28 to whatever z-offset value works best for your machine (see [MPMD 101](https://bit.ly/mpmd101)). It has also come to my attention recently that, if you have not already, you should add [M665 S120](https://www.reddit.com/r/mpminidelta/comments/cr7rie/pimples_after_calibration_fixed_by_reducing/) to your Start Gcode if you have not already.
 
 
 ## Troubleshooting
