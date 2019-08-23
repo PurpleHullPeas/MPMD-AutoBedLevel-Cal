@@ -11,7 +11,9 @@ Python Script (auto_cal_p5.py)
 Dennis's [Spreadsheet](https://docs.google.com/spreadsheets/d/1rTn4vu2924AA_z1WppvLk4r31JXvoI1YI_7iSye0v3k/copy) and [Original Instructions](https://www.facebook.com/groups/mpminideltaowners/permalink/2186865287995612/) <br/>
 You should only need this for generating pretty heatmaps. I.E., there's no need to go through his Step C5 spreadsheet instructions if you're using this script.
 
-![enter image description here](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/master/Before_After.jpg)
+**There is a comprehensive troubleshooting guide near the bottom of this post. I WILL NOT HELP YOU AT ALL unless you have gone through that section and provided ALL of the requested information in the Troubleshooting Form.** I get that there's a lot of content and that things are easy to overlook, but I can't help you unless I have a full picture of what's going on.
+
+![Bed Leveling Heat Map](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/master/Before_After.jpg)
 ## Features
 
 1) Started with Technoswiss's G29 P2 v2 python script and included the most up-to-date bug fixes from it.
@@ -169,7 +171,7 @@ c) Ask the question on [Reddit](https://www.reddit.com/r/mpminidelta/) and tag m
 **Terminal Error:** N/A [If applicable, copy and paste any script errors here] <br/>
 **If not successful, were you able to run "python auto_cal_p5_v0.py [INPUTS]"?** Yes/No - If no, paste that error as well. If N/A, try running this alternate script using "python" instead of "python3". <br/>
 **Comments:** E.G., Here's how/why it sucks. <br/>
-**Photos/Video:** Assuming the script at least tried to run, including a photo of your bed setup and/or a video of your printer while the script runs would be helpful in identifying potential issues. A screenshot of your heatmap could also be helpful. <br/>
+**Photos/Video:** Assuming the script at least tried to run, include a photo of your bed setup and/or a video of your printer while the script runs. A screenshot of your heatmap could also be helpful, but do not skip posting an actual photo of your bed setup. <br/>
 **Start Gcode:** Copy-Paste your Start Gcode <br/>
 **M503:** Copy-Paste Your M503 Output <br/>
 
