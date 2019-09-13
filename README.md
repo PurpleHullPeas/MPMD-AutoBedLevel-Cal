@@ -13,7 +13,8 @@ You should only need this for generating pretty heatmaps. I.E., there's no need 
 
 **There is a comprehensive troubleshooting guide near the bottom of this post. I WILL NOT HELP YOU AT ALL unless you have gone through that section and provided ALL of the requested information in the Troubleshooting Form.** I get that there's a lot of content and that things are easy to overlook, but I can't help you unless I have a full picture of what's going on.
 
-![Bed Leveling Heat Map](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/master/Before_After.jpg)
+![Bed Leveling Heat Map](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/master/Before_After_new.jpg)<br/>
+Image Source: https://www.facebook.com/groups/mpminideltaowners/permalink/2996644567017676/
 ## Features
 
 1) Started with Technoswiss's G29 P2 v2 python script and included the most up-to-date bug fixes from it.
