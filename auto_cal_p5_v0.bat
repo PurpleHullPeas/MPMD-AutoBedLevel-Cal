@@ -28,6 +28,6 @@ SET x0=0.0
 SET y0=0.0
 SET z0=0.0
 REM
-%~dp0auto_cal_p5_v0.exe -p %com_name% -ff %firmware_flag% -tf %tower_flag% -r %M665_R% -l %M665_L% -s %steps_mm% -bt %bed_temp% -x %x0% -y %y0% -z %z0%
+"%~dp0auto_cal_p5_v0.exe" -p %com_name% -ff %firmware_flag% -tf %tower_flag% -r %M665_R% -l %M665_L% -s %steps_mm% -bt %bed_temp% -x %x0% -y %y0% -z %z0%
 REM
 cmd /k
