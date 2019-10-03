@@ -155,7 +155,13 @@ This error usually occurs for one of two reasons: <br/>
 **a) Hardware problem.** Go back and read Troubleshooting point 3. <br/>
 **b) Wrong tower flag.** the -tf option tells the script how to account for any software tinkering of tower locations via Marlin4MPMD 1.3.3 and/or M665 X/Y/Z adjustments (not to be confused with M666). You can try each tower flag (0, 1 and 2) until you find one that works.
 
-**7) Other Issues.** At this point, many users have successfully run this script for all configurations of printer firmware on Octopi. Mac has not been as thoroughly-tested. If you're still having issues, please fill out the troubleshooting form at the bottom of this section, and post it via one of the following channels: <br/>
+**7) Windows Batch/Executable Errors** I've had a few other people report to me that they were able to run the batch file, so I know it works for more than just me. For example, one common issue is when users try clicking the executable instead of the batch file (read the instructions again). When doing that, a command window containing only the following information will appear: <br/> 
+"Could not connect to error at baudrate 115200<br/> 
+Serial error: could not open port 'error': FileNotFoundError(2, 'The system cannot find the file specified.', None, 2)
+auto_cal_p5_v0.py: error: the following arguments are required: -p/--port<br/> 
+Press Enter to continue..."<br/> 
+
+**8) Other Issues.** At this point, many users have successfully run this script for all configurations of printer firmware on Octopi. Mac has not been as thoroughly-tested. If you're still having issues, please fill out the troubleshooting form at the bottom of this section, and post it via one of the following channels: <br/>
 a) File an issue on this GitHub page. <br/>
 b) Respond to [my original thread on Facebook](https://www.facebook.com/groups/mpminideltaowners/permalink/2574670629215074/). <br/> 
 c) Ask the question on [Reddit](https://www.reddit.com/r/mpminidelta/) and tag me /u/PurpleHullPeas <br/>
