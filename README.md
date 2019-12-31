@@ -179,7 +179,7 @@ c) Ask the question on [Reddit](https://www.reddit.com/r/mpminidelta/) and tag m
 **Have you lubricated moving parts recently?** Yes/No <br/>
 **Have you shimmed the bed square to the rails (not always necessary)?** Yes/No <br/>
 **Have you (optional) rotated any towers (swapping wires and/or M665 XYZ)?** Yes/No - Explain <br/>
-**List any other mods that may affect bed leveling:** N/A
+**List any other mods that may affect bed leveling:** N/A <br/>
 **Terminal Command Used and/or Batch File Screenshot:** E.G., python3 auto_cal_p5.py [insert inputs here] <br/>
 **Successful?** Yes/No/Partial <br/>
 **Terminal Error:** Screenshot preferred. If applicable, copy and paste any script errors here <br/>
