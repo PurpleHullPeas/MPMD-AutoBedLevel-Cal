@@ -173,7 +173,7 @@ c) Ask the question on [Reddit](https://www.reddit.com/r/mpminidelta/) and tag m
 **Are you now using Marlin4MPMD firmware?** copy-paste the firmware.bin filename and list the version of Marlin4MPMD <br/>
 **Build Plate Surface:** Glass/Mirror/PEI/Stock/Tape/etc. (also include if you use binder clips, printed clips, thermal pad, etc.) <br/>
 **List any mods between the heated build plate and printer base that cannot be seen in your photo:** N/A <br/>
-**Do you have Dennis's Hold-Down Clip Installed?** Yes/No <br/>
+**Do you have Dennis's Hold-Down Clips Installed?** Yes/No <br/>
 **Did you calibrate Dennis's Hold-Down Clips with an Index Card?** Yes/No <br/>
 **Have you tuned the belts recently?** Yes/No <br/>
 **Have you lubricated moving parts recently?** Yes/No <br/>
