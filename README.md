@@ -161,21 +161,28 @@ Serial error: could not open port 'error': FileNotFoundError(2, 'The system cann
 auto_cal_p5_v0.py: error: the following arguments are required: -p/--port<br/> 
 Press Enter to continue..."<br/> 
 
-**8) Other Issues.** At this point, many users have successfully run this script for all configurations of printer firmware on Octopi. Mac has not been as thoroughly-tested. If you're still having issues, please fill out the troubleshooting form at the bottom of this section, and post it via one of the following channels: <br/>
+**8) Other Issues.** At this point, many users have successfully run this script for all configurations of printer firmware on Octopi. Mac has not been as thoroughly-tested. If you're still having issues, please fill out the troubleshooting form at the bottom of this section and post it via one of the following channels: <br/>
 a) File an issue on this GitHub page. <br/>
-b) Respond to [my original thread on Facebook](https://www.facebook.com/groups/mpminideltaowners/permalink/2574670629215074/). <br/> 
+b) Respond to [my original thread on Facebook](https://www.facebook.com/groups/mpminideltaowners/permalink/2574670629215074/). Note: If I don't respond, maybe make a new post. Facebook can be buggy sometimes. <br/> 
 c) Ask the question on [Reddit](https://www.reddit.com/r/mpminidelta/) and tag me /u/PurpleHullPeas <br/>
 
 ### Troubleshooting Form
 
 **Computer Used:** Octopi/Windows7/Windows10/Mac/etc. <br/>
-**Firmware Version:** Stock v[37/38/39/40/41/42/43/44/45] or Marlin [8x/16x] <br/>
+**Firmware Version Shipped with Printer/Mainboard:** Stock v[37/38/39/40/41/42/43/44/45] <br/>
+**Are you now using Marlin4MPMD firmware?** copy-paste the firmware.bin filename and list the version of Marlin4MPMD <br/>
 **Build Plate Surface:** Glass/Mirror/PEI/Stock/Tape/etc. (also include if you use binder clips, printed clips, thermal pad, etc.) <br/>
-**Do you have Dennis's Hold-Down Clips Installed?** Yes/No <br/>
-**Do you have Dennis's Top Bed Switch Mod Installed?** Yes/No <br/>
-**Terminal Command Used:** E.G., python3 auto_cal_p5.py [insert inputs here] <br/>
+**List any mods between the heated build plate and printer base that cannot be seen in your photo:** N/A <br/>
+**Do you have Dennis's Hold-Down Clip Installed?** Yes/No <br/>
+**Did you calibrate Dennis's Hold-Down Clips with an Index Card?** Yes/No <br/>
+**Have you tuned the belts recently?** Yes/No <br/>
+**Have you lubricated moving parts recently?** Yes/No <br/>
+**Have you shimmed the bed square to the rails (not always necessary)?** Yes/No <br/>
+**Have you (optional) rotated any towers (swapping wires and/or M665 XYZ)?** Yes/No - Explain <br/>
+**List any other mods that may affect bed leveling:** N/A
+**Terminal Command Used and/or Batch File Screenshot:** E.G., python3 auto_cal_p5.py [insert inputs here] <br/>
 **Successful?** Yes/No/Partial <br/>
-**Terminal Error:** N/A [If applicable, copy and paste any script errors here] <br/>
+**Terminal Error:** Screenshot preferred. If applicable, copy and paste any script errors here <br/>
 **If not successful, were you able to run "python auto_cal_p5_v0.py [INPUTS]"?** Yes/No - If no, paste that error as well. If N/A, try running this alternate script using "python" instead of "python3". <br/>
 **Comments:** E.G., Here's how/why it sucks. <br/>
 **Photos/Video:** Assuming the script at least tried to run, include a photo of your bed setup and/or a video of your printer while the script runs. A screenshot of your heatmap could also be helpful, but do not skip posting an actual photo of your bed setup. <br/>
