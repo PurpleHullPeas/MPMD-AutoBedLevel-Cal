@@ -166,18 +166,20 @@ a) File an issue on this GitHub page. <br/>
 b) Respond to [my original thread on Facebook](https://www.facebook.com/groups/mpminideltaowners/permalink/2574670629215074/). Note: If I don't respond, maybe make a new post. Facebook can be buggy sometimes. <br/> 
 c) Ask the question on [Reddit](https://www.reddit.com/r/mpminidelta/) and tag me /u/PurpleHullPeas <br/>
 
-### Troubleshooting Form
+### Troubleshooting Form/Questionnaire 
 
+Do your best to fill this out, even if you just write "I don't understand." Even if you don't think it's relevant. Do not skip the bed photo. </br>
 **Computer Used:** Octopi/Windows7/Windows10/Mac/etc. <br/>
-**Firmware Version Shipped with Printer/Mainboard:** Stock v[37/38/39/40/41/42/43/44/45] <br/>
+**[Firmware Version](https://www.mpminidelta.com/firmware/firmware_version_check) Shipped with Printer/Mainboard:** Stock v[37/38/39/40/41/42/43/44/45] <br/>
 **Are you now using Marlin4MPMD firmware?** copy-paste the firmware.bin filename and list the version of Marlin4MPMD <br/>
-**Build Plate Surface:** Glass/Mirror/PEI/Stock/Tape/etc. (also include if you use binder clips, printed clips, thermal pad, etc.) <br/>
+**Build Plate Surface:** Glass/Mirror, PEI, WhamBam, Terrible Stock Sticker, Tape, etc. (also include how you decided to attach the bed to the printer) <br/>
 **List any mods between the heated build plate and printer base that cannot be seen in your photo:** N/A <br/>
-**Do you have Dennis's Hold-Down Clips Installed?** Yes/No <br/>
-**Did you calibrate Dennis's Hold-Down Clips with an Index Card?** Yes/No <br/>
-**Have you tuned the belts recently?** Yes/No <br/>
-**Have you lubricated moving parts recently?** Yes/No <br/>
-**Have you shimmed the bed square to the rails (not always necessary)?** Yes/No <br/>
+**Do you have [Dennis's Hold-Down Clips](https://www.youtube.com/watch?v=RSZ5xZf63Xo) Installed?** Yes/No <br/>
+**Did you [calibrate Dennis's Hold-Down Clips](https://www.youtube.com/watch?v=2eko2PRa6y8) with an Index Card?** Yes/No <br/>
+**Have you [tuned the belts](https://www.youtube.com/watch?v=gTtEJum10Ss) recently?** Yes/No <br/>
+**Have you [lubricated moving parts](https://www.youtube.com/watch?v=2vuTZncnQYM) recently?** Yes/No <br/>
+**Have you [shimmed the bed square to the rails](https://www.youtube.com/watch?v=2kGcRpWrSE8) (not always necessary)?** Yes/No <br/>
+**Is your effector [colliding with a bed clip](https://www.facebook.com/zoe.yiasemides/videos/1693764524100934/) (or something else)** Yes/No (See Video) <br/>
 **Have you (optional) rotated any towers (swapping wires and/or M665 XYZ)?** Yes/No - Explain <br/>
 **List any other mods that may affect bed leveling:** N/A <br/>
 **Terminal Command Used and/or Batch File Screenshot:** E.G., python3 auto_cal_p5.py [insert inputs here] <br/>
@@ -185,8 +187,8 @@ c) Ask the question on [Reddit](https://www.reddit.com/r/mpminidelta/) and tag m
 **Terminal Error:** Screenshot preferred. If applicable, copy and paste any script errors here <br/>
 **If not successful, were you able to run "python auto_cal_p5_v0.py [INPUTS]"?** Yes/No - If no, paste that error as well. If N/A, try running this alternate script using "python" instead of "python3". <br/>
 **Comments:** E.G., Here's how/why it sucks. <br/>
-**Photos/Video:** Assuming the script at least tried to run, include a photo of your bed setup and/or a video of your printer while the script runs. A screenshot of your heatmap could also be helpful, but do not skip posting an actual photo of your bed setup. <br/>
-**Start Gcode:** Copy-Paste your Start Gcode <br/>
+**Photos/Video:** Include a photo (mandatory) of your bed setup and/or a video of your printer while the script runs. A screenshot of your heatmap could also be helpful, but do not skip posting an actual photo of your bed setup. <br/>
+**Start Gcode:** Copy-Paste your Start Gcode. <br/>
 **M503:** Copy-Paste Your M503 Output <br/>
 
 
