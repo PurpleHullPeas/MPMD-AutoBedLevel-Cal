@@ -179,7 +179,7 @@ Do your best to fill this out, even if you just write "I don't understand." Even
 **Have you [tuned the belts](https://www.youtube.com/watch?v=gTtEJum10Ss) recently?** Yes/No <br/>
 **Have you [lubricated moving parts](https://www.youtube.com/watch?v=2vuTZncnQYM) recently?** Yes/No <br/>
 **Have you [shimmed the bed square to the rails](https://www.youtube.com/watch?v=2kGcRpWrSE8) (not always necessary)?** Yes/No <br/>
-**Is your effector [colliding with a bed clip](https://www.facebook.com/zoe.yiasemides/videos/1693764524100934/) (or something else)** Yes/No (See Video) <br/>
+**Is your effector [colliding with a bed clip](https://youtu.be/tC87r8OVIII) (or something else)** Yes/No (See Video) <br/>
 **Have you (optional) rotated any towers (swapping wires and/or M665 XYZ)?** Yes/No - Explain <br/>
 **List any other mods that may affect bed leveling:** N/A <br/>
 **Terminal Command Used and/or Batch File Screenshot:** E.G., python3 auto_cal_p5.py [insert inputs here] <br/>
