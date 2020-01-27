@@ -74,7 +74,7 @@ Download [Python for Mac](https://www.python.org/downloads/mac-osx/) <br/>
 Install [pyserial](https://stackoverflow.com/questions/31228787/install-pyserial-mac-os-10-10) <br/>
 Install [scipy and related packages](https://www.scipy.org/install.html) <br/>
 
-4) The points that the nozzle probes need to be consistent. I.E., if you're using tape, a sticker, PEI, glass, mirror, etc., you need to make sure the nozzle taps that for every probe point. If using tape, make sure it covers the entire build surface without overlapping. Whatever build surface you choose, make sure you remove the stock sticker before application because you want everything as flat as possible. If you typically use glue/hairspray on your bed, I recommend cleaning it off beforehand. The script will most definitely not work if the effector is colliding with a bed clip or other obstructions before the nozzle can probe the bed. In my experience, trying to use glass retainer/holding clips causes problems and should be avoided (read my recommendations in the calibration guide).
+4) The points that the nozzle probes need to be consistent. I.E., if you're using tape, a sticker, PEI, glass, mirror, etc., you need to make sure the nozzle taps that for every probe point. If using tape, make sure it covers the entire build surface without overlapping; however, it is probably safer to run this calibration with no tape on the bed. Whatever build surface you choose, make sure you remove the stock sticker before application because you want everything as flat as possible. If you typically use glue/hairspray on your bed, I recommend cleaning it off beforehand. The script will most definitely not work if the effector is colliding with a bed clip or other obstructions before the nozzle can probe the bed. In my experience, trying to use glass retainer/holding clips causes problems and should be avoided (read my recommendations in the calibration guide).
 
 5) Dennis wrote the spreadsheet assuming you have his hold-down clips installed (see previously linked tutorial). This is not an optional step. You should also tune your belts if you haven't done so recently.
 
@@ -168,7 +168,7 @@ c) Ask the question on [Reddit](https://www.reddit.com/r/mpminidelta/) and tag m
 
 ### Troubleshooting Form/Questionnaire 
 
-Do your best to fill this out, even if you just write "I don't understand." Even if you don't think it's relevant. Do not skip the bed photo. </br>
+Do your best to fill this out, even if you just write "I don't understand." Even if you don't think it's relevant. Do not skip the bed photo. I know the list has grown quite long, but I'm usually pretty forgiving as long as you make an honest attempt to answer the questions. </br>
 **Computer Used:** Octopi/Windows7/Windows10/Mac/etc. <br/>
 **[Firmware Version](https://www.mpminidelta.com/firmware/firmware_version_check) Shipped with Printer/Mainboard:** Stock v[37/38/39/40/41/42/43/44/45] <br/>
 **Are you now using Marlin4MPMD firmware?** copy-paste the firmware.bin filename and list the version of Marlin4MPMD <br/>
@@ -180,6 +180,7 @@ Do your best to fill this out, even if you just write "I don't understand." Even
 **Have you [lubricated moving parts](https://www.youtube.com/watch?v=2vuTZncnQYM) recently?** Yes/No <br/>
 **Have you [shimmed the bed square to the rails](https://www.youtube.com/watch?v=2kGcRpWrSE8) (not always necessary)?** Yes/No <br/>
 **Is your effector [colliding with a bed clip](https://youtu.be/tC87r8OVIII) (or something else)** Yes/No (See Video) <br/>
+**Did you clean the filament off of the tip of the nozzle?** Yes/No <br/>
 **Have you (optional) rotated any towers (swapping wires and/or M665 XYZ)?** Yes/No - Explain <br/>
 **List any other mods that may affect bed leveling:** N/A <br/>
 **Terminal Command Used and/or Batch File Screenshot:** E.G., python3 auto_cal_p5.py [insert inputs here] <br/>
