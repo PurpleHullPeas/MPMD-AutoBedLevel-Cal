@@ -47,7 +47,7 @@ Marlin 16x (v1.2.2 and v1.3.3)<br/>
 ### Tested Operating Systems
 Linux (mostly Octopi) <br/>
 Windows 10 (batch file and command-line executable included) <br/>
-The scripts should also work on Mac (using the same pyserial code that's confirmed in Technoswiss's scripts), but no one has reported back after installing all of the correct packages. <br/>
+Exactly one person has told me that it works with Mac. They had to use auto_cal_p5_v0.py instead of auto_cal_p5.py.
 
 ## Prerequisites
 
@@ -69,10 +69,14 @@ git pull <br/><br/>
 I recently released a command-line executable that can be used instead of the python script, as well as a batch file to make running it more straightforward: auto_cal_p5_v0.bat and auto_cal_p5_v0.exe (you will need both files in the same directory). <br/>
 The [Visual C++ Redistributable](https://www.microsoft.com/en-us/download/details.aspx?id=48145) may be required whether you use the executable or the Python script. <br/>
 If you prefer to use Python, you will need the additional packages included with [WinPython](http://winpython.github.io/). <br/><br/>
-**Mac/OSX Installation** (not tested): <br/>
+**Mac/OSX Installation**: <br/>
 Download [Python for Mac](https://www.python.org/downloads/mac-osx/) <br/>
 Install [pyserial](https://stackoverflow.com/questions/31228787/install-pyserial-mac-os-10-10) <br/>
 Install [scipy and related packages](https://www.scipy.org/install.html) <br/>
+Exactly one person has told me that it works with Mac. They had to use auto_cal_p5_v0.py instead of auto_cal_p5.py.<br/>
+The terminal command<br/>
+ls /dev/tty.usb* <br/>
+will show the usb ports in use.<br/>
 
 4) The points that the nozzle probes need to be consistent. I.E., if you're using tape, a sticker, PEI, glass, mirror, etc., you need to make sure the nozzle taps that for every probe point. If using tape, make sure it covers the entire build surface without overlapping; however, it is probably safer to run this calibration with no tape on the bed. Whatever build surface you choose, make sure you remove the stock sticker before application because you want everything as flat as possible. If you typically use glue/hairspray on your bed, I recommend cleaning it off beforehand. The script will most definitely not work if the effector is colliding with a bed clip or other obstructions before the nozzle can probe the bed. In my experience, trying to use glass retainer/holding clips causes problems and should be avoided (read my recommendations in the calibration guide).
 
