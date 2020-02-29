@@ -28,6 +28,7 @@ import sys
 import argparse
 import json
 import math
+import os
 
 # -----------------------------------------------------------------------------
 # Get Serial Connection
@@ -791,7 +792,10 @@ def output_pass_text(runs, trial_x, trial_y, trial_z, l_value, r_value, iHighTow
     pass_num = int(runs-1)
     
     # Create the file
-    file_object  = open("auto_cal_p5_pass{0}.txt".format(str(pass_num)), "w")
+    directory_location = os.path.dirname(os.path.abspath(sys.argv[0]))
+    file_name = "auto_cal_p5_pass{0}.txt".format(str(pass_num))
+    output_path_name = os.path.join(directory_location + os.sep, file_name)
+    file_object  = open(str(output_path_name), "w")
     
     # Output current pass values
     file_object.write("M666 X{0:.2f} Y{1:.2f} Z{2:.2f}\r\n".format(float(trial_x), float(trial_y), float(trial_z))) 
@@ -890,9 +894,10 @@ def main():
     bed_temp = -1
     firmFlag = 0
     tower_flag = 0
+    port_error = 'error'
 
     parser = argparse.ArgumentParser(description='Auto-Bed Cal. for Monoprice Mini Delta')
-    parser.add_argument('-p','--port',help='Serial port',required=True)
+    parser.add_argument('-p','--port',default=port_error,help='Serial port',required=False)
     parser.add_argument('-x','--x0',type=float,default=x0,help='Starting x-value')
     parser.add_argument('-y','--y0',type=float,default=y0,help='Starting y-value')
     parser.add_argument('-z','--z0',type=float,default=z0,help='Starting z-value')
@@ -954,21 +959,24 @@ def main():
         max_runs = args.max_runs
         l_value = args.l_value
         
-    if port:
+    if args.port == port_error:
+        print ('auto_cal_p5_v0.py: error: the following arguments are required: -p/--port\n')
+        
+    elif port:
     
         # Firmware
         if firmFlag == 0:
-            print("Using Monoprice Firmware\n")
+            print("Using Monoprice/Malyan Firmware\n")
         elif firmFlag == 1:
             print("Using Marlin Firmware\n")
             
         # Tower Setup
         if tower_flag == 0:
-            print("Stock Tower Setup (X opposite of LCD)\n")
+            print("Tower Rotation Setup 0\n")
         elif tower_flag == 1:
-            print("Altered Tower Setup (Y opposite of LCD)\n")
+            print("Tower Rotation Setup 1\n")
         elif tower_flag == 2:
-            print("Experimental Tower Setup (Z opposite of LCD)\n")
+            print("Tower Rotation Setup 2\n")
     
         #Set Bed Temperature
         if bed_temp >= 0:
@@ -1009,7 +1017,13 @@ def main():
                 data = {'z':new_z, 'x':new_x, 'y':new_y, 'r':new_r, 'l': new_l, 'step':step_mm, 'max_runs':max_runs, 'max_error':max_error, 'bed_temp':bed_temp}
                 with open(args.file, "w") as text_file:
                     text_file.write(json.dumps(data))
-
+    
+    else: 
+        print ('There was an unknown error with the port.\n')
+        
+    # This next line does not work in Python2. 
+    # Uncomment it when making the executable.
+    #input("Press Enter to continue...")
 
 if __name__ == '__main__':
     main()

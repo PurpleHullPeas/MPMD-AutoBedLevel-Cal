@@ -9,17 +9,22 @@ REM Also enter your bed temperature here to ensure it stays heated
 SET bed_temp=50
 
 REM Fill in these M665 R and L values with your results from
+REM the carbon paper calibration or use your favorite values.
 SET M665_R=63.5
 SET M665_L=123.0
 
-REM Firmware Versions <=41, 45: Use 57.14
+REM This is the same as your M92 XYZ value
+REM Firmware Versions <=41: Use 57.14
 REM Firmware Version 43, 44: Use 114.28
+REM Firmware Version 45, it depends.
+REM For help, go here: 
+REM https://www.thingiverse.com/thing:3892011
 SET steps_mm=57.14
 
 REM If using Marlin, set to 1
 SET firmware_flag=0
 
-REM If using Marlin 1.3.3, also set this to 1
+REM If using Marlin 1.3.3, probably set this to 1
 SET tower_flag=0
 
 REM Don't mess with anything below here unless you know what you're doing
