@@ -214,6 +214,6 @@ Go back and finish the remaining steps in the instructions.
 
 ## What if the batch file didn't work? 
 
-Try WinPython instead (go back up to the Windows Installation section for details/links). The large multi-step screenshot is included below.
+Try WinPython instead (go back up to the Windows Installation section for details/links). The large multi-step screenshot is included below. Click the image below to zoom in.
 ![WinPython Instructions](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/master/WinPythonInstructions.png)
 
