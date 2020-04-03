@@ -875,29 +875,32 @@ def run_calibration(port, firmFlag, trial_x, trial_y, trial_z, l_value, r_value,
 # -----------------------------------------------------------------------------
     
 def main():
+    
     # Default values
-    max_runs = 14
-    max_error = 1
-
-    x0 = 0.0
-    y0 = 0.0
-    z0 = 0.0
-    trial_z = x0
-    trial_x = y0
-    trial_y = z0
-    r_value = 63.5
     step_mm = 57.14
+    r_value = 63.5
     l_value = 123.0
-    xhigh = [0]*2
-    yhigh = [0]*2
-    zhigh = [0]*2
     bed_temp = -1
     firmFlag = 0
     tower_flag = 0
+    port_default = 'error'
+    
+    # Other initializations
+    x0 = 0.0
+    y0 = 0.0
+    z0 = 0.0
+    max_runs = 14
+    max_error = 1
     port_error = 'error'
-
+    xhigh = [0]*2
+    yhigh = [0]*2
+    zhigh = [0]*2
+    trial_x = y0
+    trial_y = z0
+    trial_z = x0  
+    
     parser = argparse.ArgumentParser(description='Auto-Bed Cal. for Monoprice Mini Delta')
-    parser.add_argument('-p','--port',default=port_error,help='Serial port',required=False)
+    parser.add_argument('-p','--port',default=port_default,help='Serial port',required=False)
     parser.add_argument('-x','--x0',type=float,default=x0,help='Starting x-value')
     parser.add_argument('-y','--y0',type=float,default=y0,help='Starting y-value')
     parser.add_argument('-z','--z0',type=float,default=z0,help='Starting z-value')
@@ -913,7 +916,7 @@ def main():
         help='File with settings, will be updated with latest settings at the end of the run')
     args = parser.parse_args()
 
-    port = establish_serial_connection(args.port)        
+    port = establish_serial_connection(args.port)      
 
     if args.file:
         try:
