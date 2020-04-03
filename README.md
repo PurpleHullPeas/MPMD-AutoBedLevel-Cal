@@ -214,6 +214,7 @@ Go back and finish the remaining steps in the instructions.
 
 ## What if the batch file didn't work? 
 
-Try WinPython instead (go back up to the Windows Installation section for details/links). The large multi-step screenshot is included below. Click the image below to zoom in.
+Try WinPython instead (go back up to the Windows Installation section for details/links). The large multi-step screenshot is included below. Click the image below to zoom in.<br/> 
+Note: If you're trying to copy-paste into the heatmap, the spacing in the output text files may be wrong. You can either fix it, manually, by removing blank lines or just run G29 P5 V4 over USB on stock firmware.
 ![WinPython Instructions](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/master/WinPythonInstructions.png)
 
