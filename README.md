@@ -177,6 +177,7 @@ Do your best to fill this out, even if you just write "I don't understand." Even
 **[Firmware Version](https://www.mpminidelta.com/firmware/firmware_version_check) Shipped with Printer/Mainboard:** Stock v[37/38/39/40/41/42/43/44/45] <br/>
 **Are you now using Marlin4MPMD firmware?** copy-paste the firmware.bin filename and list the version of Marlin4MPMD <br/>
 **Build Plate Surface:** Glass/Mirror, PEI, WhamBam, Terrible Stock Sticker, Tape, etc. (also include how you decided to attach the bed to the printer) <br/>
+**Did you remove the stock build surface sticker prior to installing the surface above?** Yes/No, Why? <br/>
 **List any mods between the heated build plate and printer base that cannot be seen in your photo:** N/A <br/>
 **Do you have [Dennis's Hold-Down Clips](https://www.youtube.com/watch?v=RSZ5xZf63Xo) Installed?** Yes/No <br/>
 **Did you [calibrate Dennis's Hold-Down Clips](https://www.youtube.com/watch?v=2eko2PRa6y8) with an Index Card?** Yes/No <br/>
