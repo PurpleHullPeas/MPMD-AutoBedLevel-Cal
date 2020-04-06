@@ -506,7 +506,7 @@ def calculate_contour(x_list, y_list, dz_list, runs, xhigh, yhigh, zhigh, tower_
                     z21 = heatmap[iy1][ix2]
                     z22 = heatmap[iy2][ix2]
                     probe_points = [(x1, y1, z11),
-                                    (x1, y2, z22),
+                                    (x1, y2, z12),
                                     (x2, y1, z21),
                                     (x2, y2, z22)]
                     zq_tmp = bilinear_interpolation(xq, yq, probe_points)
