@@ -1051,11 +1051,11 @@ def run_calibration(port, firmFlag, trial_x, trial_y, trial_z, l_value, r_value,
 def main():
 
     # Default values
-    port_default = '/dev/ttyACM0' #'COM100'
+    port_default = 'error'
     x0 = 0.0
     y0 = 0.0
     z0 = 0.0
-    step_mm = 114.28
+    step_mm = 57.14
     r_value = 63.5
     l_value = 123.0
     Lratio = 1.5
@@ -1067,9 +1067,9 @@ def main():
     fff = 0.0
     bed_temp = -1
     hotend_temp = -1
-    firmFlag = 1
-    tower_flag = 1
-    calibration_pattern = -2
+    firmFlag = 0
+    tower_flag = 0
+    calibration_pattern = 2
 
     # Other Initializations
     max_runs = 14
