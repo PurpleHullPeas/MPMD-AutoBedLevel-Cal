@@ -1166,7 +1166,7 @@ def main():
         out = port.readline().decode()
         
         print ('Setting up M665 L{0} R{1}\n'.format(str(l_value),str(r_value)))
-        port.write(('M665 L{0} R{1}\n'.format(str(l_value))).encode())
+        port.write(('M665 L{0} R{1}\n'.format(str(l_value),str(r_value))).encode())
         out = port.readline().decode()
 
         if firmFlag == 1:
