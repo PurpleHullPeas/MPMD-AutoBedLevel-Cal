@@ -1,9 +1,13 @@
-https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal
+It is assumed that you have already read all of the information on this page: 
+https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/blob/master/README.md
 
 No more hand-holding in the advanced folder. 
 You are still encouraged to report legitimate script errors/bugs.
 If your question consists of "why is my bed still not level", 
 then please go away and read the full calibration guide.
+
+Full Calibration Guide: 
+https://www.reddit.com/r/mpminidelta/comments/bzm1s2/updated_mpmd_calibration_guide_and_faq/
 
 This is an experimental script. I don't know whether or not 
 it will work better for you.
