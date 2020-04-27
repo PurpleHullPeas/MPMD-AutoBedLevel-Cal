@@ -47,7 +47,8 @@ Which pattern should you use? Whatever works best for you. This script is experi
 Generally, for stock firmware, 5 works best with a properly setup bed.
 
 For Marlin4MPMD, I'm thinking one of the last options will probably work best, 
-since they align with the 7x7 matrix.
+since they align with the 7x7 matrix. 
+Pattern 2550 worked well on my machine.
 
 2 or -2 are the fastest because of fewer probe points. 
 This is basically like Marlin G33 R50 or G33 R25, 
