@@ -13,7 +13,7 @@ You should only need this for generating pretty heatmaps. I.E., there's no need 
 
 **There is a comprehensive troubleshooting guide near the bottom of this post. I WILL NOT HELP YOU AT ALL unless you have gone through that section and provided ALL of the requested information in the Troubleshooting Form.** I get that there's a lot of content and that things are easy to overlook, but I can't help you unless I have a full picture of what's going on.
 
-![Bed Leveling Heat Map](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/master/Before_After_new.jpg)<br/>
+![Bed Leveling Heat Map](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/master/images/Before_After_new.jpg)<br/>
 Image Source: https://www.facebook.com/groups/mpminideltaowners/permalink/2996644567017676/
 ## Features
 
@@ -203,13 +203,13 @@ Do your best to fill this out, even if you just write "I don't understand." Even
 ### Step 0
 Follow the previous instructions until it is time to run the script/program.
 ### Step 1
-![Windows Batch File Step 1](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/master/WindowsBat_Step1.jpg)
+![Windows Batch File Step 1](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/master/images/WindowsBat_Step1.jpg)
 ### Step 2
-![Windows Batch File Step 2](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/master/WindowsBat_Step2.jpg)
+![Windows Batch File Step 2](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/master/images/WindowsBat_Step2.jpg)
 ### Step 3
-![Windows Batch File Step 3](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/master/WindowsBat_Step3.jpg)
+![Windows Batch File Step 3](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/master/images/WindowsBat_Step3.jpg)
 ### Step 4
-![Windows Batch File Step 4](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/master/WindowsBat_Step4.jpg)
+![Windows Batch File Step 4](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/master/images/WindowsBat_Step4.jpg)
 ### Step 5
 Go back and finish the remaining steps in the instructions.
 
@@ -217,5 +217,5 @@ Go back and finish the remaining steps in the instructions.
 
 Try WinPython instead (go back up to the Windows Installation section for details/links). The large multi-step screenshot is included below. Click the image below to zoom in.<br/> 
 Note: If you're trying to copy-paste into the heatmap, the spacing in the output text files may be wrong. You can either fix it, manually, by removing blank lines or just run G29 P5 V4 over USB on stock firmware.
-![WinPython Instructions](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/master/WinPythonInstructions.png)
+![WinPython Instructions](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/master/images/WinPythonInstructions.png)
 
