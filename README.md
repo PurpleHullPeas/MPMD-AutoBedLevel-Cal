@@ -184,6 +184,8 @@ Do your best to fill this out, even if you just write "I don't understand." Even
 **Have you [tuned the belts](https://www.youtube.com/watch?v=gTtEJum10Ss) recently?** Yes/No <br/>
 **Have you [lubricated moving parts](https://www.youtube.com/watch?v=2vuTZncnQYM) recently?** Yes/No <br/>
 **Have you [shimmed the bed square to the rails](https://www.youtube.com/watch?v=2kGcRpWrSE8) (not always necessary)?** Yes/No <br/>
+**Have you [ensured all arms are the same length](https://youtu.be/xmuSCaScuK8) (very rarely necessary)?** Yes/No <br/>
+**Is there any "play" in the carriage bearings and/or arm screws/nuts?** Yes/No/What <br/>
 **Is your effector [colliding with a bed clip](https://youtu.be/tC87r8OVIII) (or something else)** Yes/No (See Video) <br/>
 **Did you clean the filament off of the tip of the nozzle?** Yes/No <br/>
 **Have you (optional) rotated any towers (swapping wires and/or M665 XYZ)?** Yes/No - Explain <br/>
