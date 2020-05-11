@@ -179,6 +179,7 @@ Do your best to fill this out, even if you just write "I don't understand." Even
 **Build Plate Surface:** Glass/Mirror, PEI, WhamBam, Terrible Stock Sticker, Tape, etc. (also include how you decided to attach the bed to the printer) <br/>
 **Did you remove the stock build surface sticker prior to installing the surface above?** Yes/No, Why? <br/>
 **List any mods between the heated build plate and printer base that cannot be seen in your photo:** N/A <br/>
+**Did you make sure that the bed heater wires are tucked away completely in the base hole?:** Yes/No <br/>
 **Do you have [Dennis's Hold-Down Clips](https://www.youtube.com/watch?v=RSZ5xZf63Xo) Installed?** Yes/No <br/>
 **Did you [calibrate Dennis's Hold-Down Clips](https://www.youtube.com/watch?v=2eko2PRa6y8) with an Index Card?** Yes/No <br/>
 **Have you [tuned the belts](https://www.youtube.com/watch?v=gTtEJum10Ss) recently?** Yes/No <br/>
