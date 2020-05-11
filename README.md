@@ -42,6 +42,7 @@ Stock v44 <br/>
 Stock v45 <br/>
 Marlin4MPMD 8x (v1.2.2 and v1.3.3) by mcheah<br/>
 Marlin4MPMD 16x (v1.2.2 and v1.3.3) by mcheah<br/>
+**THIS SCRIPT DOES NOT APPEAR TO WORK WELL AT ALL WITH THE NEWER AEGEAN-ODYSSEY MPMD MARLIN 1.1.X!!!** Keep checking here periodically for updates, but in the meantime, use G33 instead (might have to iteratively adjust M665 L for dimensional accuracy).<br/>
 
 
 ### Tested Operating Systems
