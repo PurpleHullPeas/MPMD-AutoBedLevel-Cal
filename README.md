@@ -23,7 +23,7 @@ Image Source: https://www.facebook.com/groups/mpminideltaowners/permalink/299664
 
 3) Saves results after each iteration in text files (can be copy-pasted into Dennis's spreadsheet).
 
-4) Works with all firmware versions.
+4) Works with stock firmware and mcheah's Marlin4MPMD 1.2.2 and 1.3.3. **IT DOES NOT APPEAR TO WORK WELL AT ALL WITH THE NEWER AEGEAN-ODYSSEY MPMD MARLIN 1.1.X!!!**
 
 5) Saves time iterating through the Excel procedure yourself and makes it easier to update values when you make any mods or change the bed temperature.
 
@@ -40,8 +40,8 @@ Stock v41 <br/>
 Stock v43 <br/>
 Stock v44 <br/>
 Stock v45 <br/>
-Marlin 8x (v1.2.2 and v1.3.3)<br/>
-Marlin 16x (v1.2.2 and v1.3.3)<br/>
+Marlin4MPMD 8x (v1.2.2 and v1.3.3) by mcheah<br/>
+Marlin4MPMD 16x (v1.2.2 and v1.3.3) by mcheah<br/>
 
 
 ### Tested Operating Systems
