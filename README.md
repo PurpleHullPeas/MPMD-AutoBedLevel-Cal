@@ -23,7 +23,7 @@ Image Source: https://www.facebook.com/groups/mpminideltaowners/permalink/299664
 
 3) Saves results after each iteration in text files (can be copy-pasted into Dennis's spreadsheet).
 
-4) Works with stock firmware and mcheah's Marlin4MPMD 1.2.2 and 1.3.3. **IT DOES NOT APPEAR TO WORK WELL AT ALL WITH THE NEWER AEGEAN-ODYSSEY MPMD MARLIN 1.1.X!!!**
+4) Works with stock firmware and mcheah's Marlin4MPMD 1.2.2 and 1.3.3. Early tests suggest it can work with aegean-odyssey's newer MPMD Marlin 1.1.X, but you have to run both G29 and G29 C1 after running the script.
 
 5) Saves time iterating through the Excel procedure yourself and makes it easier to update values when you make any mods or change the bed temperature.
 
@@ -42,7 +42,7 @@ Stock v44 <br/>
 Stock v45 <br/>
 Marlin4MPMD 8x (v1.2.2 and v1.3.3) by mcheah<br/>
 Marlin4MPMD 16x (v1.2.2 and v1.3.3) by mcheah<br/>
-**THIS SCRIPT DOES NOT APPEAR TO WORK WELL AT ALL WITH THE NEWER AEGEAN-ODYSSEY MPMD MARLIN 1.1.X!!!** Keep checking here periodically for updates, but in the meantime, use G33 instead (might have to iteratively adjust M665 L for dimensional accuracy).<br/>
+MPMD Marlin 1.1.X by aegean-odyssey: Early tests suggest it can work, but you have to run both G29 and G29 C1 after running the script.<br/>
 
 
 ### Tested Operating Systems
@@ -121,6 +121,7 @@ Note: I'm using [Samba](https://www.raspberrypi.org/magpi/samba-file-server/) to
 ;Send the following commands via terminal: <br/>
 M665 S120 <br/>
 G29 <br/>
+G29 C1 ; This is needed for aegean-odyssey's port.<br/>
 ;Wait for the G29 to finish running. <br/>
 M500 <br/>
 ;You can now use G29 P0 in your Start Gcode if you wish<br/>
