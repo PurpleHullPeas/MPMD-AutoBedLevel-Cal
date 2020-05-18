@@ -21,7 +21,7 @@ Marlin4MPMD 1.3.3 Firmware by mcheah:
 aegean-odyssey's MPMD Marlin 1.1.X Bugfix: 
     Firmware Flag (-ff) = 2
     Tower Flag (-tf) = Controls whether or not to include tower rotations, instead.
-    Calibration Pattern (-patt) = 33 or 330-340 are also options.
+    Calibration Pattern (-patt) = all options. 33 or 330-340 are also options.
 
 Do not ask for a batch file or executable. 
 Use Python, or go back to the basic-to-intermediate stuff.
