@@ -221,8 +221,164 @@ def draw_carbon_paper_dots(port, hotend_temp):
     # Exit
     return
 
+# -----------------------------------------------------------------------------
+# Logging
+# -----------------------------------------------------------------------------
     
+def get_newline_character(): 
+    #os_name = platform.system().lower()
+    #if os_name[0] == 'w': 
+    #    return "\n" # Windows
+    #else: 
+    #    return "\r\n" # Octopi
+    return "\r\n"
+        
+def output_odyssey_M503(port): 
+    new_line_str = get_newline_character()
+    
+    # Create the file
+    directory_location = os.path.dirname(os.path.abspath(sys.argv[0]))
+    file_name = "M503_data.txt"
+    output_path_name = os.path.join(directory_location + os.sep, file_name)
+    file_object  = open(str(output_path_name), "w")
+    
+    # Send M503
+    port.write(('M503 ;\n').encode())
+    
+    # Clear old data
+    while True:
+        out = port.readline().decode()
+        #print("{0}\n".format(out))
+        if 'Steps per unit' in out:
+            break
+        elif 'Steps per mm' in out: 
+            break
+        elif 'G21' in out: 
+            break
+            
+    while True:
+        file_object.write(out) 
+        if 'M851' in out:
+            break
+        out = port.readline().decode()
+        
+def get_M503_text(port): 
 
+    # Send M503
+    port.write(('M503 ;\n').encode())
+
+    # Clear old data
+    while True:
+        out = port.readline().decode()
+        #print("{0}\n".format(out))
+        if 'Steps per unit' in out:
+            break
+        elif 'Steps per mm' in out: 
+            break
+
+    # Get M503 Data
+    M92_line = ""
+    M666_line = ""
+    M665_line = ""
+    count = 0
+    while count < 3:
+        out = port.readline().decode()
+        #print("{0}\n".format(out))
+        if 'M92' in out:
+            count = count + 1
+            M92_line = out
+        elif 'M666' in out: 
+            count = count + 1
+            M666_line = out
+        elif 'M665' in out: 
+            count = count + 1
+            M665_line = out
+            break
+            
+    # Clear remaining data
+    while True:
+        out = port.readline().decode()
+        #print("{0}\n".format(out))
+        if 'M851' in out:
+            break
+    
+    return M92_line, M666_line, M665_line
+    
+def output_M421(port): 
+    number_rows = 7
+    M421_Data = [None]*number_rows
+    new_line_str = get_newline_character()
+    
+    # Create the file
+    directory_location = os.path.dirname(os.path.abspath(sys.argv[0]))
+    file_name = "M421_data.txt"
+    output_path_name = os.path.join(directory_location + os.sep, file_name)
+    file_object  = open(str(output_path_name), "w")
+    
+    # Output current pass values
+    M92_line, M666_line, M665_line = get_M503_text(port)
+    file_object.write(M92_line) 
+    file_object.write(new_line_str) 
+    file_object.write(M666_line) 
+    file_object.write(new_line_str) 
+    file_object.write(M665_line) 
+    file_object.write(new_line_str) 
+    file_object.write(new_line_str) 
+    
+    # Send Bed Mesh Command
+    port.write(('M421 ;\n').encode())
+    
+    # Clear port data until we reach M421
+    while True:
+        out = port.readline().decode()
+        #print("{0}\n".format(out))
+        if 'Grid spacing' in out:
+            break
+            
+    # Write Data to the text file
+    file_object.write(out) 
+    for ii in range(len(M421_Data)): 
+        out = port.readline().decode()
+        file_object.write(out) 
+        
+    return
+    
+def output_pass_text_p5(runs, port, x_list, y_list, z1_list, z2_list): 
+
+    new_line_str = get_newline_character()
+
+    # Get the pass number corresponding to Dennis's spreadsheet
+    pass_num = int(runs-1)
+    
+    # Create the file
+    directory_location = os.path.dirname(os.path.abspath(sys.argv[0]))
+    file_name = "auto_cal_p5_pass{0}.txt".format(str(pass_num))
+    output_path_name = os.path.join(directory_location + os.sep, file_name)
+    file_object  = open(str(output_path_name), "w")
+    
+    # Output current pass values
+    M92_line, M666_line, M665_line = get_M503_text(port)
+    file_object.write(M92_line) 
+    file_object.write(new_line_str) 
+    file_object.write(M666_line) 
+    file_object.write(new_line_str) 
+    file_object.write(M665_line) 
+    file_object.write(new_line_str) 
+    file_object.write(new_line_str) 
+    
+    # Output Grid Points
+    file_object.write(new_line_str) 
+    file_object.write(new_line_str) 
+    file_object.write("< 01:02:03 PM: G29 Auto Bed Leveling" + new_line_str) 
+    for ii in range(len(x_list)):
+        file_object.write("< 01:02:03 PM: Bed X: {0:.3f} Y: {1:.3f} Z: {2:.3f}{3}".format(float(x_list[ii]), float(y_list[ii]), float(z1_list[ii]), new_line_str)) 
+        file_object.write("< 01:02:03 PM: Bed X: {0:.3f} Y: {1:.3f} Z: {2:.3f}{3}".format(float(x_list[ii]), float(y_list[ii]), float(z2_list[ii]), new_line_str)) 
+    
+    # Close file stream
+    file_object.close() 
+    
+    return
+    
 # -----------------------------------------------------------------------------
 # Autoleveling Functions
 # -----------------------------------------------------------------------------
@@ -405,8 +561,10 @@ def get_current_values(port, firmFlag, calibration_pattern):
             # Probe Z values
             port.write(('G30\n').encode())
             z_axis_1 = get_points(port)
+            #print(z_axis_1)
             port.write(('G30\n').encode())
             z_axis_2 = get_points(port)
+            #print(z_axis_2)
         else:
             # Stock Firmware
             z_axis_1 = get_points(port)
@@ -414,7 +572,9 @@ def get_current_values(port, firmFlag, calibration_pattern):
         
         # Populate most of the table values
         z1_list[ii] = float(z_axis_1[6])
+        #print(z1_list[ii])
         z2_list[ii] = float(z_axis_2[6])
+        #print(z2_list[ii])
         z_avg_list[ii] = float("{0:.4f}".format((z1_list[ii] + z2_list[ii]) / 2.0))
         dtap_list[ii] = z2_list[ii] - z1_list[ii]
         #print('Received: X:{0} X:{1} Y:{2} Y:{3} Z1:{4} Z2:{5}\n\n'.format(str(x_list[ii]), str(z_axis_1[2]), str(y_list[ii]), str(z_axis_1[4]), z1_list[ii], z2_list[ii]))
@@ -959,81 +1119,7 @@ def set_M_values(port, z, x, y, l, r):
     port.write(('M665 L{0} R{1}\n'.format(str(l),str(r))).encode())
     out = port.readline().decode()
     
-def output_M421(port, trial_x, trial_y, trial_z, l_value, r_value, aaa, bbb, ccc, ddd, eee, fff, iHighTower): 
-    number_rows = 7
-    M421_Data = [None]*number_rows
-    new_line_str = "\r\n" # Octopi = "\r\n", Windows = "\n"
-    
-    # Send Bed Mesh Command
-    port.write(('M421 ;\n').encode())
-    
-    # Clear port data until we reach M421
-    while True:
-        out = port.readline().decode()
-        #print("{0}\n".format(out))
-        if 'Grid spacing' in out:
-            break
-            
-    # Create the file
-    directory_location = os.path.dirname(os.path.abspath(sys.argv[0]))
-    file_name = "M421_data.txt"
-    output_path_name = os.path.join(directory_location + os.sep, file_name)
-    file_object  = open(str(output_path_name), "w")
-    
-    # Output current pass values
-    file_object.write("M666 X{0:.2f} Y{1:.2f} Z{2:.2f}".format(float(trial_x), float(trial_y), float(trial_z))) 
-    file_object.write(new_line_str) 
-    file_object.write("M665 L{0:.4f} R{1:.4f} A{2:.4f} B{3:.4f} C{4:.4f} D{5:.4f} E{6:.4f} F{7:.4f}".format(float(l_value), float(r_value), float(aaa), float(bbb), float(ccc), float(ddd), float(eee), float(fff))) 
-    file_object.write(new_line_str) 
-    file_object.write(new_line_str) 
-            
-    # Write Data to the text file
-    file_object.write(out) 
-    for ii in range(len(M421_Data)): 
-        out = port.readline().decode()
-        file_object.write(out) 
-    
-def output_pass_text(runs, trial_x, trial_y, trial_z, l_value, r_value, iHighTower, x_list, y_list, z1_list, z2_list): 
-
-    new_line_str = "\r\n" # Octopi = "\r\n", Windows = "\n"
-
-    # Get the pass number corresponding to Dennis's spreadsheet
-    pass_num = int(runs-1)
-    
-    # Create the file
-    directory_location = os.path.dirname(os.path.abspath(sys.argv[0]))
-    file_name = "auto_cal_p5_pass{0}.txt".format(str(pass_num))
-    output_path_name = os.path.join(directory_location + os.sep, file_name)
-    file_object  = open(str(output_path_name), "w")
-    
-    # Output current pass values
-    file_object.write("M666 X{0:.2f} Y{1:.2f} Z{2:.2f}".format(float(trial_x), float(trial_y), float(trial_z))) 
-    file_object.write(new_line_str) 
-    file_object.write("M665 L{0:.4f} R{1:.4f}".format(float(l_value), float(r_value))) 
-    file_object.write(new_line_str) 
-    file_object.write(new_line_str) 
-    
-    # Highest Tower Value
-    if int(iHighTower) == 0:
-        file_object.write("Highest Tower: X" + new_line_str) 
-    elif int(iHighTower) == 1:
-        file_object.write("Highest Tower: Y" + new_line_str) 
-    else: 
-        file_object.write("Highest Tower: Z" + new_line_str) 
-    
-    # Output Grid Points
-    file_object.write(new_line_str) 
-    file_object.write(new_line_str) 
-    file_object.write("< 01:02:03 PM: G29 Auto Bed Leveling" + new_line_str) 
-    for ii in range(len(x_list)):
-        file_object.write("< 01:02:03 PM: Bed X: {0:.3f} Y: {1:.3f} Z: {2:.3f}{3}".format(float(x_list[ii]), float(y_list[ii]), float(z1_list[ii]), new_line_str)) 
-        file_object.write("< 01:02:03 PM: Bed X: {0:.3f} Y: {1:.3f} Z: {2:.3f}{3}".format(float(x_list[ii]), float(y_list[ii]), float(z2_list[ii]), new_line_str)) 
-    
-    # Close file stream
-    file_object.close() 
-    
     return
-
 
 def run_calibration(port, firmFlag, trial_x, trial_y, trial_z, l_value, r_value, iHighTower, max_runs, max_error, bed_temp, hotend_temp, tower_flag, Lratio, calibration_pattern, runs=0):
     runs += 1
@@ -1065,9 +1151,7 @@ def run_calibration(port, firmFlag, trial_x, trial_y, trial_z, l_value, r_value,
     
     # Output current pass results
     if calibration_pattern == 5: 
-        output_pass_text(runs, trial_x, trial_y, trial_z, l_value, r_value, iHighTower, x_list, y_list, z1_list, z2_list)
-    
-    #print('DEBUGGING')
+        output_pass_text_p5(runs, port, x_list, y_list, z1_list, z2_list)
     
     # Calculate Error
     z_error, x_error, y_error, c_error = determine_error(TX, TY, TZ, THigh, BowlCenter, BowlOR)
@@ -1084,6 +1168,161 @@ def run_calibration(port, firmFlag, trial_x, trial_y, trial_z, l_value, r_value,
 
     return calibrated, new_z, new_x, new_y, new_l, new_r, iHighTower
 
+# -----------------------------------------------------------------------------
+# G33 Calibration Routine
+# -----------------------------------------------------------------------------
+    
+# Let G33 do the heavy lifting, but calculate M665 L between iterations
+# I should probably just figure out the tower angle math for myself. 
+# Maybe I'll do that later.
+def run_G33(port, max_runs, bed_temp, hotend_temp, r_value, l_value, Lratio, calibration_pattern, tower_flag): 
+
+    # Target Error Convergence
+    G33_C_Final = 0.001
+    std_dev_best = 9999.99 # initialize high
+
+    # DELTA_CALIBRATION_DEFAULT_POINTS
+    G33_P = 4
+    if calibration_pattern >= 330: 
+        G33_P = calibration_pattern - 330
+        
+    # Need to run G33, but adjust M665 L in between.
+    # Gradually reduce G33 C??.?? so that we can calibrate.
+    G33_C_tmp = 1.0 + G33_C_Final
+
+    # Initialize Values for L calculation
+    R_old = r_value
+    R_new = r_value
+    L_old = l_value
+    L_new = l_value
+        
+    for ii in range(max_runs): 
+    
+        # Calculate M665 L
+        L_new = float("{0:.4f}".format(Lratio*(R_new-R_old) + L_old))
+        R_old = R_new # Set for next iteration
+        port.write(('M665 L{0}\n'.format(str(L_new))).encode())
+    
+        # Make sure the bed doesn't go cold
+        if bed_temp >= 0: 
+            port.write('M140 S{0}\n'.format(str(bed_temp)).encode())
+
+        # Make sure the hotend doesn't go cold
+        if hotend_temp >= 0: 
+            port.write('M109 S{0}\n'.format(str(hotend_temp)).encode())
+        
+        # Run G33
+        tower_text = '' # Rotate towers by default
+        if tower_flag == 0: 
+            tower_text = 'T' # Do not rotate the towers
+        port.write('G33 C{0} V3 P{1} {2}\n'.format(str(G33_C_tmp),str(G33_P),str(tower_text)).encode())
+
+        # Extract Data
+        while True:
+            out = port.readline().decode()
+            #print(out)
+            if 'Save with M500' in out:
+                break
+            elif ('std dev' in out or 'rolling back' in out): 
+                # Parse standard deviation
+                if 'std dev' in out: 
+                    std_dev = parse_G33(out, 'dev:')
+                else: 
+                    std_dev = std_dev_best - 0.00001
+                # Parse M666 XYZ and M665 RH
+                out = port.readline().decode()
+                Height = parse_G33(out, 'Height:')
+                Ex = parse_G33(out, 'Ex:')
+                Ey = parse_G33(out, 'Ey:')
+                Ez = parse_G33(out, 'Ez:')
+                Radius = parse_G33(out, 'Radius:')
+                # Parse M665 XYZ
+                if tower_flag > 0: 
+                    out = port.readline().decode()
+                    Tx = parse_G33(out, 'Tx:')
+                    Ty = parse_G33(out, 'Ty:')
+                    Tz = parse_G33(out, 'Tz:')
+                else: 
+                    Tx = 0.0
+                    Ty = 0.0
+                    Tz = 0.0
+            elif 'Correct delta settings with M665 and M666' in out: 
+                print('Firmware reported a G33 problem: ')
+                print('Correct delta settings with M665 and M666')
+                return False
+        
+        # Set for next iteration
+        R_new = Radius
+        
+        # Save data to memory and display to terminal
+        G33_SetData(port, Ex, Ey, Ez, Tx, Ty, Tz, Height, Radius, L_new, std_dev, tower_flag, ii)
+        
+        # Save best results
+        if (std_dev <= std_dev_best): 
+            Ex_best = Ex
+            Ey_best = Ey
+            Ez_best = Ez
+            Tx_best = Tx
+            Ty_best = Ty
+            Tz_best = Tz
+            Height_best = Height
+            Radius_best = Radius
+            std_dev_best = std_dev
+            L_best = L_new
+        
+        # Check Error
+        if (std_dev <= G33_C_Final) and (L_new == L_old): 
+            Ex_best = Ex
+            Ey_best = Ey
+            Ez_best = Ez
+            Tx_best = Tx
+            Ty_best = Ty
+            Tz_best = Tz
+            Height_best = Height
+            Radius_best = Radius
+            std_dev_best = std_dev
+            L_best = L_new
+            break
+        elif (ii > 2) and (Ex == Ex_best) and (Ey == Ey_best) and (Ez == Ez_best) and (L_new == L_old):
+            break
+        else: 
+            # Adjust error to keep iterating
+            G33_C_tmp = max(std_dev - G33_C_Final, G33_C_Final)
+            L_old = L_new
+            
+    # Save the best results
+    print('\n\nFinal Results: \n')
+    G33_SetData(port, Ex_best, Ey_best, Ez_best, Tx_best, Ty_best, Tz_best, Height_best, Radius_best, L_best, std_dev_best, tower_flag, ii)
+
+    return True
+    
+def parse_G33(input_str, pattern): 
+    #print(input_str)
+    str_split = input_str.split(' ')
+    for ii in range(len(str_split)): 
+        #print('{0}: {1}\n'.format(str(ii),str(str_split[ii])))
+        if pattern in str_split[ii]: 
+            new_split = str_split[ii].split(':')
+            output = float(new_split[1])
+            break
+            
+    return output
+        
+def G33_SetData(port, Ex, Ey, Ez, Tx, Ty, Tz, Height, Radius, L_new, std_dev, tower_flag, ii): 
+    temp = '\nrun {0}\n\nstd dev = {1}\n'.format(str(ii), str(std_dev))
+    print(temp)
+    temp = 'M666 X{0} Y{1} Z{2}\n'.format(str(Ex), str(Ey), str(Ez))
+    print(temp)
+    port.write((temp).encode())
+    out = port.readline().decode()
+    if tower_flag > 0: 
+        temp = 'M665 L{0} R{1} H{2} X{3} Y{4} Z{5}\n'.format(str(L_new),str(Radius),str(Height),str(Tx),str(Ty),str(Tz))
+    else: 
+        temp = 'M665 L{0} R{1} H{2}\n'.format(str(L_new),str(Radius),str(Height))
+    print(temp)
+    port.write((temp).encode())
+    out = port.readline().decode()
+    
 # -----------------------------------------------------------------------------
 # Main Entry Function
 # -----------------------------------------------------------------------------
@@ -1105,6 +1344,12 @@ def main():
     ddd = 0.0
     eee = 0.0
     fff = 0.0
+    vvv = 30.0
+    sss = 120.0
+    xxx = 0.0
+    yyy = 0.0
+    zzz = 0.0
+    hhh = 130.0
     bed_temp = -1
     hotend_temp = -1
     firmFlag = 0
@@ -1112,7 +1357,7 @@ def main():
     calibration_pattern = 2
 
     # Other Initializations
-    max_runs = 14
+    max_runs = 14 # Max calibration runs, 0 will skip and write log text
     max_error = 1
     port_error = 'error'
     
@@ -1157,6 +1402,13 @@ def main():
     parser.add_argument('-ddd','--ddd',type=float,default=ddd,help='Trial M665 D-value (Marlin4MPMD Only)')
     parser.add_argument('-eee','--eee',type=float,default=eee,help='Trial M665 E-value (Marlin4MPMD Only)')
     parser.add_argument('-fff','--fff',type=float,default=fff,help='Trial M665 F-value (Marlin4MPMD Only)')
+    parser.add_argument('-vvv','--vvv',type=float,default=vvv,help='M665 V-value (Marlin4MPMD Only)')
+    parser.add_argument('-sss','--sss',type=float,default=sss,help='M665 S-value (Marlin4MPMD Only)')
+    parser.add_argument('-xxx','--xxx',type=float,default=xxx,help='Trial M665 X-value (Marlin4MPMD Only)')
+    parser.add_argument('-yyy','--yyy',type=float,default=yyy,help='Trial M665 Y-value (Marlin4MPMD Only)')
+    parser.add_argument('-zzz','--zzz',type=float,default=zzz,help='Trial M665 Z-value (Marlin4MPMD Only)')
+    parser.add_argument('-hhh','--hhh',type=float,default=hhh,help='Trial M665 Z-value (Marlin4MPMD Only)')
+    
     args = parser.parse_args()
 
     port = establish_serial_connection(args.port)        
@@ -1179,6 +1431,12 @@ def main():
     ddd = args.ddd
     eee = args.eee
     fff = args.fff
+    vvv = args.vvv
+    sss = args.sss
+    xxx = args.xxx
+    yyy = args.yyy
+    zzz = args.zzz
+    hhh = args.hhh
     Lratio = args.Lratio
     calibration_pattern = args.calibration_pattern
         
@@ -1188,10 +1446,27 @@ def main():
     elif port:
     
         # Firmware
+        odyssey_flag = 0
         if firmFlag == 0:
             print("Using Monoprice/Malyan Firmware\n")
-        elif firmFlag == 1:
+        elif firmFlag > 0:
             print("Using Marlin Firmware\n")
+            
+            if (firmFlag == 2): 
+                firmFlag = 1
+                odyssey_flag = 1
+                
+            if (calibration_pattern == 33): 
+                odyssey_flag = 1
+            elif (calibration_pattern >= 330 and calibration_pattern <= 340): 
+                odyssey_flag = 1
+                if (calibration_pattern < 334): 
+                    tower_flag = 0
+                    
+        # Check tower flag in aegean-odyssey's firmware
+        if odyssey_flag == 1:
+            if ((calibration_pattern < 334) or (calibration_pattern > 340)) : 
+                tower_flag = 0
             
         # Tower Setup
         if tower_flag == 0:
@@ -1225,54 +1500,79 @@ def main():
         out = port.readline().decode()
 
         if firmFlag == 1:
-            print ('Setting up M206 X0 Y0 Z0\n')
-            port.write('M206 X0 Y0 Z0 ;\n'.encode())
-            out = port.readline().decode()
-        
-            print ('Clearing mesh with M421 C\n')
-            port.write('M421 C\n'.encode())
-            out = port.readline().decode()
 
-            test_tmp = abs(aaa) + abs(bbb) + abs(ccc) + abs(ddd) + abs(eee) + abs(fff)
-            if firmFlag == 1:
-                print ('Setting Trial M665 ABCDEF Values\n')
-                print ('M665 A{0} B{1} C{2} D{3} E{4} F{5} ;\n'.format(str(aaa), str(bbb), str(ccc), str(ddd), str(eee), str(fff)))
-                try:
-                    port.write(('M665 A{0} B{1} C{2} D{3} E{4} F{5} ;\n'.format(str(aaa), str(bbb), str(ccc), str(ddd), str(eee), str(fff))).encode())
+            if odyssey_flag == 0: 
+                print ('Setting up M206 X0 Y0 Z0\n')
+                port.write('M206 X0 Y0 Z0 ;\n'.encode())
+                out = port.readline().decode()
+                print ('Clearing mesh with M421 C\n')
+                port.write('M421 C\n'.encode())
+                out = port.readline().decode()
+            else: 
+                print ('Setting Calibration Radius M665 V{0}\n'.format(str(vvv)))
+                port.write(('M665 V{0}\n'.format(str(vvv))).encode())
+                out = port.readline().decode()
+                print ('Setting Delta Height M665 H{0}\n'.format(str(hhh)))
+                port.write(('M665 H{0}\n'.format(str(hhh))).encode())
+                out = port.readline().decode()
+                if ((calibration_pattern < 33) or (calibration_pattern > 340)): 
+                    print ('Correcting Delta Height with G33 V3 P1\n')
+                    port.write(('G33 V3 P1\n'.encode()))
                     out = port.readline().decode()
-                except:
-                    print ('Failed at Setting M665 ABCDEF Values\n')
 
+            print ('Setting Trial M665 ABCDEF Values\n')
+            print ('M665 A{0} B{1} C{2} D{3} E{4} F{5} ;\n'.format(str(aaa), str(bbb), str(ccc), str(ddd), str(eee), str(fff)))
+            port.write(('M665 A{0} B{1} C{2} D{3} E{4} F{5} ;\n'.format(str(aaa), str(bbb), str(ccc), str(ddd), str(eee), str(fff))).encode())
+            print ('Setting Trial M665 XYZ Values\n')
+            print ('M665 Z{0} Y{1} Z{2} ;\n'.format(str(xxx), str(yyy), str(zzz)))
+            port.write(('M665 X{0} Y{1} Z{2} ;\n'.format(str(xxx), str(yyy), str(zzz))).encode())
+                
+        print ('Setting Segments per Second M665 S{0}\n'.format(str(sss)))
+        port.write(('M665 S{0}\n'.format(str(sss))).encode())
+                
         set_M_values(port, trial_z, trial_x, trial_y, l_value, r_value)
 
+        # Run Calibration
         print ('\nStarting calibration')
-
         calibrated = False
-        calibrated, new_z, new_x, new_y, new_l, new_r, iHighTower = run_calibration(port, firmFlag, trial_x, trial_y, trial_z, l_value, r_value, iHighTower, max_runs, args.max_error, bed_temp, hotend_temp, tower_flag, Lratio, calibration_pattern)
+        if max_runs <= 0: 
+            calibrated = True # Output debugging logs
+        elif (calibration_pattern == 33 or (calibration_pattern >= 330 and calibration_pattern <= 340)): 
+            calibrated = run_G33(port, max_runs, bed_temp, hotend_temp, r_value, l_value, Lratio, calibration_pattern, tower_flag)
+        else: 
+            calibrated, new_z, new_x, new_y, new_l, new_r, iHighTower = run_calibration(port, firmFlag, trial_x, trial_y, trial_z, l_value, r_value, iHighTower, max_runs, args.max_error, bed_temp, hotend_temp, tower_flag, Lratio, calibration_pattern)
 
         # Post Calibration Actions/Logging
         if calibrated:
               
             port.write(('G28 ;\n').encode()) # Home
             
-            if calibration_pattern != 5: 
-                if yes_or_no('Generate G29 P5 Heatmap Data for final pass? '):
-                    calibration_pattern = 5
-                    x_list, y_list, z1_list, z2_list, z_avg_list, dtap_list, dz_list = get_current_values(port, firmFlag, calibration_pattern)
-                    output_pass_text(10000, trial_x, trial_y, trial_z, l_value, r_value, iHighTower, x_list, y_list, z1_list, z2_list)
-                    port.write(('G28 ;\n').encode()) # Home
-            
             if yes_or_no('Run carbon paper test now? '): 
                 draw_carbon_paper_dots(port, hotend_temp)
                 
             if firmFlag == 1:
-                print ('On Marlin4MPMD 1.3.3, you need to re-run G29. ')
-                if yes_or_no('Run G29 and output M421 data now? '):
-                    port.write(('G29 ;\n').encode()) # Mesh Leveling
+                print ('On Marlin, you need to re-run G29. ')
+                if yes_or_no('Run G29 and output log data now? '):
+                    port.write(('G29;\n').encode()) # Mesh Leveling
+                    #if True: #yes_or_no('Extrapolate bed mesh (Odyssey MPMD Marlin 1.1.X)? '):
+                    #    port.write(('G28 ;\n').encode()) # Home
+                    #    port.write(('G29 C1;\n').encode()) # Mesh Leveling
                     port.write(('G28 ;\n').encode()) # Home
-                    output_M421(port, trial_x, trial_y, trial_z, l_value, r_value, aaa, bbb, ccc, ddd, eee, fff, iHighTower)
-            
-            if yes_or_no('Save with M500? '): 
+                    if odyssey_flag == 1:
+                        port.write(('G28 ;\n').encode()) # Home
+                        port.write(('G29 C1;\n').encode()) # Mesh Leveling
+                        output_odyssey_M503(port)
+                    else: 
+                        output_M421(port)
+                    port.write(('G28 ;\n').encode()) # Home
+                    
+            if yes_or_no('Generate G29 P5 Heatmap Data for final pass? '):
+                calibration_pattern = 5
+                x_list, y_list, z1_list, z2_list, z_avg_list, dtap_list, dz_list = get_current_values(port, firmFlag, calibration_pattern)
+                output_pass_text_p5(10000, port, x_list, y_list, z1_list, z2_list)
+                port.write(('G28 ;\n').encode()) # Home
+        
+            if True: #yes_or_no('Save with M500? '): 
                 port.write(('M500 ;\n').encode()) # Save to memory
                 
         # Close the com port
