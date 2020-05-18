@@ -1,17 +1,27 @@
-It is assumed that you have already read all of the information on this page: 
-https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/blob/master/README.md
+https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal
 
 No more hand-holding in the advanced folder. 
 You are still encouraged to report legitimate script errors/bugs.
 If your question consists of "why is my bed still not level", 
 then please go away and read the full calibration guide.
 
-Full Calibration Guide: 
-https://www.reddit.com/r/mpminidelta/comments/bzm1s2/updated_mpmd_calibration_guide_and_faq/
-
 This is an experimental script. I don't know whether or not 
 it will work better for you.
-I also don't know if it will work with aegean-odyssey's firmware.
+It is also still being tested on aegean-odyssey's firmware.
+
+IMPORTANT: THIS SCRIPT WORKS DIFFERENTLY DEPENDING ON YOUR FIRMWARE!
+Stock Firmware:
+    Firmware Flag (-ff) = 0
+    Tower Flag (-tf) = 0
+    Calibration Pattern (-patt) = 2 or 5 only
+Marlin4MPMD 1.3.3 Firmware by mcheah:
+    Firmware Flag (-ff) = 1
+    Tower Flag (-tf) = See main page instructions, but probably 1
+    Calibration Pattern (-patt) = Anything except for the "G33" patterns
+aegean-odyssey's MPMD Marlin 1.1.X Bugfix: 
+    Firmware Flag (-ff) = 2
+    Tower Flag (-tf) = Controls whether or not to include tower rotations, instead.
+    Calibration Pattern (-patt) = 33 or 330-340 are also options.
 
 Do not ask for a batch file or executable. 
 Use Python, or go back to the basic-to-intermediate stuff.
@@ -34,27 +44,31 @@ What is new here (from the older p5 scripts)?
 ----------
 
 More autoleveling options (-patt)
-5:      Stock or Marlin4MPMD - G29 P5 pattern. Same as the p5_v0 script.
-2:      Stock or Marlin4MPMD - G29 P2 pattern - 1 center point, 3 tower points (50 mm radius)
--2:     Marlin4MPMD - 1 center point, 3 tower points (25 mm radius)
-2550:   Marlin4MPMD - 1 center point, 3 tower points (25 mm radius), 12 outer ring points (50 mm radius)
-2537.5: Marlin4MPMD - 1 center point, 3 tower points (25 mm radius), 12 outer ring points (37.5 mm radius)
-2525:   Marlin4MPMD - 1 center point, 3 tower points (25 mm radius), 12 outer ring points (25 mm radius)
-????.?:   Marlin4MPMD - 1 center point, first two digits inner radius, remaining digits outer radius
+5:      Stock or Marlin - G29 P5 pattern. Same as the p5_v0 script.
+2:      Stock or Marlin - G29 P2 pattern - 1 center point, 3 tower points (50 mm radius)
+-2:     Marlin - 1 center point, 3 tower points (25 mm radius)
+2550:   Marlin - 1 center point, 3 tower points (25 mm radius), 12 outer ring points (50 mm radius)
+2537.5: Marlin - 1 center point, 3 tower points (25 mm radius), 12 outer ring points (37.5 mm radius)
+2525:   Marlin - 1 center point, 3 tower points (25 mm radius), 12 outer ring points (25 mm radius)
+????.?:   Marlin - 1 center point, first two digits inner radius, remaining digits outer radius
+33: Odyssey Marlin Only - Uses G33 except with automatic M665 L adjustment
+330-340: Odyssey Marlin Only - Uses G33 except with automatic M665 L adjustment.
+         Last digit is for G33_P parameter.
+         https://marlinfw.org/docs/gcode/G033.html
 
 Which pattern should you use? Whatever works best for you. This script is experimental.
 
-Generally, for stock firmware, 5 works best with a properly setup bed.
+Stock Firmware
+5 works best with a properly setup bed. Follow ALL of the instructions on the main GitHub page.
+2 might work better if you still have the stock sticker or you skipped other steps.
+    No promises. Don't whine if it does not work well for you.
 
-For Marlin4MPMD, I'm thinking one of the last options will probably work best, 
-since they align with the 7x7 matrix. 
-Pattern 2550 worked well on my machine.
+Marlin4MPMD 1.3.3
+-2 worked best on my machine.
+The 2550/2537.5/2525/etc. patterns were designed around this firmware.
 
-2 or -2 are the fastest because of fewer probe points. 
-This is basically like Marlin G33 R50 or G33 R25, 
-except it also calculates R and (optionally) L (see Lratio).
-It also might be okay for all of the people trying to take hardware shortcuts. 
-That being said, don't whine if your results stink.
+aegean-odyssey MPMD Marlin 1.1.X
+2 worked best for me, but the 330-340 options are interesting.
 
 ----------
 
