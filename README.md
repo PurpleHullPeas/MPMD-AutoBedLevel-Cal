@@ -11,7 +11,7 @@ Python Script (auto_cal_p5.py)
 Dennis's [Spreadsheet](https://docs.google.com/spreadsheets/d/1rTn4vu2924AA_z1WppvLk4r31JXvoI1YI_7iSye0v3k/copy) and [Original Instructions](https://www.facebook.com/groups/mpminideltaowners/permalink/2186865287995612/) <br/>
 You should only need this for generating pretty heatmaps. I.E., there's no need to go through his Step C5 spreadsheet instructions if you're using this script.
 
-**There is a comprehensive troubleshooting guide near the bottom of this post. I WILL NOT HELP YOU AT ALL unless you have gone through that section and provided ALL of the requested information in the Troubleshooting Form.** I get that there's a lot of content and that things are easy to overlook, but I can't help you unless I have a full picture of what's going on.
+**There is a comprehensive troubleshooting guide near the bottom of this post. I WILL NOT HELP YOU AT ALL unless you have gone through that section and provided ALL of the requested information in the [Troubleshooting Form](https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/blob/master/advanced/troubleshooting_form.md).** I get that there's a lot of content and that things are easy to overlook, but I can't help you unless I have a full picture of what's going on.
 
 ![Bed Leveling Heat Map](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/master/images/Before_After_new.jpg)<br/>
 Image Source: https://www.facebook.com/groups/mpminideltaowners/permalink/2996644567017676/
