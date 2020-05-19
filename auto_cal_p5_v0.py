@@ -895,9 +895,9 @@ def main():
     xhigh = [0]*2
     yhigh = [0]*2
     zhigh = [0]*2
-    trial_x = y0
-    trial_y = z0
-    trial_z = x0  
+    trial_x = x0
+    trial_y = y0
+    trial_z = z0  
     
     parser = argparse.ArgumentParser(description='Auto-Bed Cal. for Monoprice Mini Delta')
     parser.add_argument('-p','--port',default=port_default,help='Serial port',required=False)
