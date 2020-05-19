@@ -1362,9 +1362,9 @@ def main():
     port_error = 'error'
     
     # Initialize trial values
-    trial_z = x0
-    trial_x = y0
-    trial_y = z0
+    trial_x = x0
+    trial_y = y0
+    trial_z = z0
     
     # Set iHighTower if initializing at non-zero M666 XYZ
     iHighTower = -1 # x=0, y=1, z=2
@@ -1374,6 +1374,7 @@ def main():
             iHighTower = 0 #X
         elif (trial_y > trial_x) and (trial_y > trial_z): 
             iHighTower = 1 #Y
+            print('debug y')
         elif (trial_y > trial_x) and (trial_y > trial_z): 
             iHighTower = 2 #Z
         else: 
