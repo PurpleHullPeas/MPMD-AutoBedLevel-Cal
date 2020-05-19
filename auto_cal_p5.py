@@ -745,9 +745,9 @@ def main():
     x0 = 0.0
     y0 = 0.0
     z0 = 0.0
-    trial_z = x0
-    trial_x = y0
-    trial_y = z0
+    trial_x = x0
+    trial_y = y0
+    trial_z = z0
     r_value = 63.5
     step_mm = 57.14
     l_value = 123.0
