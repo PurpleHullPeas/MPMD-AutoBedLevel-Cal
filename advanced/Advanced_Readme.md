@@ -47,10 +47,10 @@ This is already covered in detail on [this page](https://www.thingiverse.com/thi
 
 In theory, M666 XYZ is used to adjust the positions of the home sensors (at the top of the printer) via software. It has the most direct impact on bed leveling, but can also mess with dimensional accuracy. Adjusting only M666 without also adjusting M665 can sometimes results in a bowl, dome, or dip-shaped movement where the probed height of the center of the bed is significantly different (higher or lower) from the outer edges. If this is your first time running the script, you should keep all of these values at 0.0. Nonzero values in this field can optionally be used later for various trial-and-error solutions.
 
-I do not want to provide a photo of tower locations, because this may vary depending on what hardware and/or firmware tweaks you have performed. You can figure out which tower is which by homing (G28) and then moving the printhead to these positions: 
-Tower X = G1 X-43.3 Y-25 Z10
-Tower Y = G1 X43.3 Y-25 Z10
-Tower Z = G1 X0 Y50 Z10
+I do not want to provide a photo of tower locations, because this may vary depending on what hardware and/or firmware tweaks you have performed. You can figure out which tower is which by homing (G28) and then moving the printhead to these positions: </br>
+G1 X-43.3 Y-25 Z10 ; Tower X </br>
+G1 X43.3 Y-25 Z10 ; Tower Y </br>
+G1 X0 Y50 Z10 ; Tower Z</br>
 
 ### M665 L Diagonal Rod Length (-l) and ratio (-Lratio)
 [Marlin Reference Page](https://marlinfw.org/docs/gcode/M665.html) </br>
