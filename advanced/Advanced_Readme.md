@@ -32,12 +32,19 @@ The previously mentioned hardware upgrades will help, regardless of the firmware
 
 3. [MPMD Marlin 1.1.X](https://github.com/aegean-odyssey/mpmd_marlin_1.1.x) by aegean-odyssey - By default, the script will turn off the probe compensation routine unless you remove that part of the Python code yourself. It uses a more current G33 routine and for this firmware option, the script's tower flag is used to control the G33 T parameter. (explained more later) .
 
+## What about G29 Autoleveling?
+
+Many newcomers are puzzled as to why G29 does not solve all bed leveling issues. This is because G29 is **only** designed to compensate for true uneven/slanted bed issues on a Cartesian machine. 
+
+On a delta 3D printer, the math is much more complicated than their cartesian counterparts. The home sensors give your printer its start point, and then it does a bunch of math with the defined M92/M665/M666 parameters to tell the printer how to move and to keep track of where it is currently located. The problem, however, is that this math assumes a perfectly-aligned machine. Furthermore, it also assumes that those M92/M665/M666 parameters are perfectly defined. Neither of those, are good assumptions. 
+
+Even on cartesian machines, G29 can only compensate so-much for misalignment before it quits working well (e.g., good luck compensating for a bed that is 10 cm lower on one end versus the other). When you add in the extra parameters/complexity/nonlinearity of delta kinematics, then there are even more alignment/calibration parameters you need to address in order for G29 to be able to do its job. Some may argue that G29 is not needed on a properly calibrated/aligned delta 3D printer. That is a valid argument for many delta printers, but my experience has been that some sort of bed-leveling mesh is needed on this specific machine, especially when using a smaller nozzle.
+
 ## Calibration Script Inputs and Delta Calibration Gcode Parameters
 
 Since this is an advanced tutorial, I will try to cover the delta calibration parameters you can control via the firmware. Now that you have done your best to align the hardware to the best of your abilities, it is time to adjust the calibration parameters to achieve accurate delta kinematics (printhead movement, bed leveling, dimensional accuracy, etc.). The command-line script argument will be put in parenthesis.
 
-M666 and M665 help define the delta geometry that help calculate the delta kinematics (i.e. tells the printer how to move). 
-Because of the complexity and nonlinearity of the equations, "everything affects everything" is a safe assumption, which is why it can take an iterative trial-and-error process in order to properly set delta kinematics parameters. Put another way, if you want to fix both bed leveling AND dimensional accuracy, the process gets more complicated.
+In theory, M666 and M665 help define the delta geometry that help calculate the delta kinematics (i.e. tells the printer how to move). In practice, we more-or-less tweak those parameters' numbers iteratively until we find some combination that gives us both dimensional accuracy and a good/level first layer. I.E., just because a parameter may represent some real world measurement/value does not necessarily mean that your final calibrated value will match it. Because of the complexity and nonlinearity of the equations, "everything affects everything" is a safe assumption, which is why it can take an iterative trial-and-error process in order to properly set delta kinematics parameters. Put another way, if you want to fix both bed leveling AND dimensional accuracy, the process gets more complicated.
 
 ### M92 XYZ Motor Steps per mm (-s)
 This is already covered in detail on [this page](https://www.thingiverse.com/thing:3892011). Note that Marlin may default the M92 XYZ 1/16 values to 114.29 instead of 114.28. If you care, try both to see which one gives you better vertical dimensional accuracy. Do this first, because it will absolutely affect your other calibration parameters.
