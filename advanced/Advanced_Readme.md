@@ -63,12 +63,12 @@ G1 X0 Y50 Z10 ; Tower Z</br>
 
 Some people try to adjust this manually by physically moving the home sensors. This is usually unnecessary if you perform software calibration. However, more than a couple of people have started "chasing their own tail" in a sense that they were running around in circles changing both the physical placement and M666 in a loop. If you are going to change the physical placement, do that first (with M666 X0 Y0 Z0) and then only do software calibration after that.
 
-### M665 L Diagonal Rod Length (-l) and ratio (-Lratio)
+### M665 L Diagonal Rod Length (-l) and ratio (-ratio)
 [Marlin Reference Page](https://marlinfw.org/docs/gcode/M665.html) </br>
 [Visual Representation/Math](https://reprap.org/wiki/Delta_geometry) </br>
 M665 L defines the length of the arms. It has the most direct impact on dimensional accuracy, but can also affect bed leveling. Many guides (and G33) leave this as a manual-user-entry trial-and-error input, but Dennis Brown in the Facebook group derived a simple equation, via experimentation, which can help maintain previously calibrated dimensional accuracy as you continue to adjust M666 XYZ and M665 R simultaneously. </br>
-L_new = L_old + Lratio*(R_new-R_old) </br>
-Lratio ~ 1.5 for most stock MPMDs, but may vary if your arm lengths are drastically different. </br>
+L_new = L_old + ratio*(R_new-R_old) </br>
+ratio ~ 1.5 for most stock MPMDs, but may vary if your arm lengths are drastically different. </br>
 Your starting LR values should ideally come from the carbon paper step or [basic dimensional accuracy tutorial](https://youtu.be/Sscz8CBmmok).
 
 ### M665 R Delta Radius (-r)
