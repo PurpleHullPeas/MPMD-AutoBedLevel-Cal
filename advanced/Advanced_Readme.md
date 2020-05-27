@@ -6,9 +6,9 @@ If you're trying to tackle advanced calibration, then it is assumed that you hav
 
 Much like the P5 tutorial, **I WILL NOT HELP YOU AT ALL UNLESS YOU FILL OUT THE [TROUBLESHOOTING FORM](https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/blob/master/advanced/troubleshooting_form.md)**. As a matter of fact, you are on the advanced tutorial page now, so things get a little hairier, anyways. Things are not quite as cut-and-dry here, so you may have to do your own experimentation.
 
-## Known Issues
+## Known Issues/Disclaimer
 
-1. Generic remark about this being a highly experimental sandbox type of script. There has been very little testing and results may vary. 
+1. Generic disclaimer/remark about this being a highly experimental sandbox type of script. There has been very little testing and results may vary. I am not responsible if you brick your printer or otherwise render it unusable. The code is open source. You can see for yourself exactly what it is doing and it is fully your responsibility of you choose to use it.
 
 2. If for some reason you've made it this far and you're relying on the stock built-in stock firmware WiFi (not Octopi), then you might have trouble running the carbon paper test. Just print the [gcode file](https://drive.google.com/open?id=1ti26of-TKoAjkr2QLdoFnVoZAiNE0M7G), instead. 
 
