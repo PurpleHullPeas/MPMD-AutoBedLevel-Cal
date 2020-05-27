@@ -6,6 +6,14 @@ If you're trying to tackle advanced calibration, then it is assumed that you hav
 
 Much like the P5 tutorial, **I WILL NOT HELP YOU AT ALL UNLESS YOU FILL OUT THE [TROUBLESHOOTING FORM](https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/blob/master/advanced/troubleshooting_form.md)**. As a matter of fact, you are on the advanced tutorial page now, so things get a little hairier, anyways. Things are not quite as cut-and-dry here, so you may have to do your own experimentation.
 
+## Known Issues
+
+1. Generic remark about this being a highly experimental sandbox type of script. There has been very little testing and results may vary. 
+
+2. If for some reason you've made it this far and you're relying on the stock built-in stock firmware WiFi (not Octopi), then you might have trouble running the carbon paper test. Just print the [gcode file](https://drive.google.com/open?id=1ti26of-TKoAjkr2QLdoFnVoZAiNE0M7G), instead. 
+
+3. Sometimes the G33 option(s) for aegean-odyssey's MPMD Marlin 1.X.X return a firmware error. This is not something that I have control over via the script. Either use a different calibration pattern or find an M665 combination that doesn't cause this error to appear. It might be as easy as changing M665 V.
+
 ## Recommended Hardware Upgrades/Alignments: 
 
 Don't act surprised if you get terrible calibration results on a stock machine. Here are my recommended hardware alignments/calibrations/upgrades.
