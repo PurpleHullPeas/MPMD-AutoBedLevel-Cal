@@ -22,11 +22,11 @@ Much like the P5 tutorial, **I WILL NOT HELP YOU AT ALL UNLESS YOU FILL OUT THE 
 
 Note: Any time you mess with the hardware, you should recalibrate your machine.
 
-## Firmware Requirements
+## Firmware Options
 
 The previously mentioned hardware upgrades will help, regardless of the firmware version used.
 
-1. [Stock Firmware](https://www.mpminidelta.com/firmware/motion_controller) (not recommended) - you are very limited on what you can do with stock firmware. The only new feature versus the [P5 tutorial](https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal) is the addition of the P2 calibration option.
+1. [Stock Firmware](https://www.mpminidelta.com/firmware/motion_controller) (not recommended) - you are very limited on what you can do with stock firmware. The only new feature versus the [P5 tutorial](https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal) is the addition of the P2 calibration option. Most of the advanced calibration parameters referenced on this page (e.g. M665 ABCDEFXYZ) do not exist on stock firmware.
 
 2. [Marlin4MPMD 1.3.3](https://github.com/mcheah/Marlin4MPMD) by mcheah - This firmware is no longer supported, but the script should also work with it. Note that a few things like the tower rotation flag (explained in the P5 tutorial) and G33 works differently compared to aegean-odyssey's MPMD Marlin 1.X.X.
 
