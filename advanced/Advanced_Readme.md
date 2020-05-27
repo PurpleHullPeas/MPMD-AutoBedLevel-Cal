@@ -54,7 +54,7 @@ This is already covered in detail on [this page](https://www.thingiverse.com/thi
 ### M666 XYZ Delta Endstop Adjustments (-x) (-y) (-z)
 [Marlin Reference Page](https://marlinfw.org/docs/gcode/M666.html)
 
-In theory, M666 XYZ is used to adjust the positions of the home sensors (at the top of the printer) via software. It has the most direct impact on bed leveling, but can also mess with dimensional accuracy. Adjusting only M666 without also adjusting M665 can sometimes results in a bowl, dome, or dip-shaped movement where the probed height of the center of the bed is significantly different (higher or lower) from the outer edges. If this is your first time running the script, you should keep all of these values at 0.0. Nonzero values in this field can optionally be used later for various trial-and-error solutions.
+In theory, M666 XYZ is used to adjust the positions of the home sensors (at the top of the printer) via software. It has the most direct impact on bed leveling, but can also mess with dimensional accuracy. Adjusting only M666 without also adjusting M665 can sometimes results in a bowl, dome, or dip-shaped movement where the probed height of the center of the bed is significantly different (higher or lower) from the outer edges. If this is your first time running the script, you should keep all of these values at 0.0. Non-zero values in this field can optionally be used later for various trial-and-error solutions.
 
 I do not want to provide a photo of tower locations, because this may vary depending on what hardware and/or firmware tweaks you have performed. You can figure out which tower is which by homing (G28) and then moving the printhead to these positions: </br>
 G1 X-43.3 Y-25 Z10 ; Tower X </br>
@@ -66,9 +66,9 @@ Some people try to adjust this manually by physically moving the home sensors. T
 ### M665 L Diagonal Rod Length (-l) and ratio (-Lratio)
 [Marlin Reference Page](https://marlinfw.org/docs/gcode/M665.html) </br>
 [Visual Representation/Math](https://reprap.org/wiki/Delta_geometry) </br>
-M665 L defines the length of the arms. It has the most direct impact on dimensional accuracy, but can also affect bed leveling. Many guides (and G33) leave this as a manual-user-entry trial-and-error input, but Dennis Brown in the Facebook group derived a simple equation, via experimentation, which can help maintain previously calibrated dimensional accuracy as you continue to adjust M666 XYZ and M665 R simultaneously.
-L_new = L_old + Lratio*(R_new-R_old)
-Lratio ~ 1.5 for most stock MPMDs, but may vary if your arm lengths are drastically different.
+M665 L defines the length of the arms. It has the most direct impact on dimensional accuracy, but can also affect bed leveling. Many guides (and G33) leave this as a manual-user-entry trial-and-error input, but Dennis Brown in the Facebook group derived a simple equation, via experimentation, which can help maintain previously calibrated dimensional accuracy as you continue to adjust M666 XYZ and M665 R simultaneously. </br>
+L_new = L_old + Lratio*(R_new-R_old) </br>
+Lratio ~ 1.5 for most stock MPMDs, but may vary if your arm lengths are drastically different. </br>
 Your starting LR values should ideally come from the carbon paper step or [basic dimensional accuracy tutorial](https://youtu.be/Sscz8CBmmok).
 
 ### M665 R Delta Radius (-r)
