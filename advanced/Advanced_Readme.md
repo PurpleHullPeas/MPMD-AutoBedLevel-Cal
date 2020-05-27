@@ -57,6 +57,7 @@ This is already covered in detail on [this page](https://www.thingiverse.com/thi
 In theory, M666 XYZ is used to adjust the positions of the home sensors (at the top of the printer) via software. It has the most direct impact on bed leveling, but can also mess with dimensional accuracy. Adjusting only M666 without also adjusting M665 can sometimes results in a bowl, dome, or dip-shaped movement where the probed height of the center of the bed is significantly different (higher or lower) from the outer edges. If this is your first time running the script, you should keep all of these values at 0.0. Non-zero values in this field can optionally be used later for various trial-and-error solutions.
 
 I do not want to provide a photo of tower locations, because this may vary depending on what hardware and/or firmware tweaks you have performed. You can figure out which tower is which by homing (G28) and then moving the printhead to these positions: </br>
+G28 ; Home </br>
 G1 X-43.3 Y-25 Z10 ; Tower X </br>
 G1 X43.3 Y-25 Z10 ; Tower Y </br>
 G1 X0 Y50 Z10 ; Tower Z</br>
@@ -91,11 +92,11 @@ Only applicable to MPMD Marlin 1.X.X. Controls the calibration radius for the up
 ### M665 XYZ Tower Offset Angles (-xxx) (-yyy) (-zzz)
 [Marlin Reference Page](https://marlinfw.org/docs/gcode/M665.html) </br>
 [Marlin4MPMD 1.3.3 Reference Page](https://github.com/mcheah/Marlin4MPMD/wiki/Calibration) </br>
-[G33](https://marlinfw.org/docs/gcode/G033.html) in MPMD Marlin 1.X.X has an option for automatically adjusting this. Basically applies an angular offset to the towers. I haven't needed to use this, but feel free to experiment.
+[G33](https://marlinfw.org/docs/gcode/G033.html) in MPMD Marlin 1.X.X has an option for automatically adjusting this. Applies an angular offset to the towers. I haven't needed to use this, but feel free to experiment. If you edit these values manually, make sure they all add up to 0.00 or some multiple of 360.00.
 
 ### M665 ABCDEF Advanced Offset Parameters (-aaa) (-bbb) (-ccc) (-ddd) (-eee) (-fff)
 [Marlin4MPMD 1.3.3 Reference Page](https://github.com/mcheah/Marlin4MPMD/wiki/Calibration) </br>
-These are highly experimental values that were made specifically for Marlin4MPMD and later imported into MPMD Marlin 1.X.X. These are the parameters you will need to adjust to fix dimensional accuracy issues specific to a tower. Zek Negus in the Facebook Group does his final dimensional accuracy tweaks only with the diagonal rod length offsets (ABC); however, I have had luck fixing things just by adjusting the delta radii offsets (DEF). Because of the experimental trial-and-error nature of these adjustments, I would recommend getting M666 XYZ and M665 LR adjusted for the best average dimensional accuracy and bed leveling possible before proceeding here.
+These are highly experimental values that were made specifically for Marlin4MPMD and later imported into MPMD Marlin 1.X.X. These are the parameters you will need to adjust to fix dimensional accuracy issues specific to a tower. Zek Negus in the Facebook Group does his final dimensional accuracy tweaks only with the diagonal rod length offsets (ABC); however, I have had luck fixing things just by adjusting the delta radii offsets (DEF). Because of the experimental trial-and-error nature of these adjustments, I would recommend getting M666 XYZ and M665 LR adjusted for the best average dimensional accuracy and bed leveling possible before proceeding here. There is currently no logic in the script for changing/adjusting/calculating this automatically. I.E., you will have to choose your own values via trial-and-error.
 
 ### Serial Port (-p)
 This is the serial port the printer is connected to on your computer. This will be the same thing that you see in Pronterface, Octoprint, Repetier, or whatever program you normally use to send commands over USB. </br>
