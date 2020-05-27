@@ -52,6 +52,8 @@ G1 X-43.3 Y-25 Z10 ; Tower X </br>
 G1 X43.3 Y-25 Z10 ; Tower Y </br>
 G1 X0 Y50 Z10 ; Tower Z</br>
 
+Some people try to adjust this manually by physically moving the home sensors. This is usually unnecessary if you perform software calibration. However, more than a couple of people have started "chasing their own tail" in a sense that they were running around in circles changing both the physical placement and M666 in a loop. If you are going to change the physical placement, do that first (with M666 X0 Y0 Z0) and then only do software calibration after that.
+
 ### M665 L Diagonal Rod Length (-l) and ratio (-Lratio)
 [Marlin Reference Page](https://marlinfw.org/docs/gcode/M665.html) </br>
 [Visual Representation/Math](https://reprap.org/wiki/Delta_geometry) </br>
@@ -102,7 +104,7 @@ You can set the hotend and bed temperature as script arguments so that the firmw
 2 = MPMD Marlin 1.X.X </br>
 
 ### Tower Flag (-tf)
-0 = Stock Firmware. </br>
+Stock Firmware = 0 </br>
 Marlin4MPMD 1.3.3: Read the discussion on the [P5 tutorial](https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal). </br>
 MPMD Marlin 1.X.X: G33 T option - 0 (do not rotate towers) or 1 (rotate towers M665 XYZ). </br>
 
@@ -116,8 +118,8 @@ You can experiment to find whichever pattern works the best for you. For stock f
 2537.5: Marlin - 1 center point, 3 tower points (25 mm radius), 12 outer ring points (37.5 mm radius) </br>
 2525:   Marlin - 1 center point, 3 tower points (25 mm radius), 12 outer ring points (25 mm radius) </br>
 ????.?: Marlin - 1 center point, first two digits inner radius, remaining digits outer radius </br>
-33: Odyssey Marlin Only - Uses G33 except with automatic M665 L adjustment </br>
-330-340: Odyssey Marlin Only - Uses G33 except with automatic M665 L adjustment. </br>
+33: Odyssey MPMD Marlin 1.1.X Only - Uses G33 except with automatic M665 L adjustment </br>
+330-340: Odyssey MPMD Marlin 1.1.X Only - Uses G33 except with automatic M665 L adjustment. </br>
          Last digit is for G33_P parameter. </br>
          https://marlinfw.org/docs/gcode/G033.html </br>
 
@@ -133,3 +135,28 @@ The 2550/2537.5/2525/etc. patterns were designed around this firmware. </br>
 
 aegean-odyssey MPMD Marlin 1.1.X </br>
 2 worked best for me, but the 330-340 options are interesting. </br>
+
+## How to run the script? 
+This is a Python script and I have no plans on converting it to an executable. If you want to perform this level of calibration, then you can figure out how to run it via Python. There are plenty of instructions on how to make this work on the [P5 tutorial](https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal) page, including a [screenshot for WinPython](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/PurpleHullPeas-advanced_readme/images/WinPythonInstructions.png) (just use this script instead of the p5_v0 script).
+
+## Python Script Delta Calibration Flow Chart
+
+Work in Progress
+
+## Advanced Dimensional Accuracy Calibration (M665 ABCDEF)
+
+Work In Progress
+
+## Final Bed Leveling Tweaks
+
+If you have performed all of the recommended hardware alignments, calibrated your machine properly, and you are using a 0.4 mm nozzle, then you should not need anything else beyond a few adhesion and slicer settings changes (covered in the first point here). However, if you're not using a perfectly flat surface, using a 0.2 mm nozzle, or you did not do all of the previously mentioned recommendations, then you may have to do some additional work.
+
+1. Look for "FAQ: Bed Adhesion and First Layer Help!" in the table of contents of the [Calibration Roadmap](https://www.reddit.com/r/mpminidelta/comments/bzm1s2/updated_mpmd_calibration_guide_and_faq/). I am not going to repeat everything here. These should be your first courses of action. If you have done everything that you were supposed to do, then this should be enough with a 0.4 mm nozzle.
+
+2. Try using a different calibration pattern for the script input (-patt). This script is highly experimental, so I cannot always tell you which calibration pattern may work better/worse for you. 
+
+3. My second MPMD has a WhamBam Flexplate installed directly to the stock surface. I temporarily removed the flexplate, set a $2 five-inch craft mirror on top of the magnet (using a thermal pad), and then calibrated M665/M666. I swapped the mirror back out for the FlexPlate when performing G29. This immediately yielded better results with the first pattern I tried versus trying a bunch of calibration patterns on the non-flat surface.
+
+4. aegean-odyssey's MPMD Marlin 1.1.X has additional post-processing options. After running G29, also running G29 C1 can fit a least-squares fit plane to the bed mesh. G29 C1 probably works better with a glass plate. For a non-flat surface, one of his [experimental bed mesh post-processing scripts](https://github.com/aegean-odyssey/mpmd-calibration-experimental) may work better for you.
+
+5. Both Marlin4MPMD and MPMD Marlin 1.1.X have the ability to manually edit your bed mesh. The [Marlin4MPMD Calibration Wiki Page](https://github.com/mcheah/Marlin4MPMD/wiki/Calibration) has detailed instructions for that version of firmware. I am currently doing experimentation with the spreadsheet on this project to manually edit points in aegean-odyssey's MPMD Marlin 1.X.X.
