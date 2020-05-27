@@ -8,9 +8,11 @@ Much like the P5 tutorial, **I WILL NOT HELP YOU AT ALL UNLESS YOU FILL OUT THE 
 
 ## Recommended Hardware Upgrades/Alignments: 
 
+Don't act surprised if you get terrible calibration results on a stock machine. Here are my recommended hardware alignments/calibrations/upgrades.
+
 1. General [cleaning, lubrication](https://youtu.be/2vuTZncnQYM), [belt tuning](https://youtu.be/gTtEJum10Ss), part inspection, making sure no nuts are loose, [recalibrating the bed clips](https://youtu.be/2eko2PRa6y8), etc.
 
-2. You absolutely must do something to address/calibrate the precision/consistency/activation of the bed leveling switches. I.E., you need to ensure that the bed switches activate at the same distance every time the bed is probed, regardless of where the bed is probed. You also need to know what that probe distance is. I highly recommend using [well-tested bed hold-down clips](https://youtu.be/RSZ5xZf63Xo). 
+2. You **absolutely must** do something to address/calibrate the precision/consistency/activation of the bed leveling switches. I.E., you need to ensure that the bed switches activate at the same distance every time the bed is probed, regardless of where the bed is probed. You also need to know what that probe distance is. I highly recommend using [well-tested bed hold-down clips](https://youtu.be/RSZ5xZf63Xo). 
 
 3. The bed surface needs to be completely consistent so that the nozzle probes the exact same surface height for every point. Yes, a height difference the thickness of tape or a sticker makes a huge difference.
 
