@@ -178,7 +178,7 @@ The items in orange are handled automatically by the Python script. The other it
 ### Adjusting M665 RL After Averaging the Dimensions
 
 Option A: </br>
-If you are using the script and you do not have good average dimensional accuracy at the end of the runs, then I would recommend revisting the carbon paper step for adjusting only M665 R and then starting over with the whole calibration (M666 X0 Y0 Z0). 
+If you followed the instructions for running the carbon paper test and then using those as inputs into the Python script, then you probably should not need to do this. Otherwise, if you are using the script and you do not have good average dimensional accuracy at the end of the runs, then I would recommend revisting the carbon paper step for adjusting only M665 R and then starting over with the whole calibration (M666 X0 Y0 Z0). I.E., you could just re-run the script and only change M665 R as an input.
 
 Option B: </br>
 If you are not using the Python script, then generally, people go through a process of trying different M665 L values, running G33 (to calibrate M666 XYZ and M665 R) and repeating until they are content with both bed leveling and dimensional accuracy. The general rule of thumb is that if your print is coming out too large, you should increase the rod length, and if the print is coming it too small, you should decrease the rod length.
@@ -187,15 +187,15 @@ If you are not using the Python script, then generally, people go through a proc
 
 Because of the equations used, it is best to get everything as close as possible (average, not over/under-shooting) prior to adjusting these. The idea is to try different values here as script inputs until you get good dimensional accuracy test results.
 
-For me, I found that I was able to get good results by only adjusting M665 DEF. The M665 DEF values were all very close to +/- 0.3 because of previous alignment/calibration work that I did. The same rule of thumb applies here as in the carbon paper tutorial for M665 R. I.E. ~0.1 mm change in dimensional accuracy corresponds to about ~0.1 mm change in M665 DEF.
+For me, I found that I was able to get good results by only adjusting M665 DEF, which relates to M665 R. The M665 DEF values were all very close to +/- 0.3 because of previous alignment/calibration work that I did. The same rule of thumb applies here as in the carbon paper tutorial for M665 R. I.E. ~0.1 mm change in dimensional accuracy corresponds to about ~0.1 mm change in M665 DEF.
 
-Zek Negus in the Facebook Group has achieved good results by adjusting M665 ABC. Note that he does not use my Python scripts and instead opts to use the Marlin4MPMD 1.3.3 flavor of G33. Note that these parameters are related to the M665 L parameter.
+Zek Negus in the Facebook Group has achieved good results by adjusting M665 ABC. Note that he does not use my Python script and instead opts to use the Marlin4MPMD 1.3.3 flavor of G33. The M665 ABC parameters are related to the M665 L parameter.
 
 ### Bed Leveling Tests
 
 You can look at heatmaps if you have done all of the recommended hardware alignments, but the ultimate test is by actually printing. Make sure to read the next section on "Final Bed Leveling Tweaks" before getting fed up trying different calibration patterns. </br>
-[Ring Test Print](https://www.thingiverse.com/thing:3892011) </br>
-[Low Filament Usage Calibrator](https://www.thingiverse.com/thing:2482476) </br>
+[Comprehensive Ring Test Print](https://www.thingiverse.com/thing:3892011) </br>
+[Less Comprehensive Low Filament Usage Calibrator](https://www.thingiverse.com/thing:2482476) </br>
 
 ## Final Bed Leveling Tweaks
 
