@@ -148,24 +148,38 @@ aegean-odyssey MPMD Marlin 1.1.X </br>
 ## How to run the script? 
 This is a Python script and I have no plans on converting it to an executable. If you want to perform this level of calibration, then you can figure out how to run it via Python. There are plenty of instructions on how to make this work on the [P5 tutorial](https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal) page, including a [screenshot for WinPython](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/PurpleHullPeas-advanced_readme/images/WinPythonInstructions.png) (just use this script instead of the p5_v0 script).
 
+## Carbon Paper Test
+
+![Carbon Paper Test](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/master/images/CarbonPaper_BeforeAfter.jpg)
+
+This script adds a prompt after completion asking whether or not you want to run the carbon paper test for dimensional accuracy. This is covered in both the [Calibration Roadmap](https://www.reddit.com/r/mpminidelta/comments/bzm1s2/updated_mpmd_calibration_guide_and_faq/) and [this video](https://youtu.be/Sscz8CBmmok). In the context of the previous two links, it is part of a flow chart used to calibrate dimensional accuracy **prior to** running the script. For this advanced tutorial, if you care about dimensional accuracy, **it is assumed that you have already done this**. Because of how the script's math works, you really want the average as close to 100 mm as feasible so that your final M665 tweaks will not have as large of an effect on bed leveling.
+
+So why add prompts to run it **after** the script has completed? Because as we dive deeper into the weeds, we may need to manually adjust M665 ABCDEF for dimensional accuracy, re-level the bed, and then check dimensional accuracy again. This could lead to a need to re-draw the dots many times.
+
+You could also do a test print for dimensional accuracy, such as [this one](https://www.thingiverse.com/thing:4126073). However, keep in mind that over/underextrusion (covered in [this tutorial](https://www.thingiverse.com/thing:3892011)) may affect your results when actually printing objects.
+
+![Dimensional Accuracy Print](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/master/images/dimensional_accuracy_print_calipers.jpg)
+
 ## Python Script Delta Calibration Flow Chart
 
 Work in Progress
 
-## Advanced Dimensional Accuracy Calibration (M665 ABCDEF)
+## Advanced Dimensional Accuracy Calibration (M665 ABCDEF) Flow Chart
 
 Work In Progress
 
 ## Final Bed Leveling Tweaks
 
-If you have performed all of the recommended hardware alignments, calibrated your machine properly, and you are using a 0.4 mm nozzle, then you should not need anything else beyond a few adhesion and slicer settings changes (covered in the first point here). However, if you're not using a perfectly flat surface, using a 0.2 mm nozzle, or you did not do all of the previously mentioned recommendations, then you may have to do some additional work.
+If you have performed all of the recommended hardware alignments, calibrated your machine properly, and you are using a 0.4 mm nozzle, then you should not need anything else beyond a few adhesion and slicer settings changes (covered in the first point here). However, if you're not using a perfectly flat surface, using a 0.2 mm nozzle, or you did not do all of the previously mentioned recommendations, then you may have to do some additional work. It is also important to note that the bed probe readings (and therefore also the heatmap) only makes sense if you have performed all of the recommended hardware upgrades/alignments/calibrations.
 
 1. Look for "FAQ: Bed Adhesion and First Layer Help!" in the table of contents of the [Calibration Roadmap](https://www.reddit.com/r/mpminidelta/comments/bzm1s2/updated_mpmd_calibration_guide_and_faq/). I am not going to repeat everything here. These should be your first courses of action. If you have done everything that you were supposed to do, then this should be enough with a 0.4 mm nozzle.
 
 2. Try using a different calibration pattern for the script input (-patt). This script is highly experimental, so I cannot always tell you which calibration pattern may work better/worse for you. 
 
-3. My second MPMD has a WhamBam Flexplate installed directly to the stock surface. I temporarily removed the flexplate, set a $2 five-inch craft mirror on top of the magnet (using a thermal pad), and then calibrated M665/M666. I swapped the mirror back out for the FlexPlate when performing G29. This immediately yielded better results with the first pattern I tried versus trying a bunch of calibration patterns on the non-flat surface.
+3. You may need to make a few eyeball tweaks to your final M666 XYZ values to make the first layer a bit flatter.
 
-4. aegean-odyssey's MPMD Marlin 1.1.X has additional post-processing options. After running G29, also running G29 C1 can fit a least-squares fit plane to the bed mesh. G29 C1 probably works better with a glass plate. For a non-flat surface, one of his [experimental bed mesh post-processing scripts](https://github.com/aegean-odyssey/mpmd-calibration-experimental) may work better for you.
+4. My second MPMD has a WhamBam Flexplate installed directly to the stock surface. I temporarily removed the flexplate, set a $2 five-inch craft mirror on top of the magnet (using a thermal pad), and then calibrated M665/M666. I swapped the mirror back out for the FlexPlate when performing G29. This immediately yielded better results with the first pattern I tried versus trying a bunch of calibration patterns on the non-flat surface.
 
-5. Both Marlin4MPMD and MPMD Marlin 1.1.X have the ability to manually edit your bed mesh. The [Marlin4MPMD Calibration Wiki Page](https://github.com/mcheah/Marlin4MPMD/wiki/Calibration) has detailed instructions for that version of firmware. I am currently doing experimentation with the spreadsheet on this project to manually edit points in aegean-odyssey's MPMD Marlin 1.X.X.
+5. aegean-odyssey's MPMD Marlin 1.1.X has additional post-processing options. After running G29, also running G29 C1 can fit a least-squares fit plane to the bed mesh. G29 C1 probably works better with a glass plate. For a non-flat surface, one of his [experimental bed mesh post-processing scripts](https://github.com/aegean-odyssey/mpmd-calibration-experimental) may work better for you.
+
+6. Both Marlin4MPMD and MPMD Marlin 1.1.X have the ability to manually edit your bed mesh. The [Marlin4MPMD Calibration Wiki Page](https://github.com/mcheah/Marlin4MPMD/wiki/Calibration) has detailed instructions for that version of firmware. I am currently doing experimentation with the spreadsheet on this project to manually edit points in aegean-odyssey's MPMD Marlin 1.X.X.
