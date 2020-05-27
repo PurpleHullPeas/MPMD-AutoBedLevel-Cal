@@ -24,13 +24,13 @@ Note: Any time you mess with the hardware, you should recalibrate your machine.
 
 ## Firmware Options
 
-The previously mentioned hardware upgrades will help, regardless of the firmware version used.
+The previously mentioned hardware upgrades will help, regardless of the firmware version used. If you're changing firmware versions for the first time, take the time to read through the documentation so that you can understand how the new firmware you flashed behaves differently than the previous firmware version you were using. I may mention some difference here, but not all (e.g. z-offset is handled in a different way on each of the three firmware versions).
 
 1. [Stock Firmware](https://www.mpminidelta.com/firmware/motion_controller) (not recommended) - you are very limited on what you can do with stock firmware. The only new feature versus the [P5 tutorial](https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal) is the addition of the P2 calibration option. Most of the advanced calibration parameters referenced on this page (e.g. M665 ABCDEFXYZ) do not exist on stock firmware.
 
 2. [Marlin4MPMD 1.3.3](https://github.com/mcheah/Marlin4MPMD) by mcheah - This firmware is no longer supported, but the script should also work with it. Note that a few things like the tower rotation flag (explained in the P5 tutorial) and G33 works differently compared to aegean-odyssey's MPMD Marlin 1.X.X.
 
-3. [MPMD Marlin 1.1.X](https://github.com/aegean-odyssey/mpmd_marlin_1.1.x) by aegean-odyssey - By default, the script will turn off the probe compensation routine unless you remove that part of the Python code yourself. It uses a more current G33 routine and for this firmware option, the script's tower flag is used to control the G33 T parameter. (explained more later) .
+3. [MPMD Marlin 1.1.X](https://github.com/aegean-odyssey/mpmd_marlin_1.1.x) by aegean-odyssey - By default, the script will turn off the probe compensation routine (M111 S128) unless you remove that part of the Python code yourself. It has the option to use a more current version of the G33 routine. Also, for this firmware option, the script's tower flag is used to control the G33 T parameter. (explained more later) .
 
 ## What about G29 Autoleveling?
 
