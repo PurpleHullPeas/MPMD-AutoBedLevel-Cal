@@ -232,7 +232,40 @@ def get_newline_character():
     #else: 
     #    return "\r\n" # Octopi
     return "\r\n"
-        
+
+def output_odyssey_BEDLEVEL_TXT(port): 
+    new_line_str = get_newline_character()
+    
+    # Create the file
+    directory_location = os.path.dirname(os.path.abspath(sys.argv[0]))
+    file_name = "BEDLEVEL.TXT"
+    output_path_name = os.path.join(directory_location + os.sep, file_name)
+    file_object  = open(str(output_path_name), "w")
+    
+    # Clear old data
+    while True:
+        out = port.readline().decode()
+        #print("{0}\n".format(out))
+        if 'G29 Auto Bed Leveling' in out:
+            break
+        elif 'Bed X:' in out: 
+            break
+            
+    file_object.write(out) 
+            
+    while True:
+        out = port.readline().decode()
+        #print("{0}\n".format(out))
+        if 'Bed X:' in out: 
+            file_object.write(out) 
+        elif 'Leveling Grid' in out:
+            file_object.write(out) 
+            for ii in range(8): 
+                out = port.readline().decode()
+                file_object.write(out) 
+            break
+
+    
 def output_odyssey_M503(port): 
     new_line_str = get_newline_character()
     
@@ -1513,6 +1546,9 @@ def main():
                 print ('Setting Calibration Radius M665 V{0}\n'.format(str(vvv)))
                 port.write(('M665 V{0}\n'.format(str(vvv))).encode())
                 out = port.readline().decode()
+                print ('Disabling Probe Compensation with M111 S128')
+                port.write('M111 S128'.encode())
+                out = port.readline().decode()
                 print ('Setting Delta Height M665 H{0}\n'.format(str(hhh)))
                 port.write(('M665 H{0}\n'.format(str(hhh))).encode())
                 out = port.readline().decode()
@@ -1554,16 +1590,18 @@ def main():
             if firmFlag == 1:
                 print ('On Marlin, you need to re-run G29. ')
                 if yes_or_no('Run G29 and output log data now? '):
-                    port.write(('G29;\n').encode()) # Mesh Leveling
-                    #if True: #yes_or_no('Extrapolate bed mesh (Odyssey MPMD Marlin 1.1.X)? '):
-                    #    port.write(('G28 ;\n').encode()) # Home
-                    #    port.write(('G29 C1;\n').encode()) # Mesh Leveling
+
                     port.write(('G28 ;\n').encode()) # Home
                     if odyssey_flag == 1:
+                        port.write(('G29 V3;\n').encode()) # Mesh Leveling
+                        output_odyssey_BEDLEVEL_TXT(port)
                         port.write(('G28 ;\n').encode()) # Home
-                        port.write(('G29 C1;\n').encode()) # Mesh Leveling
+                        #if yes_or_no('Extrapolate bed mesh with G29 C1 (Odyssey MPMD Marlin 1.1.X)? '):
+                        #    port.write(('G28 ;\n').encode()) # Home
+                        #    port.write(('G29 C1;\n').encode()) # Mesh Leveling
                         output_odyssey_M503(port)
                     else: 
+                        port.write(('G29;\n').encode()) # Mesh Leveling
                         output_M421(port)
                     port.write(('G28 ;\n').encode()) # Home
                     
@@ -1573,7 +1611,7 @@ def main():
                 output_pass_text_p5(10000, port, x_list, y_list, z1_list, z2_list)
                 port.write(('G28 ;\n').encode()) # Home
         
-            if True: #yes_or_no('Save with M500? '): 
+            if yes_or_no('Save with M500? '): 
                 port.write(('M500 ;\n').encode()) # Save to memory
                 
         # Close the com port
