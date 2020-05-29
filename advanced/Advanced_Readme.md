@@ -213,6 +213,8 @@ You can look at heatmaps if you have done all of the recommended hardware alignm
 [Comprehensive Ring Test Print](https://www.thingiverse.com/thing:3892011) </br>
 [Less Comprehensive Low Filament Usage Calibrator](https://www.thingiverse.com/thing:2482476) </br>
 
+Note that the ring test may have to be slightly resized because apparently Cura does not like objects that are exactly 110 mm on a 100 mm diameter plate. I was able to do 108 mm without a skirt. I also recommend changing the height of whichever print you choose to match your Initial Layer Height. That way, you will have a clear idea of where any leveling issues might lie. 
+
 ## Final Bed Leveling Tweaks
 
 ![0.2 mm Nozzle Bed Leveling](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/PurpleHullPeas-advanced_readme/images/BedLeveling_SmallNozzle_Final.jpg)
