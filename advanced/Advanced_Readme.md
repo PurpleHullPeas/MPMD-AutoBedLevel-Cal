@@ -149,7 +149,7 @@ You can experiment to find whichever pattern works the best for you. For stock f
 2525:   Marlin - 1 center point, 3 tower points (25 mm radius), 12 outer ring points (25 mm radius). </br>
 ????.?: Marlin - 1 center point, first two digits inner radius, remaining digits outer radius. </br>
 33: Odyssey MPMD Marlin 1.1.X Only - Uses G33 except with automatic M665 L adjustment added. </br>
-330-340: Odyssey MPMD Marlin 1.1.X Only - Uses G33 with automatic M665 L adjustment added. </br>
+332-340: Odyssey MPMD Marlin 1.1.X Only - Uses G33 with automatic M665 L adjustment added. </br>
          Last digit is for G33_P parameter. </br>
          https://marlinfw.org/docs/gcode/G033.html </br>
 
@@ -164,7 +164,7 @@ Marlin4MPMD 1.3.3 </br>
 The 2550/2537.5/2525/etc. patterns were designed around this firmware, but did not work well on my machine. </br>
 
 aegean-odyssey MPMD Marlin 1.1.X </br>
-2 worked best for me, but the 330-340 options are interesting. I did most of my testing on a WhamBam plate. Your results may be different on a glass plate. </br>
+2 worked best for me, but the 332-340 options are interesting. I did most of my testing on a WhamBam plate. Your results may be different on a glass plate. </br>
 
 ## How to run the script? 
 This is a Python script and I have no plans on converting it to an executable or batch file. If you want to perform this level of calibration, then you can figure out how to run it via Python. There are plenty of instructions on how to make this work in the [P5 tutorial](https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal) page, including a [screenshot for WinPython](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/PurpleHullPeas-advanced_readme/images/WinPythonInstructions.png) (just use this script instead of the auto_cal_p5_v0.py script).
