@@ -43,7 +43,7 @@ Note: Any time you mess with the hardware, you should recalibrate your machine.
 
 The previously mentioned hardware upgrades will help, regardless of the firmware version used. If you're changing firmware versions for the first time, take the time to read through the documentation so that you can understand how the new firmware you flashed behaves differently than the previous firmware version you were using. I may mention some differences on this page, but not all of them (e.g. z-offset is handled in a different way on each of the three firmware versions).
 
-1. [Stock Firmware](https://www.mpminidelta.com/firmware/motion_controller) (not recommended) - you are very limited on what you can do with stock firmware. The only new feature versus the [P5 tutorial](https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal) is the addition of the P2 calibration option. Most of the advanced calibration parameters referenced on this page (e.g. M665 ABCDEFXYZ) do not exist on stock firmware.
+1. [Stock Firmware](https://www.mpminidelta.com/firmware/motion_controller) (not recommended) - you are very limited on what you can do with stock firmware. The only new feature versus the [P5 tutorial](https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal) is the addition of the P2 calibration option. Most of the advanced calibration parameters referenced on this page (e.g. M665 ABCDEFXYZ) do not exist on stock firmware. Therefore, if you are on stock firmware, just use the instructions on the [P5 tutorial](https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal), and if you want to use the P2 calibration pattern, then just use auto_cal_generic.py with those instructions.
 
 2. [Marlin4MPMD 1.3.3](https://github.com/mcheah/Marlin4MPMD) by mcheah - This firmware is no longer supported, but the script should also work with it. Note that a few things like the tower rotation flag (explained in the P5 tutorial) and G33 works differently compared to aegean-odyssey's MPMD Marlin 1.X.X.
 
@@ -207,7 +207,9 @@ Once again, more details on these parameters are in the [Marlin4MPMD Calibration
 
 ### Bed Leveling Tests
 
-You can look at heatmaps if you have done all of the recommended hardware alignments, but the ultimate test is by actually printing. Make sure to read the next section on "Final Bed Leveling Tweaks" before getting fed up trying different calibration patterns. </br>
+Before printing, you will need to make sure that you have created a fresh G29 mesh (the script will prompt you to do this) and that you have saved everything with M500.
+
+You can look at heatmaps if you have done all of the recommended hardware alignments, but the final test is done by actually printing. Make sure to read the next section on "Final Bed Leveling Tweaks" before getting fed up trying different calibration patterns. </br>
 [Comprehensive Ring Test Print](https://www.thingiverse.com/thing:3892011) </br>
 [Less Comprehensive Low Filament Usage Calibrator](https://www.thingiverse.com/thing:2482476) </br>
 
