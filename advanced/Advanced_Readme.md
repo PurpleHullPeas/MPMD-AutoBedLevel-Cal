@@ -228,3 +228,6 @@ If you have performed all of the recommended hardware alignments, calibrated you
 5. aegean-odyssey's MPMD Marlin 1.1.X has additional post-processing options. After running G29, also running G29 C1 can fit a least-squares fit plane to the bed mesh. G29 C1 probably works better with a glass plate. For a non-flat surface, one of his [experimental bed mesh post-processing scripts](https://github.com/aegean-odyssey/mpmd-calibration-experimental) may work better for you.
 
 6. Both Marlin4MPMD and MPMD Marlin 1.1.X have the ability to manually edit your bed mesh. The [Marlin4MPMD Calibration Wiki Page](https://github.com/mcheah/Marlin4MPMD/wiki/Calibration) has detailed instructions for that version of firmware. I am currently doing experimentation with the spreadsheet on this project to manually edit points in aegean-odyssey's MPMD Marlin 1.X.X. There is additional experimental discussion in [this post](https://www.reddit.com/r/mpminidelta/comments/gm4bbs/new_release_119r11_of_mpmd_marlin_11x_firmware/).
+
+## Finished?
+Much like the [P5 tutorial](https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal), you will need to create your G29 mesh (Marlin) and save your ending values to EEPROM via M500 (Marlin only) or save them to your Start Gcode. 
