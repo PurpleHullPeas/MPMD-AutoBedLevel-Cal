@@ -2,6 +2,23 @@
 
 If you're trying to tackle advanced calibration, then it is assumed that you have already gone through the steps outlined in the [Calibration Roadmap](https://www.reddit.com/r/mpminidelta/comments/bzm1s2/updated_mpmd_calibration_guide_and_faq/). If not, then do not act surprised when things do not work well for you. I will add some extra reminders here, but this page is not comprehensive. Also, this page isn't for the basic "I don't know how to connect to USB, why bed not level, what is EEPROM, what is start gcode?" types of questions. Go back to [MPMD 101](https://docs.google.com/document/d/1LHomAxmgSWEggiCM1p6B0vZCIcJPIFTe0OqnozhtZxc/edit) and (later on) the [P5 script tutorial](https://youtu.be/kyznWfPQgBk) if you need that level of help.
 
+## Helpful Links
+Not all calibration tutorials are correct, and not all correct calibration tutorials are compatible with one another. That being said, the following links may provide helpful background information if you find yourself wanting to know more, beyond what is covered on this page: </br>
+[Calibration Roadmap](https://www.reddit.com/r/mpminidelta/comments/bzm1s2/updated_mpmd_calibration_guide_and_faq/) </br>
+[Dennis's Original Facebook Tutorial](https://www.facebook.com/groups/mpminideltaowners/permalink/2058169440865198/) </br>
+[Marlin4MPMD Calibration Wiki](https://github.com/mcheah/Marlin4MPMD/wiki/Calibration) </br>
+[RepRap Delta Kinematics Page](https://reprap.org/wiki/Delta_geometry) </br>
+
+## Who should care about this script/tutorial?
+
+If you only care about bed leveling (not dimensional accuracy), then this script might be overkill for you. The tried-and-true stock firmware [P5 tutorial](https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal) or the routines built into the [MPMD Marlin 1.X.X Quick-Start Guide](https://github.com/aegean-odyssey/mpmd_marlin_1.1.x/wiki/Quick-Start) might suit your needs with much less fuss.
+
+## A Quick Note About Dimensional Accuracy in the Context of Other Tutorials
+
+In order to maintain consistency with long-standing guides in [Dennis's Original Facebook Tutorial](https://www.facebook.com/groups/mpminideltaowners/permalink/2058169440865198/), the [Calibration Roadmap](https://www.reddit.com/r/mpminidelta/comments/bzm1s2/updated_mpmd_calibration_guide_and_faq/), and the [MPMD Basic Dimensional Accuracy Improvement Video](https://youtu.be/Sscz8CBmmok), the rest of this tutorial will assume that you took this approach of adjusting M665 R to improve dimensional accuracy. When it comes to adjusting other M665/M666 parameters, this is intended for use with Dennis Brown's ratio equation (covered later), which is included in all of my Python scripts and Dennis's P5 Heat Map Spreadsheet.
+
+However, if you just want to make adjustments using G33 (without the Python script), or some other calibration method outside of this tutorial, then you will likely have to adjust M665 L manually for dimensional accuracy. I.E., most other delta calibration tutorials that I have found use a straightforward process for adjusting M665 R, but leave it up to the user to adjust M665 L for dimensional accuracy.
+
 ## Mandatory Troubleshooting Form
 
 Much like the P5 tutorial, **I WILL NOT HELP YOU AT ALL UNLESS YOU FILL OUT THE [TROUBLESHOOTING FORM](https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/blob/master/advanced/troubleshooting_form.md)**. As a matter of fact, you are on the advanced tutorial page now, so things get a little hairier, anyways. Things are not quite as cut-and-dry here, so you may have to do your own experimentation.
@@ -12,14 +29,7 @@ Much like the P5 tutorial, **I WILL NOT HELP YOU AT ALL UNLESS YOU FILL OUT THE 
 
 2. If for some reason you've made it this far and you're relying on the stock built-in stock firmware WiFi (not Octopi), then you might have trouble running the carbon paper test from the script prompt. Just print the [gcode file](https://drive.google.com/open?id=1ti26of-TKoAjkr2QLdoFnVoZAiNE0M7G), instead. 
 
-3. Sometimes the G33 option(s) for aegean-odyssey's MPMD Marlin 1.X.X return a firmware error. This is not something that I have control over via the script. Either use a different calibration pattern or find an M665 combination that does not cause this error to appear. It might be as easy as changing M665 V (M665 B calibration radius in regular Marlin).
-
-## Helpful Links
-Not all calibration tutorials are correct, and not all correct calibration tutorials are compatible with one another. That being said, the following links may provide helpful background information if you find yourself wanting to know more, beyond what is covered on this page: </br>
-[Calibration Roadmap](https://www.reddit.com/r/mpminidelta/comments/bzm1s2/updated_mpmd_calibration_guide_and_faq/) </br>
-[Dennis's Original Facebook Tutorial](https://www.facebook.com/groups/mpminideltaowners/permalink/2058169440865198/) </br>
-[Marlin4MPMD Calibration Wiki](https://github.com/mcheah/Marlin4MPMD/wiki/Calibration) </br>
-[RepRap Delta Kinematics Page](https://reprap.org/wiki/Delta_geometry) </br>
+3. Sometimes the aegean-odyssey's MPMD Marlin 1.X.X return a firmware error when running G33 ("Correct delta settings with M665 and M666"). This is not something that I have control over via the script. Either use a different calibration pattern or find an M665 combination that does not cause this error to appear. It might be as easy as changing M665 V (M665 B calibration radius in regular Marlin).
 
 ## Recommended Hardware Upgrades/Alignments: 
 
@@ -64,7 +74,10 @@ Since this is an advanced tutorial, I will try to briefly cover the delta calibr
 In theory, M666 and M665 help define the real-world delta geometrical parameters that help calculate the delta kinematics (i.e. tells the printer how to move). In practice, however, we more-or-less tweak those parameters' numbers iteratively until we find some combination that gives us both dimensional accuracy and a good/level first layer. I.E., just because a parameter may represent some real world measurement/value does not necessarily mean that your final calibrated value will match it. Because of the complexity and nonlinearity of the equations, "everything affects everything" is a safe assumption, which is why it can take an iterative trial-and-error process in order to properly set delta kinematics parameters. Put another way, if you want to fix both bed leveling AND dimensional accuracy, the process gets more complicated.
 
 ### M92 XYZ Motor Steps per mm (-s)
-This is straightforward and already covered in detail on [this page](https://www.thingiverse.com/thing:3892011). Note that Marlin may default the M92 XYZ 1/16 values to 114.29 instead of 114.28. If you care, try both to see which one gives you better vertical dimensional accuracy with a test print. Fix M92 first, because it will absolutely affect your other calibration parameters.
+This is straightforward and already covered in detail on [this page](https://www.thingiverse.com/thing:3892011). Note that Marlin may default the M92 XYZ 1/16 values to 114.29 instead of 114.28. Feel free to try both to see which one gives you better vertical dimensional accuracy with a test print. Fix M92 first, because it will absolutely affect your other calibration parameters.
+
+Dennis Brown's Note: </br>
+114.29 is the correct number. 114.28 was picked as a doubling of the number for x8 (which was rounded down), but the exact fraction has to be taken into account and that takes it up to 114.29. However, belt stretch may be more than this value.
 
 ### M666 XYZ Delta Endstop Adjustments (-x) (-y) (-z)
 [Marlin Reference Page](https://marlinfw.org/docs/gcode/M666.html)
@@ -81,21 +94,26 @@ G1 X0 Y50 Z10 ; Tower Z </br>
 
 Some people try to adjust this manually by physically moving the home sensors. This is usually unnecessary if you perform software calibration. However, more than a couple of people have started "chasing their own tail" in a sense that they were running around in circles changing both the physical placement and M666 in a loop. If you are going to change the physical placement, do that first (with M666 X0 Y0 Z0) and then only do software calibration after that.
 
-### M665 L Diagonal Rod Length (-l) and ratio (-ratio)
+Dennis Brown's Note: </br>
+The physical sensors are best adjusted at the factory. They should not be adjusted until after a FW adjustment is done with the M666. If one of the tower sensors is significantly lower than the others, that sensor can be adjusted higher mechanically to be close to the others. Doing so will give more Z height available by the amount of the adjustment. It is probably not worth doing unless you can gain more than 1mm. The most likely reason that for one sensor being that far out is because someone other than the factory tried to make a mechanical adjustment (and failed to do it right).
+
+### M665 L Diagonal Rod Length (-l), M665 R Delta Radius (-r), and Adjustment Ratio (-ratio)
 [Marlin Reference Page](https://marlinfw.org/docs/gcode/M665.html) </br>
 [Visual Representation/Math](https://reprap.org/wiki/Delta_geometry) </br>
 
 ![Arm Length](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/master/images/arm_length.jpg)
 
-M665 L defines the length of the arms. It has the most direct impact on dimensional accuracy, but can also affect bed leveling. Many guides (and G33) leave this as a manual-user-entry trial-and-error input, but Dennis Brown in the Facebook group derived a simple equation, via experimentation, which can help maintain previously calibrated dimensional accuracy as you continue to adjust M666 XYZ and M665 R simultaneously. </br>
-L_new = L_old + ratio*(R_new-R_old) </br>
+These parameters have the most direct impact on dimensional accuracy, but can also affect bed leveling (see M666 notes on the bowl/dome shape). Many other guides (and G33) leave M665 L as a manual-user-entry trial-and-error input whilst using M665 R exclusively to reduce the bowl/dome shape. However, Dennis Brown in the Facebook group derived a simple equation, via experimentation, which can help maintain previously calibrated dimensional accuracy as you continue to adjust M666 XYZ and M665 RL simultaneously. </br>
+</br>
+R_new = R_old - 4.0*BowlError </br>
+L_new = L_old + ratio*(R_new - R_old) </br>
 ratio ~ 1.5 for most stock MPMDs, but may vary if your arm lengths are drastically different. </br>
-Your starting LR values should ideally come from the carbon paper step or [basic dimensional accuracy tutorial](https://youtu.be/Sscz8CBmmok).
+Your starting LR values should ideally come directly from the carbon paper step or [basic dimensional accuracy tutorial](https://youtu.be/Sscz8CBmmok).
 
 ### M665 R Delta Radius (-r)
 [Marlin Reference Page](https://marlinfw.org/docs/gcode/M665.html) </br>
 [Visual Representation/Math](https://reprap.org/wiki/Delta_geometry) </br>
-M665 R has a direct impact on both dimensional accuracy and reducing the bowl/dome shape (previously discussed under M666 XYZ). If you are using Dennis's previously-mentioned M665 L equation, then you can use M665 R to do a lot of your initial dimensional accuracy tweaks via the carbon paper step. Otherwise, most other generic delta calibration tutorials use M665 R just to reduce the dome/bowl movement while letting the user manually change M665 L for dimensional accuracy via trial-and-error.
+M665 R has a direct impact on both dimensional accuracy and reducing the bowl/dome shape (previously discussed under M666 XYZ). In the context of this Python script, M665 R is initially used to fix the average dimensional accuracy (via the carbon paper step) and is then adjusted simultaneously with M665 L to fix the bowl/dome shape whilst maintaining that previously calibrated dimensional accuracy.
 
 ### M665 H Delta Height (-hhh)
 [Marlin Reference Page](https://marlinfw.org/docs/gcode/M665.html) </br>
@@ -107,16 +125,22 @@ For all practical purposes, the height is handled when G29 is used to create you
 This probably will not affect your calibration results, but I added it to the script so that I would not have to enter it over USB terminal later. It can have a large impact on print quality for certain prints under certain circumstances. 
 
 ### M665 V Delta Calibration Radius (-vvv)
-Only applicable to MPMD Marlin 1.X.X. Controls the calibration radius for the up-to-date version of G33. Use this instead of the B parameter mentioned on the [Marlin Reference Page](https://marlinfw.org/docs/gcode/M665.html). If trying to use G33, you may have to change this for the calibration to succeed. E.G., default is 50, but 40 or 30 may work better.
+Only applicable to MPMD Marlin 1.X.X. Controls the calibration radius for the up-to-date version of G33. Use this instead of the B parameter mentioned on the [Marlin Reference Page](https://marlinfw.org/docs/gcode/M665.html). If trying to use G33, you may have to change this for the calibration to succeed. E.G., the firmware's default is 50, but Dennis Brown's testing indicates that 25 mm works the best for the MPMD.
 
 ### M665 XYZ Tower Offset Angles (-xxx) (-yyy) (-zzz)
 [Marlin Reference Page](https://marlinfw.org/docs/gcode/M665.html) </br>
 [Marlin4MPMD 1.3.3 Reference Page](https://github.com/mcheah/Marlin4MPMD/wiki/Calibration) </br>
-[G33](https://marlinfw.org/docs/gcode/G033.html) in MPMD Marlin 1.X.X has options for automatically adjusting this. Applies an angular offset to the towers. I haven't needed to use this, but feel free to experiment. If you edit these values manually, make sure they all add up to 0.00 or some multiple of 360.00.
+[G33](https://marlinfw.org/docs/gcode/G033.html) in MPMD Marlin 1.X.X has options for automatically adjusting this. Applies an angular offset to the towers. If you edit these values manually, make sure they all add up to 0.00 or some multiple of 360.00.
+
+Dennis Brown's Note: </br>
+The manufacturing tolerances and assembly method makes the angles very close to ideal on the MPMD. Don’t expect to see any improvement from adjusting this.
 
 ### M665 ABCDEF Advanced Offset Parameters (-aaa) (-bbb) (-ccc) (-ddd) (-eee) (-fff)
 [Marlin4MPMD 1.3.3 Reference Page](https://github.com/mcheah/Marlin4MPMD/wiki/Calibration) </br>
 These are experimental values that were made specifically for Marlin4MPMD and later imported into MPMD Marlin 1.X.X. These are the parameters you will need to adjust to fix dimensional accuracy issues specific to a tower. Zek Negus in the Facebook Group does his final dimensional accuracy tweaks only with the diagonal rod length offsets (ABC); however, I have had luck fixing things just by adjusting the delta radii offsets (DEF). Because of the experimental trial-and-error nature of these adjustments, I would recommend getting M666 XYZ and M665 LR adjusted for the best average dimensional accuracy and bed leveling possible before proceeding here. There is currently no logic in the script for changing/adjusting/calculating M665 ABCDEF automatically. I.E., you will have to choose your own values via trial-and-error.
+
+Dennis Brown's Note: </br> 
+First find the best average dimensional accuracy with the M665 L/R. Then relative adjustments can be made to M665 DEF (or ABC). One will stay the same. If adjusting another higher, then adjust the last one lower by the same amount to keep the average the same. I have the feeling that adjustments should happen in pairs A/D, B/E, C/F, using the same ratios as L/R to adjust for arm length variations. I have not thoroughly investigated the algorithms for this yet.
 
 ### Serial Port (-p)
 This is the serial port the printer is connected to on your computer. This will be the same thing that you see in Pronterface, Octoprint, Repetier, or whatever program you normally use to send commands over USB. </br>
@@ -125,8 +149,8 @@ Octopi: /dev/ttyACM0 </br>
 Windows: COM3 </br>
 Mac: /dev/tty.SOMETHING </br>
 
-### Hotend and Bed Temperature (-ht) (-bt)
-You can set the hotend and bed temperature as script arguments so that the firmware will not automatically shut them down while the script is running. I recommend setting the bed temperature to your usual print temperature prior to calibration. A hotend temperature of 100 C can make the carbon paper test come out more clearly. I would not push the hotend temperature too high because oozing filament could adversely impact calibration values.
+### Hot End and Bed Temperature (-ht) (-bt)
+You can set the hot end and bed temperature as script arguments so that the firmware will not automatically shut them down while the script is running. I recommend setting the bed temperature to your usual print temperature prior to calibration. A hotend temperature of 100 C can make the carbon paper test come out more clearly. I would not push the hotend temperature too high because oozing filament could adversely impact calibration values and if the bed material is something other than bare glass or metal, the hot nozzle may damage the printing surface.
 
 ### Firmware Flag (-ff)
 0 = Stock Firmware </br>
@@ -135,39 +159,37 @@ You can set the hotend and bed temperature as script arguments so that the firmw
 
 ### Tower Flag (-tf)
 Stock Firmware = 0 </br>
-Marlin4MPMD 1.3.3: Probably 1, but read the discussion in the [P5 tutorial](https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal). </br>
-MPMD Marlin 1.X.X: G33 T option - 0 (do not rotate towers) or 1 (rotate towers M665 XYZ). </br>
+Marlin4MPMD 1.3.3: Probably 1, but read the discussion in the [P5 tutorial](https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal). If you did the motor swap to make parts face forward in the stock FW, but changed to Marlin4MPMD, it will be less confusing to undo that change, as this FW makes the standard wiring face forward. </br>
+MPMD Marlin 1.X.X: Experimental G33 T option - 0 (do not rotate towers) or 1 (rotate towers M665 XYZ). </br>
 
-### Calibration Pattern (-patt)
-You can experiment to find whichever pattern works the best for you. For stock firmware, P5 is well-tested/known to be the best when you follow all of the instructions in the [P5 tutorial](https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal). </br>
+### Calibration Method/Pattern (-patt)
+This method/pattern refers to the script's logic/routine for calibrating M665/M666 automatically. These could correspond to existing G29 patterns, existing G33 patterns, and/or custom emulated patterns. For example, G29 P5 does not exist in Marlin4MPMD, but if selected, the script will emulate that probe pattern for endstop calibration, regardless of the firmware version. </br>
 
-5:      Stock or Marlin - G29 P5 pattern. Same as the auto_cal_p5_v0.py script. </br>
-2:      Stock or Marlin - G29 P2 pattern - 1 center point, 3 tower points (50 mm radius) </br>
--2:     Marlin - 1 center point, 3 tower points (25 mm radius) </br>
-2550:   Marlin - 1 center point, 3 tower points (25 mm radius), 12 outer ring points (50 mm radius). </br>
-2537.5: Marlin - 1 center point, 3 tower points (25 mm radius), 12 outer ring points (37.5 mm radius). </br>
-2525:   Marlin - 1 center point, 3 tower points (25 mm radius), 12 outer ring points (25 mm radius). </br>
-????.?: Marlin - 1 center point, first two digits inner radius, remaining digits outer radius. </br>
-33: Odyssey MPMD Marlin 1.1.X Only - Uses G33 except with automatic M665 L adjustment added. </br>
-332-340: Odyssey MPMD Marlin 1.1.X Only - Uses G33 with automatic M665 L adjustment added. </br>
-         Last digit is for G33_P parameter. </br>
+I have experimented with several methods/patterns, some with more success than others. For simplicity, I will only emphasize the few that I believe may work best in common situations.
+
+5:      Stock or Marlin4MPMD or Odyssey MPMD Marlin - G29 P5 pattern. Same as the auto_cal_p5_v0.py script. </br>
+2:      Stock or Marlin4MPMD or Odyssey MPMD Marlin - 1 center point, 3 tower points (50 mm radius) </br>
+-2:     Marlin4MPMD or Odyssey MPMD Marlin - 1 center point, 3 tower points (25 mm radius) - Dennis Brown's choice </br>
+
+Experimental Patterns (some not listed): </br>
+332-340: Odyssey MPMD Marlin 1.1.X Only - Uses Built-In G33 with automatic M665 L adjustment added. </br>
+         Last digit is for G33_P parameter (e.g. 334 = G33 P4). </br>
          https://marlinfw.org/docs/gcode/G033.html </br>
 
-Which pattern should you use? Whatever works best for you. This script is experimental. </br>
+Which pattern should you use? </br>
 
 Stock Firmware </br>
 5 works best with a properly setup bed. Follow ALL of the instructions in the [P5 tutorial](https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal). </br>
 2 might work better if you still have the stock sticker or you skipped other steps. No promises. Do not whine if it does not work well for you. </br>
 
 Marlin4MPMD 1.3.3 </br>
--2 worked best on my machine. </br>
-The 2550/2537.5/2525/etc. patterns were designed around this firmware, but did not work well on my machine. </br>
+-2 worked best on my machine. Dennis's tests also suggest that a 25 mm calibration radius is superior. </br>
 
-aegean-odyssey MPMD Marlin 1.1.X </br>
-2 worked best for me, but the 332-340 options are interesting. I did most of my testing on a WhamBam plate. Your results may be different on a glass plate. </br>
+aegean-odyssey's MPMD Marlin 1.1.X </br>
+I am still doing ongoing experimentation here. </br>
 
 ## How to run the script? 
-This is a Python script and I have no plans on converting it to an executable or batch file. If you want to perform this level of calibration, then you can figure out how to run it via Python. There are plenty of instructions on how to make this work in the [P5 tutorial](https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal) page, including a [screenshot for WinPython](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/PurpleHullPeas-advanced_readme/images/WinPythonInstructions.png) (just use this script instead of the auto_cal_p5_v0.py script).
+This is a Python script and I have no plans on converting it to an executable or batch file. If you want to perform this level of calibration, then you can figure out how to run it via Python. There are plenty of instructions on how to make this work in the [P5 tutorial](https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal) page, including a [screenshot for WinPython](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/PurpleHullPeas-advanced_readme/images/WinPythonInstructions.png) (just use this script instead of the auto_cal_p5_v0.py script). If you do not explicitly define an input value, then the script will choose a default value.
 
 ## Carbon Paper Test
 
@@ -177,7 +199,7 @@ This script adds a prompt after completion asking whether or not you want to run
 
 So why add prompts to run it **after** the script has completed? Because as we dive deeper into the weeds, we may need to manually adjust M665 ABCDEF for dimensional accuracy, re-level the bed, and then check dimensional accuracy again. This could lead to a need to re-draw the dots many times. 
 
-You could also do a test print for dimensional accuracy, such as [this one](https://www.thingiverse.com/thing:4126073). However, keep in mind that over/underextrusion (covered in [this tutorial](https://www.thingiverse.com/thing:3892011)) may affect your results when actually printing objects. Meanwhile, the carbon paper test tells the nozzle to move to a set of X/Y coordinates and probe the plate - no extrusion involved!
+You could also do a test print for dimensional accuracy, such as [this one](https://www.thingiverse.com/thing:4126073). However, keep in mind that over/under-extrusion (covered in [this tutorial](https://www.thingiverse.com/thing:3892011)) may affect your results when actually printing objects. Meanwhile, the carbon paper test tells the nozzle to move to a set of X/Y coordinates and probe the plate - no extrusion involved!
 
 ![Dimensional Accuracy Print](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/master/images/dimensional_accuracy_print_calipers.jpg)
 
@@ -189,11 +211,7 @@ The items in orange are handled automatically by the Python script. The other it
 
 ### Adjusting M665 RL After Averaging the Measured Dimensions
 
-Option A: </br>
-If you followed the instructions for running the carbon paper test and then using those as inputs into the Python script, then you probably should not need to do this. Otherwise, if you are using the script and you do not have good average dimensional accuracy at the end of the runs, then I would recommend revisting the carbon paper step for adjusting only M665 R and then starting over with the whole calibration (M666 X0 Y0 Z0). I.E., you could just re-run the script and only change M665 R as an input.
-
-Option B: </br>
-If you are not using the Python script, then generally, people go through a process of trying different M665 L values, running G33 (to calibrate M666 XYZ and M665 R) and repeating until they are content with both bed leveling and dimensional accuracy. The general rule of thumb is that if your print is coming out too large, you should increase the rod length, and if the print is coming it too small, you should decrease the rod length.
+If you followed the instructions for running the carbon paper test and then used those as inputs into the Python script, then you probably should not need to do this. Otherwise, if you are using the script and you do not have good average dimensional accuracy at the end of the runs, then I would recommend revisiting the carbon paper step for adjusting only M665 R and then starting over with the whole calibration (M666 X0 Y0 Z0). I.E., you could just re-run the script and only change M665 R as an input.
 
 ### Adjusting M665 ABCDEF For Lowering the Variation Across the Towers
 
@@ -209,7 +227,7 @@ Once again, more details on these parameters are in the [Marlin4MPMD Calibration
 
 Before printing, you will need to make sure that you have created a fresh G29 mesh (the script will prompt you to do this) and that you have saved everything with M500.
 
-You can look at heatmaps if you have done all of the recommended hardware alignments, but the final test is done by actually printing. Make sure to read the next section on "Final Bed Leveling Tweaks" before getting fed up trying different calibration patterns. </br>
+You can look at a heat map if you have done all of the recommended hardware alignments, but the final test is done by actually printing. Make sure to read the next section on "Final Bed Leveling Tweaks" before getting fed up with calibration. </br>
 [Comprehensive Ring Test Print](https://www.thingiverse.com/thing:3892011) </br>
 [Less Comprehensive Low Filament Usage Calibrator](https://www.thingiverse.com/thing:2482476) </br>
 
@@ -219,15 +237,15 @@ Note that the ring test may have to be slightly resized because apparently Cura 
 
 ![0.2 mm Nozzle Bed Leveling](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/PurpleHullPeas-advanced_readme/images/BedLeveling_SmallNozzle_Final.jpg)
 
-If you have performed all of the recommended hardware alignments, calibrated your machine properly, and you are using a 0.4 mm nozzle, then you should not need anything else beyond a few adhesion and slicer settings changes (covered in the first point here). However, if you're not using a perfectly flat surface, using a 0.2 mm nozzle, or you did not do all of the previously mentioned recommendations, then you may have to do some additional work. It is also important to note that the bed probe readings (and therefore also the heatmap) only makes sense if you have performed all of the recommended hardware upgrades/alignments/calibrations.
+If you have performed all of the recommended hardware alignments, calibrated your machine properly, and you are using a 0.4 mm nozzle, then you should not need anything else beyond a few adhesion and slicer settings changes (covered in the first point here). However, if you're not using a perfectly flat surface, using a 0.2 mm nozzle, or you did not do all of the previously mentioned recommendations, then you may have to do some additional work. It is also important to note that the bed probe readings (and therefore also the heat map) only makes sense if you have performed all of the recommended hardware upgrades/alignments/calibrations.
 
 1. Look for "FAQ: Bed Adhesion and First Layer Help!" in the table of contents of the [Calibration Roadmap](https://www.reddit.com/r/mpminidelta/comments/bzm1s2/updated_mpmd_calibration_guide_and_faq/). I am not going to repeat everything here. These should be your first courses of action. If you have done everything that you were supposed to do, then this should be enough with a 0.4 mm nozzle.
 
 2. Try using a different calibration pattern for the script input (-patt). This script is highly experimental, so I cannot always tell you which calibration pattern may work better/worse for you. 
 
-3. You may need to make a few eyeball tweaks to your final M666 XYZ values to make the first layer a bit flatter.
+3. You may need to make a few eyeball tweaks to your final M666 XYZ values to make the first layer a bit flatter. Dennis's Note: Probably only needed if you performed the M666 alignment at a radius >25mm. 
 
-4. My second MPMD has a WhamBam Flexplate installed directly to the stock surface. I temporarily removed the flexplate, set a $2 five-inch craft mirror on top of the magnet (using a thermal pad), and then calibrated M665/M666. I swapped the mirror back out for the FlexPlate when performing G29. This immediately yielded better test print results versus trying a bunch of calibration patterns on the non-flat surface.
+4. My second MPMD has a WhamBam Flexplate installed directly to the stock surface. I temporarily removed the flexplate, set a $2 five-inch craft mirror on top of the magnet (using a thermal pad), and then calibrated M665/M666. I swapped the mirror back out for the FlexPlate when performing G29. This immediately yielded better test print results versus trying a bunch of calibration patterns on the non-flat surface. Dennis's Note: I stuck my magnet to a glass plate first, so my results are excellent with my removable steel plate.
 
 5. aegean-odyssey's MPMD Marlin 1.1.X has additional post-processing options. After running G29, also running G29 C1 can fit a least-squares fit plane to the bed mesh. G29 C1 probably works better with a glass plate. For a non-flat surface, one of his [experimental bed mesh post-processing scripts](https://github.com/aegean-odyssey/mpmd-calibration-experimental) may work better for you.
 
