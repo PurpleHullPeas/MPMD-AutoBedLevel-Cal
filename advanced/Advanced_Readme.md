@@ -92,10 +92,7 @@ G1 X-43.3 Y-25 Z10 ; Tower X </br>
 G1 X43.3 Y-25 Z10 ; Tower Y </br>
 G1 X0 Y50 Z10 ; Tower Z </br>
 
-Some people try to adjust this manually by physically moving the home sensors. This is usually unnecessary if you perform software calibration. However, more than a couple of people have started "chasing their own tail" in a sense that they were running around in circles changing both the physical placement and M666 in a loop. If you are going to change the physical placement, do that first (with M666 X0 Y0 Z0) and then only do software calibration after that.
-
-Dennis Brown's Note: </br>
-The physical sensors are best adjusted at the factory. They should not be adjusted until after a FW adjustment is done with the M666. If one of the tower sensors is significantly lower than the others, that sensor can be adjusted higher mechanically to be close to the others. Doing so will give more Z height available by the amount of the adjustment. It is probably not worth doing unless you can gain more than 1mm. The most likely reason that for one sensor being that far out is because someone other than the factory tried to make a mechanical adjustment (and failed to do it right).
+The physical sensors are best adjusted at the factory. They should not be adjusted until it is time for a firmware adjustment to be done with M666. If one of the tower sensors is significantly lower than the others, that sensor can be adjusted higher physically/mechanically to be close to the others. Doing so will give more Z height available by the amount of the adjustment. It is probably not worth doing unless you can gain more than 1 mm. The most likely reason that for one sensor being that far out is because someone other than the factory tried to make a mechanical adjustment (and failed to do it right).
 
 ### M665 L Diagonal Rod Length (-l), M665 R Delta Radius (-r), and Adjustment Ratio (-ratio)
 [Marlin Reference Page](https://marlinfw.org/docs/gcode/M665.html) </br>
