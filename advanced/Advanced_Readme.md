@@ -122,7 +122,7 @@ For all practical purposes, the height is handled when G29 is used to create you
 This probably will not affect your calibration results, but I added it to the script so that I would not have to enter it over USB terminal later. It can have a large impact on print quality for certain prints under certain circumstances. 
 
 ### M665 V Delta Calibration Radius (-vvv)
-Only applicable to MPMD Marlin 1.X.X. Controls the calibration radius for the up-to-date version of G33. Use this instead of the B parameter mentioned on the [Marlin Reference Page](https://marlinfw.org/docs/gcode/M665.html). If trying to use G33, you may have to change this for the calibration to succeed. E.G., the firmware's default is 50, but Dennis Brown's testing indicates that 25 mm works the best for the MPMD.
+Only applicable to Marlin. Controls the calibration probe radius for most routines in this script. Use this instead of the B parameter mentioned on the [Marlin Reference Page](https://marlinfw.org/docs/gcode/M665.html). If trying to use G33, you may have to change this for the calibration to succeed. E.G., the firmware's default is 50, but Dennis Brown's testing indicates that 25 mm works the best for the MPMD.
 
 ### M665 XYZ Tower Offset Angles (-xxx) (-yyy) (-zzz)
 [Marlin Reference Page](https://marlinfw.org/docs/gcode/M665.html) </br>
@@ -165,8 +165,7 @@ This method/pattern refers to the script's logic/routine for calibrating M665/M6
 I have experimented with several methods/patterns, some with more success than others. For simplicity, I will only emphasize the few that I believe may work best in common situations.
 
 5:      Stock or Marlin4MPMD or Odyssey MPMD Marlin - G29 P5 pattern. Same as the auto_cal_p5_v0.py script. </br>
-2:      Stock or Marlin4MPMD or Odyssey MPMD Marlin - 1 center point, 3 tower points (50 mm radius) </br>
--2:     Marlin4MPMD or Odyssey MPMD Marlin - 1 center point, 3 tower points (25 mm radius) - Dennis Brown's choice </br>
+2:      Stock or Marlin4MPMD or Odyssey MPMD Marlin - 1 center point, 3 tower points, probe radius determined by -vvv input parameter. </br>
 
 Experimental Patterns (some not listed): </br>
 332-340: Odyssey MPMD Marlin 1.1.X Only - Uses Built-In G33 with automatic M665 L adjustment added. </br>
@@ -177,10 +176,10 @@ Which pattern should you use? </br>
 
 Stock Firmware </br>
 5 works best with a properly setup bed. Follow ALL of the instructions in the [P5 tutorial](https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal). </br>
-2 might work better if you still have the stock sticker or you skipped other steps. No promises. Do not whine if it does not work well for you. </br>
+2 might work better if you still have the stock sticker or you skipped other steps. Note that, only for stock firmware, option 2 always uses the G29 P2 50 mm probe radius. No promises. Do not whine if it does not work well for you. </br>
 
 Marlin4MPMD 1.3.3 </br>
--2 worked best on my machine. Dennis's tests also suggest that a 25 mm calibration radius is superior. </br>
+Option 2 with a 25 mm probe radius (-vvv) worked best on my machine. Dennis's tests also suggest that a 25 mm calibration radius is superior. </br>
 
 aegean-odyssey's MPMD Marlin 1.1.X </br>
 I am still doing ongoing experimentation here. </br>
