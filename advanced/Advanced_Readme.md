@@ -84,7 +84,7 @@ Dennis Brown's Note: </br>
 
 ![MPMD Home Sensor](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/master/images/home_sensor.jpg)
 
-In theory, M666 XYZ is used to adjust the positions of the home sensors (at the top of the printer) via software. It has the most direct impact on bed leveling, but can also affect dimensional accuracy. Adjusting only M666 without also adjusting M665 can sometimes result in a bowl, dome, or dip-shaped movement where the probed height of the center of the bed is significantly different (higher or lower) from the outer edges of the build plate. If this is your first time running the script, you should keep all of the M666 XYZ values at 0.0. Non-zero values in this field can optionally be used later for various trial-and-error solutions.
+In theory, M666 XYZ is used to adjust the positions of the home sensors (at the top of the printer) via software. It has the most direct impact on bed leveling, but can also affect dimensional accuracy. Adjusting only M666 without also adjusting M665 can sometimes result in a bowl, dome, or dip-shaped movement where the probed height of the center of the bed is significantly different (higher or lower) from the outer edges of the build plate. If this is your first time running the script, you should keep all of the M666 XYZ script input values at 0.0. Non-zero values in these fields can optionally be used later for various trial-and-error solutions.
 
 I do not want to provide a photo of tower locations, because this may vary depending on what hardware and/or firmware tweaks you have performed. You can figure out which tower is which by homing (G28) and then moving the printhead to these positions: </br>
 G28 ; Home </br>
