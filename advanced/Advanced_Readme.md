@@ -147,7 +147,7 @@ Windows: COM3 </br>
 Mac: /dev/tty.SOMETHING </br>
 
 ### Hot End and Bed Temperature (-ht) (-bt)
-You can set the hot end and bed temperature as script arguments so that the firmware will not automatically shut them down while the script is running. I recommend setting the bed temperature to your usual print temperature prior to calibration. A hotend temperature of 100 C can make the carbon paper test come out more clearly. I would not push the hotend temperature too high because oozing filament could adversely impact calibration values and if the bed material is something other than bare glass or metal, the hot nozzle may damage the printing surface.
+You can set the hot end and bed temperature as script arguments so that the firmware will not automatically shut them down while the script is running. I recommend setting the bed temperature to your usual print temperature prior to calibration. A hot end temperature of 100 C can make the carbon paper test come out more clearly. I would not push the hot end temperature too high because oozing filament could adversely impact calibration values and if the bed material is something other than bare glass or metal, the hot nozzle may damage the printing surface.
 
 ### Firmware Flag (-ff)
 0 = Stock Firmware </br>
