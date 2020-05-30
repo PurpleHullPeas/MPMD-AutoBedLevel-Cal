@@ -102,8 +102,8 @@ The physical sensors are best adjusted at the factory. They should not be adjust
 
 These parameters have the most direct impact on dimensional accuracy, but can also affect bed leveling (see M666 notes on the bowl/dome shape). Many other guides (and G33) leave M665 L as a manual-user-entry trial-and-error input whilst using M665 R exclusively to reduce the bowl/dome shape. However, Dennis Brown in the Facebook group derived a simple equation, via experimentation, which can help maintain previously calibrated dimensional accuracy as you continue to adjust M666 XYZ and M665 RL simultaneously. </br>
 </br>
-R_new = R_old - 4.0*BowlError </br>
-L_new = L_old + ratio*(R_new - R_old) </br>
+R_new = R_old - 4.0 * BowlError </br>
+L_new = L_old + ratio * (R_new - R_old) </br>
 ratio ~ 1.5 for most stock MPMDs, but may vary if your arm lengths are drastically different. </br>
 Your starting LR values should ideally come directly from the carbon paper step or [basic dimensional accuracy tutorial](https://youtu.be/Sscz8CBmmok).
 
