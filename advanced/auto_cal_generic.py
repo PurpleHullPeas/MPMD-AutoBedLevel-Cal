@@ -232,7 +232,40 @@ def get_newline_character():
     #else: 
     #    return "\r\n" # Octopi
     return "\r\n"
-        
+
+def output_odyssey_BEDLEVEL_TXT(port): 
+    new_line_str = get_newline_character()
+    
+    # Create the file
+    directory_location = os.path.dirname(os.path.abspath(sys.argv[0]))
+    file_name = "BEDLEVEL.TXT"
+    output_path_name = os.path.join(directory_location + os.sep, file_name)
+    file_object  = open(str(output_path_name), "w")
+    
+    # Clear old data
+    while True:
+        out = port.readline().decode()
+        #print("{0}\n".format(out))
+        if 'G29 Auto Bed Leveling' in out:
+            break
+        elif 'Bed X:' in out: 
+            break
+            
+    file_object.write(out) 
+            
+    while True:
+        out = port.readline().decode()
+        #print("{0}\n".format(out))
+        if 'Bed X:' in out: 
+            file_object.write(out) 
+        elif 'Leveling Grid' in out:
+            file_object.write(out) 
+            for ii in range(8): 
+                out = port.readline().decode()
+                file_object.write(out) 
+            break
+
+    
 def output_odyssey_M503(port): 
     new_line_str = get_newline_character()
     
@@ -398,7 +431,7 @@ def get_current_values(port, firmFlag, calibration_pattern):
     number_rows = 21
     if calibration_pattern == 5: 
         number_rows = 21
-    elif abs(calibration_pattern) == 2: 
+    elif abs(calibration_pattern) <= 3: 
         number_rows = 4
     else: 
         number_rows = 4+12
@@ -458,13 +491,18 @@ def get_current_values(port, firmFlag, calibration_pattern):
         y_list[19] = 50.0
         y_list[20] = 50.0
 
-    elif abs(calibration_pattern) == 2:  
-        # G29 P2
+    elif abs(calibration_pattern) <= 3:  
+        # G29 P2 or 4-Point Probe Method
 
-        # Experimental, choose 50 or 25 mm radius
+        # Extract Calibration Radius
         radius = 50.0
-        if calibration_pattern == -2: 
+        if (calibration_pattern) == 2 or (firmFlag == 0): 
+            radius = 50.0
+        elif calibration_pattern == -2: 
             radius = 25.0
+        else: 
+            radius = (abs(calibration_pattern)-2.0)*100.0
+        print('4-point calibration, probe radius = {0}\n'.format(radius))
 
         # Tower 3/Z/E
         theta = 90.0
@@ -603,7 +641,7 @@ def calculate_contour_experimental(dz_list, tower_flag, calibration_pattern):
 
     # Outer Ring
     BowlOR = 0.0
-    if abs(calibration_pattern) == 2: 
+    if abs(calibration_pattern) <= 3: 
         # Simple 4 point pattern
         BowlOR = (TX + TY + TZ) / 3.0
     else: 
@@ -1344,7 +1382,7 @@ def main():
     ddd = 0.0
     eee = 0.0
     fff = 0.0
-    vvv = 30.0
+    vvv = 25.0
     sss = 120.0
     xxx = 0.0
     yyy = 0.0
@@ -1513,6 +1551,9 @@ def main():
                 print ('Setting Calibration Radius M665 V{0}\n'.format(str(vvv)))
                 port.write(('M665 V{0}\n'.format(str(vvv))).encode())
                 out = port.readline().decode()
+                print ('Disabling Probe Compensation with M111 S128')
+                port.write('M111 S128'.encode())
+                out = port.readline().decode()
                 print ('Setting Delta Height M665 H{0}\n'.format(str(hhh)))
                 port.write(('M665 H{0}\n'.format(str(hhh))).encode())
                 out = port.readline().decode()
@@ -1530,6 +1571,10 @@ def main():
                 
         print ('Setting Segments per Second M665 S{0}\n'.format(str(sss)))
         port.write(('M665 S{0}\n'.format(str(sss))).encode())
+                
+        # Adjust 4-point calibration method
+        if abs(calibration_pattern) <= 3: 
+            calibration_pattern = abs(calibration_pattern) + vvv/100.0
                 
         set_M_values(port, trial_z, trial_x, trial_y, l_value, r_value)
 
@@ -1554,16 +1599,18 @@ def main():
             if firmFlag == 1:
                 print ('On Marlin, you need to re-run G29. ')
                 if yes_or_no('Run G29 and output log data now? '):
-                    port.write(('G29;\n').encode()) # Mesh Leveling
-                    #if True: #yes_or_no('Extrapolate bed mesh (Odyssey MPMD Marlin 1.1.X)? '):
-                    #    port.write(('G28 ;\n').encode()) # Home
-                    #    port.write(('G29 C1;\n').encode()) # Mesh Leveling
+
                     port.write(('G28 ;\n').encode()) # Home
                     if odyssey_flag == 1:
+                        port.write(('G29 V3;\n').encode()) # Mesh Leveling
+                        output_odyssey_BEDLEVEL_TXT(port)
                         port.write(('G28 ;\n').encode()) # Home
-                        port.write(('G29 C1;\n').encode()) # Mesh Leveling
+                        if yes_or_no('Extrapolate bed mesh with G29 C1 (Odyssey MPMD Marlin 1.1.X)? '):
+                            port.write(('G28 ;\n').encode()) # Home
+                            port.write(('G29 C1;\n').encode()) # Mesh Leveling
                         output_odyssey_M503(port)
                     else: 
+                        port.write(('G29;\n').encode()) # Mesh Leveling
                         output_M421(port)
                     port.write(('G28 ;\n').encode()) # Home
                     
@@ -1573,7 +1620,7 @@ def main():
                 output_pass_text_p5(10000, port, x_list, y_list, z1_list, z2_list)
                 port.write(('G28 ;\n').encode()) # Home
         
-            if True: #yes_or_no('Save with M500? '): 
+            if yes_or_no('Save with M500? '): 
                 port.write(('M500 ;\n').encode()) # Save to memory
                 
         # Close the com port
