@@ -223,11 +223,11 @@ Once again, more details on these parameters are in the [Marlin4MPMD Calibration
 
 Before printing, you will need to make sure that you have created a fresh G29 mesh (the script will prompt you to do this) and that you have saved everything with M500.
 
-You can look at a heat map if you have done all of the recommended hardware alignments, but the final test is done by actually printing. Make sure to read the next section on "Final Bed Leveling Tweaks" before getting fed up with calibration. </br>
+You can look at a heat map (see the downloadable spreadsheet) if you have done all of the recommended hardware alignments, but the final test is done by actually printing. Make sure to read the next section on "Final Bed Leveling Tweaks" before getting fed up with calibration. </br>
 [Comprehensive Ring Test Print](https://www.thingiverse.com/thing:3892011) </br>
 [Less Comprehensive Low Filament Usage Calibrator](https://www.thingiverse.com/thing:2482476) </br>
 
-Note that the ring test may have to be slightly resized because apparently Cura does not like objects that are exactly 110 mm on a 100 mm diameter plate. I was able to do 108 mm without a skirt. I also recommend changing the height of whichever print you choose to match your Initial Layer Height. That way, you will have a clear idea of where any leveling issues might lie. 
+Note that the ring test may have to be slightly resized because apparently Cura does not like objects that are exactly 110 mm on a 100 mm diameter plate. I was able to do 108 mm without a skirt. I also recommend changing the height of whichever print you choose to match your Initial Layer Height. That way, you will have a clear idea of where any leveling issues might lie. Dennis Brown was able to print closer to a 110 mm diameter by increasing the size of the print bed in Cura to 111 mm.
 
 ## Final Bed Leveling Tweaks
 
