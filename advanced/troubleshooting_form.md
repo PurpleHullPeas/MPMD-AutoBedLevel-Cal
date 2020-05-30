@@ -31,6 +31,7 @@ Do your best to fill this out, even if you just write "I don't understand." Even
 **Successful?** Yes/No/Partial <br/>
 **Terminal Error:** Screenshot preferred. If applicable, copy and paste any script errors here <br/>
 **If not successful, were you able to run "python auto_cal_p5_v0.py [INPUTS]"?** Yes/No - If no, paste that error as well. If N/A, try running this alternate script using "python" instead of "python3". <br/>
+**Did you try any of Marlin's advanced post-processing options?** G29 C1, parabolic fit, least squares fit, manual mesh adjustment, etc.</br>
 **Comments:** E.G., Here's how/why it sucks. <br/>
 **Photos/Video:** Include a photo (mandatory) of your bed setup and/or a video of your printer while the script runs. A screenshot of your heatmap could also be helpful, but do not skip posting an actual photo of your bed setup. <br/>
 **Start Gcode:** Copy-Paste your Start Gcode. <br/>
