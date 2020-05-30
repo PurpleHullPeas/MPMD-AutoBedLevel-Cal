@@ -29,7 +29,7 @@ Much like the P5 tutorial, **I WILL NOT HELP YOU AT ALL UNLESS YOU FILL OUT THE 
 
 2. If for some reason you've made it this far and you're relying on the stock built-in stock firmware WiFi (not Octopi), then you might have trouble running the carbon paper test from the script prompt. Just print the [gcode file](https://drive.google.com/open?id=1ti26of-TKoAjkr2QLdoFnVoZAiNE0M7G), instead. 
 
-3. Sometimes the aegean-odyssey's MPMD Marlin 1.X.X return a firmware error when running G33 ("Correct delta settings with M665 and M666"). This is not something that I have control over via the script. Either use a different calibration pattern or find an M665 combination that does not cause this error to appear. It might be as easy as changing M665 V (M665 B calibration radius in regular Marlin).
+3. Sometimes aegean-odyssey's MPMD Marlin 1.X.X returns a firmware error when running G33 ("Correct delta settings with M665 and M666"). This is not something that I have control over via the script. Either use a different calibration pattern option or find an M665 combination that does not cause this error to appear. It might be as easy as changing M665 V (M665 B calibration radius in regular Marlin).
 
 ## Recommended Hardware Upgrades/Alignments: 
 
