@@ -107,11 +107,6 @@ L_new = L_old + ratio * (R_new - R_old) </br>
 ratio ~ 1.5 for most stock MPMDs, but may vary if your arm lengths are drastically different. </br>
 Your starting LR values should ideally come directly from the carbon paper step or [basic dimensional accuracy tutorial](https://youtu.be/Sscz8CBmmok).
 
-### M665 R Delta Radius (-r)
-[Marlin Reference Page](https://marlinfw.org/docs/gcode/M665.html) </br>
-[Visual Representation/Math](https://reprap.org/wiki/Delta_geometry) </br>
-M665 R has a direct impact on both dimensional accuracy and reducing the bowl/dome shape (previously discussed under M666 XYZ). In the context of this Python script, M665 R is initially used to fix the average dimensional accuracy (via the carbon paper step) and is then adjusted simultaneously with M665 L to fix the bowl/dome shape whilst maintaining that previously calibrated dimensional accuracy.
-
 ### M665 H Delta Height (-hhh)
 [Marlin Reference Page](https://marlinfw.org/docs/gcode/M665.html) </br>
 For all practical purposes, the height is handled when G29 is used to create your bed mesh and/or in your Start Gcode. However, I included this since it appears that the newer G33 routine in later versions of Marlin (not mcheah's version) may be affected somewhat by this when it comes to avoiding "delta calibration error." You are probably okay leaving this at its default value.
