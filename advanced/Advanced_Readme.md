@@ -71,7 +71,7 @@ Even on cartesian machines, G29 can only compensate so-much for misalignment bef
 
 Since this is an advanced tutorial, I will try to briefly cover the delta calibration parameters you can control via the firmware. Now that you have aligned the hardware to the best of your abilities, it is time to adjust the calibration parameters to achieve accurate delta kinematics (printhead movement, bed leveling, dimensional accuracy, etc.). The command-line script argument will be put in parenthesis.
 
-In theory, M666 and M665 help define the real-world delta geometrical parameters that help calculate the delta kinematics (i.e. tells the printer how to move). In practice, however, we more-or-less tweak those parameters' numbers iteratively until we find some combination that gives us both dimensional accuracy and a good/level first layer. I.E., just because a parameter may represent some real world measurement/value does not necessarily mean that your final calibrated value will match it. Because of the complexity and nonlinearity of the equations, "everything affects everything" is a safe assumption, which is why it can take an iterative trial-and-error process in order to properly set delta kinematics parameters. Put another way, if you want to fix both bed leveling AND dimensional accuracy, the process gets more complicated.
+In theory, M666 and M665 define the real-world delta geometrical parameters that help calculate the delta kinematics (i.e. tells the printer how to move). In practice, however, we more-or-less tweak those parameters' numbers iteratively until we find some combination that gives us both dimensional accuracy and a good/level first layer. I.E., just because a parameter may represent some real world measurement/value does not necessarily mean that your final calibrated value will match it. Because of the complexity and nonlinearity of the equations, "everything affects everything" is a safe assumption, which is why it can take an iterative trial-and-error process in order to properly set delta kinematics parameters. Put another way, if you want to fix both bed leveling AND dimensional accuracy, the process gets more complicated.
 
 ### M92 XYZ Motor Steps per mm (-s)
 This is straightforward and already covered in detail on [this page](https://www.thingiverse.com/thing:3892011). Note that Marlin may default the M92 XYZ 1/16 values to 114.29 instead of 114.28. Feel free to try both to see which one gives you better vertical dimensional accuracy with a test print. Fix M92 first, because it will absolutely affect your other calibration parameters.
@@ -210,7 +210,7 @@ Because of the equations used, it is best to get everything as close as possible
 
 For me, I found that I was able to get good results by only adjusting M665 DEF, which relates to M665 R. The M665 DEF values were all very close to +/- 0.3 because of previous alignment/calibration work that I did. The same rule of thumb applies here as in the carbon paper tutorial for M665 R. I.E. ~0.1 mm change in dimensional accuracy corresponds to about ~0.1 mm change in M665 DEF.
 
-Zek Negus in the Facebook Group has achieved good results by adjusting M665 ABC. Note that he does not use my Python script and instead opts to use the Marlin4MPMD 1.3.3 flavor of G33. The M665 ABC parameters are related to the M665 L parameter.
+Zek Negus in the Facebook Group has achieved good results by adjusting M665 ABC. Note that he does not use my Python script and instead opts to use the Marlin4MPMD 1.3.3 flavor of G33. The M665 ABC parameters are related to the M665 L parameter. The general rule of thumb is that if your print is coming out too large, you should increase the rod length, and if the print is coming it too small, you should decrease the rod length.
 
 Once again, more details on these parameters are in the [Marlin4MPMD Calibration Wiki](https://github.com/mcheah/Marlin4MPMD/wiki/Calibration).
 
@@ -222,7 +222,7 @@ You can look at a heat map (see the downloadable spreadsheet) if you have done a
 [Comprehensive Ring Test Print](https://www.thingiverse.com/thing:3892011) </br>
 [Less Comprehensive Low Filament Usage Calibrator](https://www.thingiverse.com/thing:2482476) </br>
 
-Note that the ring test may have to be slightly resized because apparently Cura does not like objects that are exactly 110 mm on a 100 mm diameter plate. I was able to do 108 mm without a skirt. I also recommend changing the height of whichever print you choose to match your Initial Layer Height. That way, you will have a clear idea of where any leveling issues might lie. Dennis Brown was able to print closer to a 110 mm diameter by increasing the size of the print bed in Cura to 111 mm.
+Note that the ring test may have to be slightly resized because apparently Cura does not like objects that are exactly 110 mm on a 110 mm diameter plate. I was able to do 108 mm without a skirt. I also recommend changing the height of whichever print you choose to match your Initial Layer Height. That way, you will have a clear idea of where any leveling issues might lie. Dennis Brown was able to print closer to a 110 mm diameter by increasing the size of the print bed in Cura to 111 mm.
 
 ## Final Bed Leveling Tweaks
 
