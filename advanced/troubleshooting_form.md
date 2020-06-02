@@ -6,7 +6,7 @@ I promise that I am not trying to brush you off. Delta calibration, especially o
 
 As stated in the main tutorial, once I have directed you to this page, **I will not help you until you make an honest attempt to fill out this questionnaire**. This form also sort of doubles as a checklist for the steps contained within the [full calibration guide](https://www.reddit.com/r/mpminidelta/comments/bzm1s2/updated_mpmd_calibration_guide_and_faq/). It is my recommendation to try to go through those, step-by-step, without skipping steps. Note that many of the questions have links embedded within them to help you better understand what is being asked. <br/>
 
-Do your best to fill this out, even if you just write "I don't understand." Even if you don't think it's relevant. Do not skip the bed photo. I'm usually pretty good about helping as long as you make an honest attempt to answer the questions. <br/>
+Do your best to fill this out, even if you just write "I do not understand." Even if you do not think it is relevant. Do not skip the bed photo. I'm usually pretty good about helping as long as you make an honest attempt to answer the questions. <br/>
 
 **Computer Used:** Octopi/Windows7/Windows10/Mac/etc. <br/>
 **[Firmware Version](https://www.mpminidelta.com/firmware/firmware_version_check) Shipped with Printer/Mainboard:** Stock v[37/38/39/40/41/42/43/44/45] <br/>
