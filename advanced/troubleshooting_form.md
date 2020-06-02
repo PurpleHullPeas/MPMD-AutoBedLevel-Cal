@@ -34,5 +34,5 @@ Do your best to fill this out, even if you just write "I do not understand." Eve
 **Did you try any of Marlin's advanced post-processing options?** G29 C1, parabolic fit, least squares fit, manual mesh adjustment, etc.</br>
 **Comments:** E.G., Here's how/why it sucks. <br/>
 **Photos/Video:** Include a photo (mandatory) of your bed setup and/or a video of your printer while the script runs. A screenshot of your heatmap could also be helpful, but do not skip posting an actual photo of your bed setup. <br/>
-**Start Gcode:** Copy-Paste your Start Gcode. <br/>
+**Start Gcode:** Copy-Paste your entire Start Gcode from your slicer. <br/>
 **M503:** Send M503 over USB and Copy-Paste Your Output <br/>
