@@ -10,7 +10,7 @@ Do your best to fill this out, even if you just write "I do not understand." Eve
 
 **Computer Used:** Octopi/Windows7/Windows10/Mac/etc. <br/>
 **[Firmware Version](https://www.mpminidelta.com/firmware/firmware_version_check) Shipped with Printer/Mainboard:** Stock v[37/38/39/40/41/42/43/44/45] <br/>
-**Are you now using Marlin firmware?** copy-paste the firmware.bin filename and list the version of Marlin <br/>
+**Are you now using Marlin firmware?** Yes/No? copy-paste the firmware.bin filename and list the version of Marlin <br/>
 **Build Plate Surface:** Glass/Mirror, PEI, WhamBam, Terrible Stock Sticker, Tape, etc. (also include how you decided to attach the bed to the printer) <br/>
 **Did you remove the stock build surface sticker prior to installing the surface above?** Yes/No, Why? <br/>
 **List any mods between the heated build plate and printer base that cannot be seen in your photo:** N/A <br/>
@@ -22,11 +22,11 @@ Do your best to fill this out, even if you just write "I do not understand." Eve
 **Have you [shimmed the bed square to the rails](https://www.youtube.com/watch?v=2kGcRpWrSE8) (not always necessary)?** Yes/No <br/>
 **Have you [ensured all arms are the same length](https://youtu.be/GYoeg-HAw0I) (very rarely necessary)?** Yes/No <br/>
 **Is there any "play" in the carriage bearings and/or arm screws/nuts?** Yes/No/What <br/>
-**Is your effector [colliding with a bed clip](https://youtu.be/tC87r8OVIII) (or something else)** Yes/No (See Video) <br/>
+**Is your effector [colliding with a bed clip](https://youtu.be/tC87r8OVIII) (or something else)** Yes/No (See 8-second Video) <br/>
 **Did you clean the filament off of the tip of the nozzle?** Yes/No <br/>
 **Have you (optional) rotated any towers (swapping wires and/or M665 XYZ)?** Yes/No - Explain <br/>
 **List any other mods that may affect bed leveling:** N/A <br/>
-**What method did you use to calibrate M665/M666?:** auto_cal_p5.py, auto_cal_p5_v0.py, auto_cal_generic.py, auto_cal_p5_v0.bat, Dennis's spreadsheet, G33, other (explain), etc.  <br/>
+**What method did you use to calibrate M665/M666?:** auto_cal_p5.py, auto_cal_p5_v0.py, auto_cal_generic.py, auto_cal_p5_v0.bat, Dennis's spreadsheet, G33, MPMD Marlin 1.1.X's AUTO_CALIBRATE.GCODE, other (explain), etc.  <br/>
 **Terminal Command Used and/or Batch File Screenshot:** E.G., python3 auto_cal_p5.py [insert inputs here] <br/>
 **Successful?** Yes/No/Partial <br/>
 **Terminal Error:** Screenshot preferred. If applicable, copy and paste any script errors here <br/>
