@@ -11,7 +11,7 @@ Not all calibration tutorials are correct, and not all correct calibration tutor
 
 ## Who should care about this script/tutorial?
 
-If you only care about bed leveling (not dimensional accuracy), then this script might be overkill for you. The tried-and-true stock firmware [P5 tutorial](https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal) or the routines built into the [MPMD Marlin 1.X.X Quick-Start Guide](https://github.com/aegean-odyssey/mpmd_marlin_1.1.x/wiki/Quick-Start) might suit your needs with much less fuss.
+If you only care about bed leveling (not dimensional accuracy), then this script might be overkill for you. The tried-and-true stock firmware [P5 tutorial](https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal) or the routines built into the [MPMD Marlin 1.1.X Quick-Start Guide](https://github.com/aegean-odyssey/mpmd_marlin_1.1.x/wiki/Quick-Start) might suit your needs with much less fuss.
 
 ## A Quick Note About Dimensional Accuracy in the Context of Other Tutorials
 
@@ -29,7 +29,7 @@ Much like the P5 tutorial, **I WILL NOT HELP YOU AT ALL UNLESS YOU FILL OUT THE 
 
 2. If for some reason you've made it this far and you're relying on the stock built-in stock firmware WiFi (not Octopi), then you might have trouble running the carbon paper test from the script prompt. Just print the [gcode file](https://drive.google.com/open?id=1ti26of-TKoAjkr2QLdoFnVoZAiNE0M7G), instead. 
 
-3. Sometimes aegean-odyssey's MPMD Marlin 1.X.X returns a firmware error when running G33 ("Correct delta settings with M665 and M666"). This is not something that I have control over via the script. Either use a different calibration pattern option or find an M665 combination that does not cause this error to appear. It might be as easy as changing M665 V (M665 B calibration radius in regular Marlin).
+3. Sometimes aegean-odyssey's MPMD Marlin 1.1.X returns a firmware error when running G33 ("Correct delta settings with M665 and M666"). This is not something that I have control over via the script. Either use a different calibration pattern option or find an M665 combination that does not cause this error to appear. It might be as easy as changing M665 V (M665 B calibration radius in regular Marlin).
 
 ## Recommended Hardware Upgrades/Alignments: 
 
@@ -47,6 +47,8 @@ Don't act surprised if you get terrible calibration results on a stock machine. 
 
 6. [Physically adjusting all arms to be the same length](https://youtu.be/GYoeg-HAw0I) can also help the delta kinematics behave more predictably. If you are trying to achieve perfect dimensional accuracy, this adjustment becomes much more important. It may also positively impact bed leveling. Once again, this is a quality control issue in that some printers may come from the factory better or worse than others. Delta math usually (unless using the advanced offset options) assumes that all arms are the same length.
 
+7. No parts should be broken or malfunctioning. I really should not have to point out the obvious, but I have had people asking about bed leveling issues while neglecting to mention very obvious clicking/grinding/screeching noises. I cannot go to your house, in-person, and point out every possible component that may be broken on your machine. Common culprits are torn/ripped/damaged belts, bad linear bearings, seized arms, stuck/obstructed bed leveling switches, clicky/separated/bad idler pulleys, etc.
+
 Note: Any time you mess with the hardware, you should recalibrate your machine.
 
 ## Firmware Options
@@ -55,7 +57,7 @@ The previously mentioned hardware upgrades will help, regardless of the firmware
 
 1. [Stock Firmware](https://www.mpminidelta.com/firmware/motion_controller) (not recommended) - you are very limited on what you can do with stock firmware. The only new feature versus the [P5 tutorial](https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal) is the addition of the P2 calibration option. Most of the advanced calibration parameters referenced on this page (e.g. M665 ABCDEFXYZ) do not exist on stock firmware. Therefore, if you are on stock firmware, just use the instructions on the [P5 tutorial](https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal), and if you want to use the P2 calibration pattern, then just use auto_cal_generic.py with those instructions.
 
-2. [Marlin4MPMD 1.3.3](https://github.com/mcheah/Marlin4MPMD) by mcheah - This firmware is no longer supported, but the script should also work with it. Note that a few things like the tower rotation flag (explained in the P5 tutorial) and G33 works differently compared to aegean-odyssey's MPMD Marlin 1.X.X.
+2. [Marlin4MPMD 1.3.3](https://github.com/mcheah/Marlin4MPMD) by mcheah - This firmware is no longer supported, but the script should also work with it. Note that a few things like the tower rotation flag (explained in the P5 tutorial) and G33 works differently compared to aegean-odyssey's MPMD Marlin 1.1.X.
 
 3. [MPMD Marlin 1.1.X](https://github.com/aegean-odyssey/mpmd_marlin_1.1.x) by aegean-odyssey - By default, the script will turn off the probe compensation routine (M111 S128) unless you remove that part of the Python code yourself. It also has the option to use a more current version of the [G33](https://marlinfw.org/docs/gcode/G033.html) routine. Also, for this firmware option, the script's tower flag is used to control the G33 T parameter. (explained more later) .
 
@@ -63,9 +65,11 @@ The previously mentioned hardware upgrades will help, regardless of the firmware
 
 Many newcomers are puzzled as to why G29 does not solve all bed leveling issues. This is because G29 is **only** designed to compensate for true uneven/slanted bed issues on a Cartesian machine. 
 
-On a delta 3D printer, the math is much more complicated than their cartesian counterparts. The home sensors give your printer its start point, and then it does a bunch of math with the defined M92/M665/M666 parameters to tell the printer how to move and to keep track of where it is currently located. This tracked movement/location is what is reported to the G29 probe readings. The problem, however, is that this math assumes a perfectly-aligned machine. Furthermore, it also assumes that those M92/M665/M666 parameters are perfectly defined. Neither of those, are good assumptions. 
+On a delta 3D printer, the math is nonlinear and therefore much more complicated than their cartesian counterparts. The home sensors give your printer its start point, and then it does a bunch of math with the defined M92/M665/M666 parameters to tell the printer how to move and to keep track of where it is currently located. This tracked movement/location is what is reported to the G29 probe readings. The problem, however, is that this math assumes that the machine's hardware is perfectly-aligned. Furthermore, it also assumes that those M92/M665/M666 parameters are perfectly defined. Neither of those, are good assumptions. 
 
-Even on cartesian machines, G29 can only compensate so-much for misalignment before it quits working well (e.g., good luck compensating for a bed that is 1 cm lower on one end versus the other). When you add in the extra parameters/complexity/nonlinearity of delta kinematics, then there are even more alignment/calibration parameters you need to address in order for G29 to be able to do its job. Some may argue that G29 is not needed on a properly calibrated/aligned delta 3D printer. That could be a valid statement for many delta printers, but my experience has been that some sort of bed-leveling mesh is needed on this specific machine to compensate for remaining errors, especially when using a smaller nozzle.
+Even on cartesian machines, G29 can only compensate so-much for misalignment before it quits working well (e.g., good luck compensating for a bed that is 1 cm lower on one end versus the other). When you add in the extra parameters/complexity/nonlinearity of delta kinematics, then there are even more alignment/calibration parameters you need to address in order for G29 to be able to do its job. 
+
+Some may argue that G29 is not needed on a properly calibrated/aligned delta 3D printer. That could be a valid statement for many delta printers, but my experience has been that some sort of bed-leveling mesh is needed on this specific machine to compensate for remaining errors, especially when using a smaller nozzle.
 
 ## Calibration Script Inputs and Delta Calibration Gcode Parameters
 
@@ -122,14 +126,14 @@ Only applicable to Marlin. Controls the calibration probe radius for most routin
 ### M665 XYZ Tower Offset Angles (-xxx) (-yyy) (-zzz)
 [Marlin Reference Page](https://marlinfw.org/docs/gcode/M665.html) </br>
 [Marlin4MPMD 1.3.3 Reference Page](https://github.com/mcheah/Marlin4MPMD/wiki/Calibration) </br>
-[G33](https://marlinfw.org/docs/gcode/G033.html) in MPMD Marlin 1.X.X has options for automatically adjusting this. Applies an angular offset to the towers. If you edit these values manually, make sure they all add up to 0.00 or some multiple of 360.00.
+[G33](https://marlinfw.org/docs/gcode/G033.html) in MPMD Marlin 1.1.X has options for automatically adjusting this. Applies an angular offset to the towers. If you edit these values manually, make sure they all add up to 0.00 or some multiple of 360.00.
 
 Dennis Brown's Note: </br>
 The manufacturing tolerances and assembly method makes the angles very close to ideal on the MPMD. Don’t expect to see any improvement from adjusting this.
 
 ### M665 ABCDEF Advanced Offset Parameters (-aaa) (-bbb) (-ccc) (-ddd) (-eee) (-fff)
 [Marlin4MPMD 1.3.3 Reference Page](https://github.com/mcheah/Marlin4MPMD/wiki/Calibration) </br>
-These are experimental values that were made specifically for Marlin4MPMD and later imported into MPMD Marlin 1.X.X. These are the parameters you will need to adjust to fix dimensional accuracy issues specific to a tower. Zek Negus in the Facebook Group does his final dimensional accuracy tweaks only with the diagonal rod length offsets (ABC); however, I have had luck fixing things just by adjusting the delta radii offsets (DEF). Because of the experimental trial-and-error nature of these adjustments, I would recommend getting M666 XYZ and M665 LR adjusted for the best average dimensional accuracy and bed leveling possible before proceeding here. There is currently no logic in the script for changing/adjusting/calculating M665 ABCDEF automatically. I.E., you will have to choose your own values via trial-and-error.
+These are experimental values that were made specifically for Marlin4MPMD and later imported into MPMD Marlin 1.1.X. These are the parameters you will need to adjust to fix dimensional accuracy issues specific to a tower. Zek Negus in the Facebook Group does his final dimensional accuracy tweaks only with the diagonal rod length offsets (ABC); however, I have had luck fixing things just by adjusting the delta radii offsets (DEF). Because of the experimental trial-and-error nature of these adjustments, I would recommend getting M666 XYZ and M665 LR adjusted for the best average dimensional accuracy and bed leveling possible before proceeding here. There is currently no logic in the script for changing/adjusting/calculating M665 ABCDEF automatically. I.E., you will have to choose your own values via trial-and-error.
 
 Dennis Brown's Note: </br> 
 First find the best average dimensional accuracy with the M665 L/R. Then relative adjustments can be made to M665 DEF (or ABC). One will stay the same. If adjusting another higher, then adjust the last one lower by the same amount to keep the average the same. I have the feeling that adjustments should happen in pairs A/D, B/E, C/F, using the same ratios as L/R to adjust for arm length variations. I have not thoroughly investigated the algorithms for this yet.
@@ -147,12 +151,12 @@ You can set the hot end and bed temperature as script arguments so that the firm
 ### Firmware Flag (-ff)
 0 = Stock Firmware </br>
 1 = Marlin4MPMD 1.2.2 or 1.3.3 </br>
-2 = MPMD Marlin 1.X.X </br>
+2 = MPMD Marlin 1.1.X </br>
 
 ### Tower Flag (-tf)
 Stock Firmware = 0 </br>
 Marlin4MPMD 1.3.3: Probably 1, but read the discussion in the [P5 tutorial](https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal). If you did the motor swap to make parts face forward in the stock FW, but changed to Marlin4MPMD, it will be less confusing to undo that change, as this FW makes the standard wiring face forward. </br>
-MPMD Marlin 1.X.X: Experimental G33 T option - 0 (do not rotate towers) or 1 (rotate towers M665 XYZ). </br>
+MPMD Marlin 1.1.X: Experimental G33 T option - 0 (do not rotate towers) or 1 (rotate towers M665 XYZ). </br>
 
 ### Calibration Method/Pattern (-patt)
 This method/pattern refers to the script's logic/routine for calibrating M665/M666 automatically. These could correspond to existing G29 patterns, existing G33 patterns, and/or custom emulated patterns. For example, G29 P5 does not exist in Marlin4MPMD, but if selected, the script will emulate that probe pattern for endstop calibration, regardless of the firmware version. </br>
@@ -240,7 +244,7 @@ If you have performed all of the recommended hardware alignments, calibrated you
 
 5. aegean-odyssey's MPMD Marlin 1.1.X has additional post-processing options. After running G29, also running G29 C1 can fit a least-squares fit plane to the bed mesh. G29 C1 probably works better with a glass plate. For a non-flat surface, one of his [experimental bed mesh post-processing scripts](https://github.com/aegean-odyssey/mpmd-calibration-experimental) may work better for you.
 
-6. Both Marlin4MPMD and MPMD Marlin 1.1.X have the ability to manually edit your bed mesh. The [Marlin4MPMD Calibration Wiki Page](https://github.com/mcheah/Marlin4MPMD/wiki/Calibration) has detailed instructions for that version of firmware. I am currently doing experimentation with the spreadsheet on this project to manually edit points in aegean-odyssey's MPMD Marlin 1.X.X. There is additional experimental discussion in [this post](https://www.reddit.com/r/mpminidelta/comments/gm4bbs/new_release_119r11_of_mpmd_marlin_11x_firmware/).
+6. Both Marlin4MPMD and MPMD Marlin 1.1.X have the ability to manually edit your bed mesh. The [Marlin4MPMD Calibration Wiki Page](https://github.com/mcheah/Marlin4MPMD/wiki/Calibration) has detailed instructions for that version of firmware. I am currently doing experimentation with the spreadsheet on this project to manually edit points in aegean-odyssey's MPMD Marlin 1.1.X. There is additional experimental discussion in [this post](https://www.reddit.com/r/mpminidelta/comments/gm4bbs/new_release_119r11_of_mpmd_marlin_11x_firmware/).
 
 ## Finished?
 Much like the [P5 tutorial](https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal), you will need to create your G29 mesh (Marlin) and save your ending values to EEPROM via M500 (Marlin only) or save them to your Start Gcode. 
