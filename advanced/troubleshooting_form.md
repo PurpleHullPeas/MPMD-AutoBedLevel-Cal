@@ -2,9 +2,9 @@
 
 ![Budget Bed Leveling](https://cdn.thingiverse.com/assets/1c/90/56/76/f5/featured_preview_81224952_10157946633951407_1884648180813922304_o.jpg)
 
-I promise that I am not trying to brush you off. Delta calibration, especially on the Monoprice Mini Delta, can be complicated. Everything affects everything and there are numerous pitfalls that could be preventing you from obtaining a good first layer. <br/>
+I promise that I am not trying to brush you off. Delta calibration, especially on the Monoprice Mini Delta, can be complicated. Everything affects everything and there are numerous pitfalls that could be preventing you from obtaining a good first layer. Every single item/question here exists because it has tripped up someone else in the past. <br/>
 
-As stated in the main tutorial, once I have directed you to this page, **I will not help you until you make an honest attempt to fill out this questionnaire**. This form also sort of doubles as a checklist for the steps contained within the [full calibration guide](https://www.reddit.com/r/mpminidelta/comments/bzm1s2/updated_mpmd_calibration_guide_and_faq/). It is my recommendation to try to go through those, step-by-step, without skipping steps. Note that many of the questions have links embedded within them to help you better understand what is being asked. <br/>
+As stated in the main tutorial, once I have directed you to this page, **I will not help you until you make an honest attempt to fill out this questionnaire**. This form also sort of doubles as a checklist for the steps contained within the [full calibration guide](https://www.reddit.com/r/mpminidelta/comments/bzm1s2/updated_mpmd_calibration_guide_and_faq/). It is my recommendation to try to go through those, step-by-step, without skipping steps. Note that many of the questions have links embedded within them to help you better understand what is being asked. Some of the video links are long, but they almost always include a summary/abbreviation in the video description. <br/>
 
 Do your best to fill this out, even if you just write "I do not understand." Even if you do not think it is relevant. Do not skip the bed photo. I'm usually pretty good about helping as long as you make an honest attempt to answer the questions. <br/>
 
