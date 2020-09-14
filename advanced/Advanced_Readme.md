@@ -200,7 +200,7 @@ You could also do a test print for dimensional accuracy, such as [this one](http
 
 ## Advanced Dimensional Accuracy Calibration (M665 ABCDEF) Flow Chart
 
-![MPMD Advanced Calibration Flowchart](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/PurpleHullPeas-advanced_readme/images/AdvancedCalibrationFlowchart.PNG)
+![MPMD Advanced Calibration Flowchart](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/master/images/AdvancedCalibrationFlowchart.PNG)
 
 The items in orange are handled automatically by the Python script. The other items require some amount of user input/interaction, but might be made more convenient by the script (e.g. prompts for running the carbon paper test and/or G29 as well as logging data). When I first started working on this script, G33 was not nearly as robust. As it stands now, you may choose to do the calibration without the Python script. I left enough information in the flowchart to allow you to make your own decision. 
 
