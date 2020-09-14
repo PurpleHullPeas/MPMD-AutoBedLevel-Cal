@@ -184,7 +184,7 @@ aegean-odyssey's MPMD Marlin 1.1.X </br>
 I am still doing ongoing experimentation here. </br>
 
 ## How to run the script? 
-This is a Python script and I have no plans on converting it to an executable or batch file. If you want to perform this level of calibration, then you can figure out how to run it via Python. There are plenty of instructions on how to make this work in the [P5 tutorial](https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal) page, including a [screenshot for WinPython](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/PurpleHullPeas-advanced_readme/images/WinPythonInstructions.png) (just use this script instead of the auto_cal_p5_v0.py script). If you do not explicitly define an input value, then the script will choose a default value.
+This is a Python script and I have no plans on converting it to an executable or batch file. If you want to perform this level of calibration, then you can figure out how to run it via Python. There are plenty of instructions on how to make this work in the [P5 tutorial](https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal) page, including a [screenshot for WinPython](https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/blob/master/images/WinPythonInstructions.png) (just use this script instead of the auto_cal_p5_v0.py script). If you do not explicitly define an input value, then the script will choose a default value.
 
 ## Carbon Paper Test
 
@@ -230,7 +230,7 @@ Note that the ring test may have to be slightly resized because apparently Cura 
 
 ## Final Bed Leveling Tweaks
 
-![0.2 mm Nozzle Bed Leveling](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/PurpleHullPeas-advanced_readme/images/BedLeveling_SmallNozzle_Final.jpg)
+![0.2 mm Nozzle Bed Leveling](https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/blob/master/images/BedLeveling_SmallNozzle_Final.jpg)
 
 If you have performed all of the recommended hardware alignments, calibrated your machine properly, and you are using a 0.4 mm nozzle, then you should not need anything else beyond a few adhesion and slicer settings changes (covered in the first point here). However, if you're not using a perfectly flat surface, using a 0.2 mm nozzle, or you did not do all of the previously mentioned recommendations, then you may have to do some additional work. It is also important to note that the bed probe readings (and therefore also the heat map) only makes sense if you have performed all of the recommended hardware upgrades/alignments/calibrations.
 
