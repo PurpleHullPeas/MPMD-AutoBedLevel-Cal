@@ -16,7 +16,7 @@ Do your best to fill this out, even if you just write "I do not understand." Eve
 **List any mods between the heated build plate and printer base that cannot be seen in your photo:** N/A <br/>
 **Did you make sure that the bed heater wires are tucked away completely in the base hole?:** Yes/No <br/>
 **Do you have [Dennis's Hold-Down Clips](https://www.youtube.com/watch?v=RSZ5xZf63Xo) Installed?** Yes/No <br/>
-**Did you [calibrate Dennis's Hold-Down Clips](https://www.youtube.com/watch?v=2eko2PRa6y8) with an Index Card?** Yes/No <br/>
+**Did you [calibrate Dennis's Hold-Down Clips](https://www.youtube.com/watch?v=2eko2PRa6y8) with an Index Card with the bed heated to printing temperature?** Yes/No <br/>
 **Have you [tuned the belts](https://www.youtube.com/watch?v=gTtEJum10Ss) recently?** Yes/No <br/>
 **Have you [lubricated moving parts](https://www.youtube.com/watch?v=2vuTZncnQYM) recently?** Yes/No <br/>
 **Have you [shimmed the bed square to the rails](https://www.youtube.com/watch?v=2kGcRpWrSE8) (not always necessary)?** Yes/No <br/>
@@ -27,6 +27,7 @@ Do your best to fill this out, even if you just write "I do not understand." Eve
 **Have you (optional) rotated any towers (swapping wires and/or M665 XYZ)?** Yes/No - Explain <br/>
 **List any other mods that may affect bed leveling:** N/A <br/>
 **What method did you use to calibrate M665/M666?:** auto_cal_p5.py, auto_cal_p5_v0.py, auto_cal_generic.py, auto_cal_p5_v0.bat, Dennis's spreadsheet, G33, MPMD Marlin 1.1.X's AUTO_CALIBRATE.GCODE, other (explain), etc.  <br/>
+**Did you preheat the bed and/or nozzle prior to software calibration?:** Yes/No, what temperatures?  <br/>
 **Terminal Command Used and/or Batch File Screenshot:** E.G., python3 auto_cal_p5.py [insert inputs here] <br/>
 **Successful?** Yes/No/Partial <br/>
 **Terminal Error:** Screenshot preferred. If applicable, copy and paste any script errors here <br/>
