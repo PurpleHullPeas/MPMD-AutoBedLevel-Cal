@@ -163,11 +163,11 @@ This method/pattern refers to the script's logic/routine for calibrating M665/M6
 
 I have experimented with several methods/patterns, some with more success than others. For simplicity, I will only emphasize the few that I believe may work best in common situations.
 
-5:      Stock or Marlin4MPMD or Odyssey MPMD Marlin - G29 P5 pattern. Same as the auto_cal_p5_v0.py script. </br>
-2:      Stock or Marlin4MPMD or Odyssey MPMD Marlin - 1 center point, 3 tower points, probe radius determined by -vvv input parameter. </br>
+5:      Stock or Marlin4MPMD or MPMD Marlin 1.1.X - G29 P5 pattern. Same as the auto_cal_p5_v0.py script. </br>
+2:      Stock or Marlin4MPMD or MPMD Marlin 1.1.X - 1 center point, 3 tower points, probe radius determined by -vvv input parameter. </br>
 
 Experimental Patterns (some not listed): </br>
-332-340: Odyssey MPMD Marlin 1.1.X Only - Uses Built-In G33 with automatic M665 L adjustment added. </br>
+332-340: MPMD Marlin 1.1.X Only - Uses Built-In G33 with automatic M665 L adjustment added. </br>
          Last digit is for G33_P parameter (e.g. 334 = G33 P4). </br>
          https://marlinfw.org/docs/gcode/G033.html </br>
 
