@@ -4,6 +4,8 @@
 
 I promise that I am not trying to brush you off. Delta calibration, especially on the Monoprice Mini Delta, can be complicated. Everything affects everything and there are numerous pitfalls that could be preventing you from obtaining a good first layer. Every single item/question here exists because it has tripped up someone else in the past. <br/>
 
+The various scripts and other M665/M666 calibration methods are basically just dumb mathematical equations that take bed probe readings and tweak values to try to make the probe values read closer to the same numbers. It is usually not smart enough to tell you if something wrong with your hardware is interfering.
+
 As stated in the main tutorial, once I have directed you to this page, **I will not help you until you make an honest attempt to fill out this questionnaire**. This form also sort of doubles as a checklist for the steps contained within the [full calibration guide](https://www.reddit.com/r/mpminidelta/comments/bzm1s2/updated_mpmd_calibration_guide_and_faq/). It is my recommendation to try to go through those, step-by-step, without skipping steps. Note that many of the questions have links embedded within them to help you better understand what is being asked. Some of the video links are long, but they almost always include a summary/abbreviation in the video description. <br/>
 
 Do your best to fill this out, even if you just write "I do not understand." Even if you do not think it is relevant. Do not skip the bed photo. I'm usually pretty good about helping as long as you make an honest attempt to answer the questions. <br/>
@@ -23,7 +25,10 @@ Do your best to fill this out, even if you just write "I do not understand." Eve
 **Have you [ensured all arms are the same length](https://youtu.be/GYoeg-HAw0I) (very rarely necessary)?** Yes/No <br/>
 **Is there any "play" in the carriage bearings and/or arm screws/nuts?** Yes/No/What <br/>
 **Is your effector [colliding with a bed clip](https://youtu.be/tC87r8OVIII) (or something else)** Yes/No (See 8-second Video) <br/>
+**Does the nozzle appear to be sliding across the surface at any probe point?** Yes/No <br/>
 **Did you clean the filament off of the tip of the nozzle?** Yes/No <br/>
+**Is the nozzle tapping only the primary print surface throughout the entire calibration process? I.E., it is not tapping outside of the glass/flexplate/tape/etc.** Yes/No <br/>
+**Are the arms and/or effector getting stuck at the top near the wires and/or Bowden Tube ([Helpful Video](https://www.facebook.com/GrantSGarrison/videos/3705044122847715/))?** Yes/No <br/>
 **Have you (optional) rotated any towers (swapping wires and/or M665 XYZ)?** Yes/No - Explain <br/>
 **List any other mods that may affect bed leveling:** N/A <br/>
 **What method did you use to calibrate M665/M666?:** auto_cal_p5.py, auto_cal_p5_v0.py, auto_cal_generic.py, auto_cal_p5_v0.bat, Dennis's spreadsheet, G33, MPMD Marlin 1.1.X's AUTO_CALIBRATE.GCODE, other (explain), etc.  <br/>
