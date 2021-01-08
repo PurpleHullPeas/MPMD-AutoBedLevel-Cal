@@ -1,5 +1,7 @@
 # Advanced Calibration (auto_cal_generic.py)
 
+**THIS TUTORIAL IS ONLY FOR auto_cal_generic.py...NOTHING ELSE!!!** </br></br>
+
 If you're trying to tackle advanced calibration, then it is assumed that you have already gone through the steps outlined in the [Calibration Roadmap](https://www.reddit.com/r/mpminidelta/comments/bzm1s2/updated_mpmd_calibration_guide_and_faq/). If not, then do not act surprised when things do not work well for you. I will add some extra reminders here, but this page is not comprehensive. Also, this page isn't for the basic "I don't know how to connect to USB, why bed not level, what is EEPROM, what is start gcode?" types of questions. Go back to [MPMD 101](https://docs.google.com/document/d/1LHomAxmgSWEggiCM1p6B0vZCIcJPIFTe0OqnozhtZxc/edit) and (later on) the [P5 script tutorial](https://youtu.be/kyznWfPQgBk) if you need that level of help.
 
 ## Helpful Links
@@ -12,6 +14,9 @@ Not all calibration tutorials are correct, and not all correct calibration tutor
 ## Who should care about this script/tutorial?
 
 If you only care about bed leveling (not dimensional accuracy), then this script might be overkill for you. The tried-and-true stock firmware [P5 tutorial](https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal) or the routines built into the [MPMD Marlin 1.1.X Quick-Start Guide](https://github.com/aegean-odyssey/mpmd_marlin_1.1.x/wiki/Quick-Start) might suit your needs with much less fuss.
+
+## How to run the script? 
+This is a Python script and I have no plans on converting it to an executable or batch file. If you want to perform this level of calibration, then you can figure out how to run it via Python. There are plenty of instructions on how to make this work in the [P5 tutorial](https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal) page, including a [screenshot for WinPython](https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/blob/master/images/WinPythonInstructions.png) (just use this script instead of the auto_cal_p5_v0.py script). If you do not explicitly define an input value, then the script will choose a default value.
 
 ## A Quick Note About Dimensional Accuracy in the Context of Other Tutorials
 
@@ -182,9 +187,6 @@ Option 2 with a 25 mm probe radius (-vvv) worked best on my machine. Dennis's te
 
 aegean-odyssey's MPMD Marlin 1.1.X </br>
 I am still doing ongoing experimentation here. </br>
-
-## How to run the script? 
-This is a Python script and I have no plans on converting it to an executable or batch file. If you want to perform this level of calibration, then you can figure out how to run it via Python. There are plenty of instructions on how to make this work in the [P5 tutorial](https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal) page, including a [screenshot for WinPython](https://github.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/blob/master/images/WinPythonInstructions.png) (just use this script instead of the auto_cal_p5_v0.py script). If you do not explicitly define an input value, then the script will choose a default value.
 
 ## Carbon Paper Test
 
