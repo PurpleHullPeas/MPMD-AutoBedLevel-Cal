@@ -193,7 +193,7 @@ Do your best to fill this out, even if you just write "I don't understand." Even
 **Does the nozzle appear to be sliding across the surface at any probe point?** Yes/No <br/>
 **Did you clean the filament off of the tip of the nozzle?** Yes/No <br/>
 **Is the nozzle tapping only the primary print surface throughout the entire calibration process? I.E., it is not tapping outside of the glass/flexplate/tape/etc.** Yes/No <br/>
-**Are the arms and/or effector getting stuck at the top near the wires and/or Bowden Tube ([Helpful Video](https://www.facebook.com/GrantSGarrison/videos/3705044122847715/))?** Yes/No <br/>
+**Are the arms and/or effector getting stuck at the top near the wires and/or Bowden Tube ([Helpful Video](https://youtu.be/oTmRglc0m84))?** Yes/No <br/>
 **Have you (optional) rotated any towers (swapping wires and/or M665 XYZ)?** Yes/No - Explain <br/>
 **List any other mods that may affect bed leveling:** N/A <br/>
 **What method did you use to calibrate M665/M666?:** auto_cal_p5.py, auto_cal_p5_v0.py, auto_cal_generic.py, auto_cal_p5_v0.bat, Dennis's spreadsheet, G33, MPMD Marlin 1.1.X's AUTO_CALIBRATE.GCODE, other (explain), etc.  <br/>
