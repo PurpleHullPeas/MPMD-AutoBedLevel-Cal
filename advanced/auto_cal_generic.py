@@ -637,7 +637,7 @@ def calculate_contour_experimental(dz_list, tower_flag, calibration_pattern):
     TX, TY, TZ, xtower, ytower, ztower = rotate_tower_values(dz_list[1], dz_list[2], dz_list[0], dz_list[1], dz_list[2], dz_list[0], tower_flag)
 
     # Center Value = Center Point
-    BowlCenter = dz_list[0]
+    BowlCenter = dz_list[3]
 
     # Outer Ring
     BowlOR = 0.0
