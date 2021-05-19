@@ -1,5 +1,9 @@
 # Advanced Calibration (auto_cal_generic.py)
 
+## DO NOT USE THIS WITH THE MONOPRICE MINI DELTA V2! THIS TUTORIAL IS FOR THE OLDER MONOPRICE MINI DELTA V1!
+![MPMD V1 vs MPMD V2](https://raw.githubusercontent.com/PurpleHullPeas/MPMD-AutoBedLevel-Cal/master/images/V1_vs_V2.png)<br/>
+The firmware for these two machines behave very differently. The Monoprice Mini Delta V2 already includes a built-in Delta Calibrate routine, so do not use these scripts/programs.</br>
+
 **THIS TUTORIAL IS ONLY FOR auto_cal_generic.py...NOTHING ELSE!!!** </br></br>
 
 If you're trying to tackle advanced calibration, then it is assumed that you have already gone through the steps outlined in the [Calibration Roadmap](https://www.reddit.com/r/mpminidelta/comments/bzm1s2/updated_mpmd_calibration_guide_and_faq/). If not, then do not act surprised when things do not work well for you. I will add some extra reminders here, but this page is not comprehensive. Also, this page isn't for the basic "I don't know how to connect to USB, why bed not level, what is EEPROM, what is start gcode?" types of questions. Go back to [MPMD 101](https://docs.google.com/document/d/1LHomAxmgSWEggiCM1p6B0vZCIcJPIFTe0OqnozhtZxc/edit) and (later on) the [P5 script tutorial](https://youtu.be/kyznWfPQgBk) if you need that level of help.
